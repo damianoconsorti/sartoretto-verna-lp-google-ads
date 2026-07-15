@@ -1,7 +1,7 @@
-// Google Ads conversion tracking.
-// TODO: sostituisci con l'ID conversione reale fornito da Google Ads
-// (formato "AW-XXXXXXXXX/YYYYYYYYYYYYYYYYYYYY") una volta disponibile.
-const CONVERSION_ID = 'AW-REPLACE_ME/REPLACE_ME';
+// Google Ads conversion tracking. Account ID confermato: AW-1072446258
+// TODO: manca la label conversione (parte dopo "/") — sostituisci REPLACE_ME_LABEL
+// una volta ricevuto lo snippet "gtag('event', 'conversion', {send_to: ...})".
+const CONVERSION_ID = 'AW-1072446258/REPLACE_ME_LABEL';
 
 declare global {
   interface Window {
