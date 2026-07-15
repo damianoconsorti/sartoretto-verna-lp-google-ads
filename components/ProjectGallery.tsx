@@ -15,15 +15,15 @@ const featured: Project = {
   name: 'Farmacia Catona',
   location: 'Reggio Calabria',
   category: 'Nuova apertura',
-  imgSrc: '/CATONA.jpg',
+  imgSrc: 'CATONA.jpg',
   gradient: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,181,181,0.32) 100%)',
 };
 
 const small: Project[] = [
-  { name: 'Farmacia Bellini',      location: 'Catania', category: 'Ristrutturazione', imgSrc: '/BELLINI.jpg',       gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
-  { name: 'Farmacia San Leo',      location: 'Rimini',  category: 'Restyling',        imgSrc: '/SAN-LEO.jpg',       gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
-  { name: 'Farmacia Appio Latino', location: 'Roma',    category: 'Ampliamento',      imgSrc: '/APPIO-LATINO.jpg',  gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
-  { name: 'Farmacia Beneduce',     location: 'Napoli',  category: 'Trasferimento',    imgSrc: '/BENEDUCE.jpg',      gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
+  { name: 'Farmacia Bellini',      location: 'Catania', category: 'Ristrutturazione', imgSrc: 'BELLINI.jpg',       gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
+  { name: 'Farmacia San Leo',      location: 'Rimini',  category: 'Restyling',        imgSrc: 'SAN-LEO.jpg',       gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
+  { name: 'Farmacia Appio Latino', location: 'Roma',    category: 'Ampliamento',      imgSrc: 'APPIO-LATINO.jpg',  gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
+  { name: 'Farmacia Beneduce',     location: 'Napoli',  category: 'Trasferimento',    imgSrc: 'BENEDUCE.jpg',      gradient: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.08) 60%, transparent 100%)' },
 ];
 
 export default function ProjectGallery() {
