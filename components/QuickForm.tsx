@@ -16,7 +16,7 @@ interface QuickFormState {
 const empty: QuickFormState = { nome: '', cognome: '', email: '', telefono: '' };
 
 const inputCls =
-  'bg-white/5 border border-white/15 text-white text-sm font-sans font-light px-3 py-2 md:py-2.5 w-full rounded-none focus:outline-none focus:border-acid transition-colors duration-200 placeholder:text-white/35';
+  'bg-white border border-transparent text-[#0a0a0a] text-sm font-sans font-medium px-3 py-2 md:py-2.5 w-full rounded-none focus:outline-none focus:border-acid transition-colors duration-200 placeholder:text-[#8a8a8a] placeholder:font-light';
 
 export default function QuickForm() {
   const [form, setForm] = useState<QuickFormState>(empty);
@@ -78,7 +78,7 @@ export default function QuickForm() {
             noValidate
             className="flex flex-col md:flex-row md:items-end gap-2 md:gap-4"
           >
-            <p className="hidden lg:block text-white/45 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pb-2.5">
+            <p className="hidden lg:block text-white/65 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pb-2.5">
               Consulenza gratuita
             </p>
 
