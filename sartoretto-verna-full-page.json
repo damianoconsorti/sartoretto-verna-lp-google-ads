@@ -1,0 +1,117 @@
+{
+  "title": "Sartoretto Verna Full Page",
+  "type": "page",
+  "version": "0.4",
+  "content": [
+    {
+      "id": "hero_section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "column_gap": "no",
+        "height": "min",
+        "custom_height": { "unit": "vh", "size": 100 },
+        "background_background": "classic",
+        "background_color": "#0a0a0a"
+      },
+      "elements": [
+        {
+          "id": "hero_col_1",
+          "elType": "column",
+          "settings": {
+            "background_background": "classic",
+            "background_image": { "url": "https://picsum.photos/seed/101/1200/1600" },
+            "background_position": "center center",
+            "background_size": "cover",
+            "background_overlay_background": "classic",
+            "background_overlay_color": "#000000",
+            "background_overlay_opacity": { "size": 0.5 },
+            "background_overlay_color_hover": "#ccff00",
+            "background_overlay_opacity_hover": { "size": 0.9 },
+            "_css_classes": "sv-hero-column"
+          },
+          "elements": [
+            {
+              "id": "hero_title_1",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "NUOVA APERTURA",
+                "title_color": "#ffffff",
+                "typography_typography": "custom",
+                "typography_font_family": "Inter",
+                "typography_font_weight": "900",
+                "typography_text_transform": "uppercase",
+                "align": "center"
+              }
+            }
+          ]
+        },
+        {
+          "id": "hero_col_2",
+          "elType": "column",
+          "settings": {
+            "background_background": "classic",
+            "background_image": { "url": "https://picsum.photos/seed/124/1200/1600" },
+            "background_position": "center center",
+            "background_size": "cover",
+            "background_overlay_background": "classic",
+            "background_overlay_color": "#000000",
+            "background_overlay_opacity": { "size": 0.5 },
+            "background_overlay_color_hover": "#00ffff",
+            "background_overlay_opacity_hover": { "size": 0.9 },
+            "_css_classes": "sv-hero-column"
+          },
+          "elements": [
+            {
+              "id": "hero_title_2",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "RESTYLING",
+                "title_color": "#ffffff",
+                "typography_typography": "custom",
+                "typography_font_family": "Inter",
+                "typography_font_weight": "900",
+                "typography_text_transform": "uppercase",
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stats_section",
+      "elType": "section",
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#f8fafc",
+        "padding": { "unit": "px", "top": "80", "right": "0", "bottom": "80", "left": "0", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "stats_col",
+          "elType": "column",
+          "elements": [
+            {
+              "id": "stats_counter",
+              "elType": "widget",
+              "widgetType": "counter",
+              "settings": {
+                "starting_number": 0,
+                "ending_number": 2300,
+                "prefix": "",
+                "suffix": "+",
+                "title": "Farmacie Realizzate",
+                "typography_typography": "custom",
+                "typography_font_family": "Inter",
+                "typography_font_weight": "900"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

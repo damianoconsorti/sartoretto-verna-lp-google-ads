@@ -1,0 +1,1109 @@
+{
+  "title": "Sartoretto Verna LP - Full Editable",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": [],
+  "content": [
+    {
+      "id": "sec_header",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": "full"
+      },
+      "elements": [
+        {
+          "id": "header_logo_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 70
+          },
+          "elements": [
+            {
+              "id": "logo",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://www.sartorettoverna.it/wp-content/uploads/2025/07/NUOVO-LOGO-SV-PHARMACY-BUSINESS-ARCHITECTS-09.png"
+                },
+                "image_size": "full"
+              }
+            }
+          ]
+        },
+        {
+          "id": "header_btn_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 30
+          },
+          "elements": [
+            {
+              "id": "header_btn",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Richiedi Consulenza",
+                "align": "right",
+                "link": {
+                  "url": "#contatti"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_hero",
+      "elType": "section",
+      "settings": {
+        "_element_id": "hero",
+        "layout": "full_width",
+        "content_width": "full",
+        "column_gap": "no"
+      },
+      "elements": [
+        {
+          "id": "hero_col_1",
+          "elType": "column",
+          "settings": {
+            "_column_size": 33,
+            "background_background": "classic",
+            "background_image": {
+              "url": "https://picsum.photos/seed/101/1200/1600"
+            },
+            "background_overlay_background": "classic",
+            "background_overlay_color": "#000000",
+            "background_overlay_opacity": {
+              "size": 0.5
+            }
+          },
+          "elements": [
+            {
+              "id": "hero1_sub",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Concept",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero1_t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Nuova Apertura",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero1_d",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Dall'analisi del territorio al progetto architettonico. Creiamo un'identita unica per la tua nuova sede.",
+                "align": "left",
+                "text_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero1_b",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Approfondisci",
+                "align": "left",
+                "link": {
+                  "url": "#contatti"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "hero_col_2",
+          "elType": "column",
+          "settings": {
+            "_column_size": 34,
+            "background_background": "classic",
+            "background_image": {
+              "url": "https://picsum.photos/seed/124/1200/1600"
+            },
+            "background_overlay_background": "classic",
+            "background_overlay_color": "#000000",
+            "background_overlay_opacity": {
+              "size": 0.5
+            }
+          },
+          "elements": [
+            {
+              "id": "hero2_sub",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Update",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero2_t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Restyling",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero2_d",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Rinnova l'immagine e ottimizza i flussi senza fermare l'attivita. Massima resa estetica e funzionale.",
+                "align": "left",
+                "text_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero2_b",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Approfondisci",
+                "align": "left",
+                "link": {
+                  "url": "#contatti"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "hero_col_3",
+          "elType": "column",
+          "settings": {
+            "_column_size": 33,
+            "background_background": "classic",
+            "background_image": {
+              "url": "https://picsum.photos/seed/133/1200/1600"
+            },
+            "background_overlay_background": "classic",
+            "background_overlay_color": "#000000",
+            "background_overlay_opacity": {
+              "size": 0.5
+            }
+          },
+          "elements": [
+            {
+              "id": "hero3_sub",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Clinic",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero3_t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Farmacia Servizi",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero3_d",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Spazi consulenza, cabine e telemedicina. Trasforma la farmacia in un presidio sanitario evoluto.",
+                "align": "left",
+                "text_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero3_b",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Approfondisci",
+                "align": "left",
+                "link": {
+                  "url": "#contatti"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_hero_overlay",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed"
+      },
+      "elements": [
+        {
+          "id": "hero_ov_col",
+          "elType": "column",
+          "elements": [
+            {
+              "id": "hero_main",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "L'Evoluzione della<br><span style='color:transparent;-webkit-text-stroke:2px #ccff00;'>Farmacia.</span>",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "hero_sub",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Architettura, Design e Strategia.",
+                "header_size": "h5",
+                "align": "center",
+                "title_color": "#ffffff"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_stats",
+      "elType": "section",
+      "settings": {
+        "_element_id": "risultati",
+        "layout": "boxed",
+        "background_background": "classic",
+        "background_color": "#f8fafc"
+      },
+      "elements": [
+        {
+          "id": "s1",
+          "elType": "column",
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "s1n",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "58",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "s1l",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Anni di Storia",
+                "header_size": "h6",
+                "align": "center",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2",
+          "elType": "column",
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "s2n",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "2.300+",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "s2l",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Farmacie Realizzate",
+                "header_size": "h6",
+                "align": "center",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "s3",
+          "elType": "column",
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "s3n",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "28",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "s3l",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Paesi nel Mondo",
+                "header_size": "h6",
+                "align": "center",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "s4",
+          "elType": "column",
+          "settings": {
+            "_column_size": 25
+          },
+          "elements": [
+            {
+              "id": "s4n",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "+35%",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "s4l",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Media Incremento Valore",
+                "header_size": "h6",
+                "align": "center",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_why",
+      "elType": "section",
+      "settings": {
+        "_element_id": "perche-noi",
+        "layout": "boxed"
+      },
+      "elements": [
+        {
+          "id": "why_l",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "why_lbl",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "La differenza Sartoretto Verna",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#ccff00"
+              }
+            },
+            {
+              "id": "why_t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Design<br>Strategico.",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "why1",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "La farmacia non e solo un luogo di vendita, ma un <strong>punto di riferimento per la salute</strong>. Il nostro design valorizza la tua professionalita.",
+                "align": "left",
+                "text_color": "#475569"
+              }
+            },
+            {
+              "id": "why2",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Con oltre 50 anni di esperienza, integriamo architettura, luce e comunicazione per creare ambienti che migliorano l'esperienza del paziente e ottimizzano i flussi di lavoro del farmacista.",
+                "align": "left",
+                "text_color": "#475569"
+              }
+            },
+            {
+              "id": "why_list",
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "icon_list": [
+                  {
+                    "text": "Analisi geomarketing del territorio",
+                    "selected_icon": {
+                      "value": "fas fa-check",
+                      "library": "fa-solid"
+                    }
+                  },
+                  {
+                    "text": "Ottimizzazione flussi e magazzino",
+                    "selected_icon": {
+                      "value": "fas fa-check",
+                      "library": "fa-solid"
+                    }
+                  },
+                  {
+                    "text": "Comunicazione visiva integrata",
+                    "selected_icon": {
+                      "value": "fas fa-check",
+                      "library": "fa-solid"
+                    }
+                  },
+                  {
+                    "text": "Arredi sartoriali 100% Made in Italy",
+                    "selected_icon": {
+                      "value": "fas fa-check",
+                      "library": "fa-solid"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "why_r",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "serv1",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-layer-group",
+                  "library": "fa-solid"
+                },
+                "title_text": "Retail Design",
+                "description_text": "Trasformiamo l'attesa in esperienza. Percorsi studiati per valorizzare il consiglio professionale e la visibilita delle categorie."
+              }
+            },
+            {
+              "id": "serv2",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-user-group",
+                  "library": "fa-solid"
+                },
+                "title_text": "Farmacia dei Servizi",
+                "description_text": "Box privacy, telemedicina e aree consulenza integrati armoniosamente nel layout architettonico."
+              }
+            },
+            {
+              "id": "serv3",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-chart-line",
+                  "library": "fa-solid"
+                },
+                "title_text": "Performance",
+                "description_text": "Soluzioni che migliorano l'efficienza operativa e la percezione qualitativa del brand farmacia."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_method_head",
+      "elType": "section",
+      "settings": {
+        "_element_id": "metodo",
+        "layout": "boxed",
+        "background_background": "classic",
+        "background_color": "#18181b"
+      },
+      "elements": [
+        {
+          "id": "mh_l",
+          "elType": "column",
+          "settings": {
+            "_column_size": 70
+          },
+          "elements": [
+            {
+              "id": "mh1",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Dall'idea all'apertura",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#ccff00"
+              }
+            },
+            {
+              "id": "mh2",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Il Metodo Sartoretto Verna(TM)",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mh_r",
+          "elType": "column",
+          "settings": {
+            "_column_size": 30
+          },
+          "elements": [
+            {
+              "id": "mhb",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Inizia il percorso",
+                "align": "right",
+                "link": {
+                  "url": "#contatti"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_method_steps",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "background_background": "classic",
+        "background_color": "#18181b"
+      },
+      "elements": [
+        {
+          "id": "ms_col",
+          "elType": "column",
+          "elements": [
+            {
+              "id": "st1",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-circle",
+                  "library": "fa-solid"
+                },
+                "title_text": "01 - Analisi",
+                "description_text": "Studio del territorio, della concorrenza e dei flussi di traffico. Definiamo il posizionamento strategico unico della tua farmacia."
+              }
+            },
+            {
+              "id": "st2",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-circle",
+                  "library": "fa-solid"
+                },
+                "title_text": "02 - Strategia",
+                "description_text": "Definizione del customer journey, delle categorie merceologiche performanti e del modello di servizio."
+              }
+            },
+            {
+              "id": "st3",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-circle",
+                  "library": "fa-solid"
+                },
+                "title_text": "03 - Concept",
+                "description_text": "Progettazione architettonica, layout distributivo e lighting design per massimizzare l'esperienza d'acquisto."
+              }
+            },
+            {
+              "id": "st4",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-circle",
+                  "library": "fa-solid"
+                },
+                "title_text": "04 - Execution",
+                "description_text": "Produzione arredi Made in Italy, gestione cantiere e installazione con tempi certi."
+              }
+            },
+            {
+              "id": "st5",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-circle",
+                  "library": "fa-solid"
+                },
+                "title_text": "05 - Evoluzione",
+                "description_text": "Monitoraggio delle performance post-apertura e adattamento continuo della comunicazione."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_proj_title",
+      "elType": "section",
+      "settings": {
+        "_element_id": "realizzazioni",
+        "layout": "boxed",
+        "background_background": "classic",
+        "background_color": "#f8fafc"
+      },
+      "elements": [
+        {
+          "id": "pt_col",
+          "elType": "column",
+          "elements": [
+            {
+              "id": "pt",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Ultimi Progetti",
+                "header_size": "h2",
+                "align": "center",
+                "title_color": "#0f172a"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_projects",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "background_background": "classic",
+        "background_color": "#f8fafc"
+      },
+      "elements": [
+        {
+          "id": "p1",
+          "elType": "column",
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "p1b",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Ristrutturazione",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#000000"
+              }
+            },
+            {
+              "id": "p1i",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://picsum.photos/seed/192/800/1000"
+                },
+                "image_size": "full"
+              }
+            },
+            {
+              "id": "p1t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Farmacia Lugano",
+                "header_size": "h4",
+                "align": "left",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "p1c",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Svizzera",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2",
+          "elType": "column",
+          "settings": {
+            "_column_size": 34
+          },
+          "elements": [
+            {
+              "id": "p2b",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Nuova Apertura",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#000000"
+              }
+            },
+            {
+              "id": "p2i",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://picsum.photos/seed/195/800/1000"
+                },
+                "image_size": "full"
+              }
+            },
+            {
+              "id": "p2t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Farmacia Centrale",
+                "header_size": "h4",
+                "align": "left",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "p2c",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Roma",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3",
+          "elType": "column",
+          "settings": {
+            "_column_size": 33
+          },
+          "elements": [
+            {
+              "id": "p3b",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Farmacia dei Servizi",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#000000"
+              }
+            },
+            {
+              "id": "p3i",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://picsum.photos/seed/201/800/1000"
+                },
+                "image_size": "full"
+              }
+            },
+            {
+              "id": "p3t",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Hub Salute",
+                "header_size": "h4",
+                "align": "left",
+                "title_color": "#0f172a"
+              }
+            },
+            {
+              "id": "p3c",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Milano",
+                "header_size": "h6",
+                "align": "left",
+                "title_color": "#64748b"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_contact",
+      "elType": "section",
+      "settings": {
+        "_element_id": "contatti",
+        "layout": "full_width",
+        "content_width": "full",
+        "background_background": "classic",
+        "background_color": "#0f172a"
+      },
+      "elements": [
+        {
+          "id": "c_l",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50,
+            "background_background": "classic",
+            "background_color": "#0f172a"
+          },
+          "elements": [
+            {
+              "id": "clt",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Ora tocca<br>a te.",
+                "header_size": "h2",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "clp",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Hai visto i risultati. Hai capito il metodo. Ora trasforma la tua visione in realta.<br><br>Richiedi una consulenza con un Architect Manager e scopri il percorso piu adatto al tuo progetto.",
+                "align": "left",
+                "text_color": "#cbd5e1"
+              }
+            },
+            {
+              "id": "bonus",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": {
+                  "value": "fas fa-book-open",
+                  "library": "fa-solid"
+                },
+                "title_text": "Bonus: Concept Book",
+                "description_text": "Compilando il form riceverai immediatamente il nostro PDF esclusivo con i 10 Trend Farmacia 2025."
+              }
+            }
+          ]
+        },
+        {
+          "id": "c_r",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50,
+            "background_background": "classic",
+            "background_color": "#000000"
+          },
+          "elements": [
+            {
+              "id": "crt",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Parla con un esperto",
+                "header_size": "h3",
+                "align": "left",
+                "title_color": "#ffffff"
+              }
+            },
+            {
+              "id": "crd",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Compila il form per ricevere una consulenza preliminare e il Concept Book 2024.",
+                "align": "left",
+                "text_color": "#94a3b8"
+              }
+            },
+            {
+              "id": "sc",
+              "elType": "widget",
+              "widgetType": "shortcode",
+              "settings": {
+                "shortcode": "[contact-form-7 id=\"inserisci-id\" title=\"SV Lead Form\"]"
+              }
+            },
+            {
+              "id": "crp",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "Inviando il modulo accetti la nostra Privacy Policy. I tuoi dati sono al sicuro.",
+                "align": "center",
+                "text_color": "#6b7280"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec_footer",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "content_width": "boxed",
+        "background_background": "classic",
+        "background_color": "#000000"
+      },
+      "elements": [
+        {
+          "id": "fcol",
+          "elType": "column",
+          "elements": [
+            {
+              "id": "f1",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Sartoretto Verna Srl - Architettura per Farmacie",
+                "header_size": "h6",
+                "align": "center",
+                "title_color": "#64748b"
+              }
+            },
+            {
+              "id": "flinks",
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "view": "inline",
+                "icon_list": [
+                  {
+                    "text": "Privacy Policy",
+                    "link": {
+                      "url": "#"
+                    },
+                    "selected_icon": {
+                      "value": "",
+                      "library": ""
+                    }
+                  },
+                  {
+                    "text": "Cookie Policy",
+                    "link": {
+                      "url": "#"
+                    },
+                    "selected_icon": {
+                      "value": "",
+                      "library": ""
+                    }
+                  },
+                  {
+                    "text": "Termini e Condizioni",
+                    "link": {
+                      "url": "#"
+                    },
+                    "selected_icon": {
+                      "value": "",
+                      "library": ""
+                    }
+                  }
+                ],
+                "align": "center"
+              }
+            },
+            {
+              "id": "f2",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "&copy; 2024 All Rights Reserved. P.IVA 12345678901",
+                "align": "center",
+                "text_color": "#475569"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

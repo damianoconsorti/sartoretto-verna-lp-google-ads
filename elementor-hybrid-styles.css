@@ -1,0 +1,487 @@
+:root {
+  --sv-acid: #ccff00;
+  --sv-cyan: #00ffff;
+  --sv-magenta: #ff00ff;
+  --sv-dark: #0a0a0a;
+  --sv-dark-soft: #0f172a;
+  --sv-zinc: #18181b;
+  --sv-light: #f8fafc;
+  --sv-text: #0f172a;
+  --sv-muted: #64748b;
+  --sv-border: rgba(255, 255, 255, 0.12);
+}
+
+.sv-dark-section {
+  background: var(--sv-dark-soft);
+  color: #fff;
+}
+
+.sv-light-section {
+  background: #fff;
+  color: var(--sv-text);
+}
+
+.sv-heading-xl .elementor-heading-title {
+  font-size: clamp(48px, 8vw, 128px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.sv-heading-lg .elementor-heading-title {
+  font-size: clamp(38px, 5vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.sv-mono-label,
+.sv-mono-label .elementor-heading-title,
+.sv-mono-label .elementor-widget-container,
+.sv-badge .elementor-widget-container {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sv-badge .elementor-widget-container,
+.sv-badge {
+  background: var(--sv-acid);
+  color: #000;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+}
+
+.sv-header-bar {
+  left: 0;
+  position: absolute !important;
+  right: 0;
+  top: 0;
+  z-index: 40;
+}
+
+.sv-header-bar > .e-con-inner,
+.sv-header-bar > .elementor-container,
+.sv-method-head > .e-con-inner,
+.sv-stats-section > .e-con-inner,
+.sv-why-section > .e-con-inner,
+.sv-projects-section > .e-con-inner,
+.sv-footer-editable > .e-con-inner,
+.sv-contact-section > .e-con-inner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+}
+
+.sv-btn .elementor-button,
+.sv-btn.elementor-widget-button .elementor-button {
+  border-radius: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 16px 22px;
+  text-transform: uppercase;
+}
+
+.sv-btn-acid .elementor-button {
+  background: var(--sv-acid);
+  color: #000;
+}
+
+.sv-btn-acid .elementor-button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.sv-btn-outline .elementor-button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.sv-btn-outline .elementor-button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.sv-hero-editable {
+  background: var(--sv-dark-soft);
+  min-height: 100vh;
+  position: relative;
+}
+
+.sv-hero-copy {
+  left: 50%;
+  max-width: 920px;
+  pointer-events: none;
+  position: absolute !important;
+  text-align: center;
+  top: 18%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  z-index: 15;
+}
+
+.sv-hero-copy p,
+.sv-hero-copy .elementor-widget-text-editor {
+  color: #fff;
+  font-size: clamp(16px, 2vw, 28px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sv-hero-copy .elementor-widget-text-editor .elementor-widget-container {
+  background: rgba(0, 0, 0, 0.55);
+  display: inline-block;
+  padding: 10px 18px;
+}
+
+.sv-hero-grid-editable {
+  min-height: 100vh;
+}
+
+.sv-hero-panel {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.sv-hero-panel::before {
+  background: rgba(0, 0, 0, 0.48);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.sv-hero-panel::after {
+  content: "";
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.sv-acid-panel::after {
+  background: var(--sv-acid);
+  mix-blend-mode: multiply;
+}
+
+.sv-cyan-panel::after {
+  background: var(--sv-cyan);
+  mix-blend-mode: multiply;
+}
+
+.sv-magenta-panel::after {
+  background: var(--sv-magenta);
+  mix-blend-mode: multiply;
+}
+
+.sv-hero-panel:hover::after {
+  opacity: 0.88;
+}
+
+.sv-hero-panel > .e-con-inner,
+.sv-hero-panel > .elementor-widget-wrap,
+.sv-hero-panel > .elementor-container {
+  justify-content: flex-end;
+  min-height: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.sv-hero-panel .elementor-widget-wrap,
+.sv-hero-panel .e-con-inner {
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  margin-top: auto;
+  padding: 24px 24px 40px;
+}
+
+.sv-hero-panel .elementor-heading-title,
+.sv-hero-panel .elementor-widget-text-editor,
+.sv-hero-panel .elementor-button {
+  color: #fff;
+}
+
+.sv-hero-panel .elementor-heading-title {
+  font-size: clamp(30px, 3vw, 54px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.sv-hero-panel .elementor-widget-text-editor {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.sv-stats-section {
+  background: var(--sv-light);
+  color: var(--sv-text);
+}
+
+.sv-stat-card {
+  text-align: center;
+}
+
+.sv-stat-card .elementor-heading-title {
+  font-size: clamp(40px, 4vw, 82px);
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.sv-stat-card .elementor-widget-text-editor {
+  color: var(--sv-muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sv-why-section {
+  background: #fff;
+  color: var(--sv-text);
+}
+
+.sv-why-section .elementor-widget-text-editor {
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.sv-service-box {
+  background: #f8fafc;
+  border-left: 4px solid #cbd5e1;
+  transition: 0.25s ease;
+}
+
+.sv-service-box:hover {
+  background: #fff;
+  box-shadow: 0 24px 40px rgba(15, 23, 42, 0.12);
+  transform: translateY(-2px);
+}
+
+.sv-service-cyan {
+  border-left-color: var(--sv-cyan);
+}
+
+.sv-service-magenta {
+  border-left-color: var(--sv-magenta);
+}
+
+.sv-service-acid {
+  border-left-color: var(--sv-acid);
+}
+
+.sv-method-section {
+  background: var(--sv-zinc);
+  color: #fff;
+}
+
+.sv-method-head {
+  align-items: end;
+  justify-content: space-between;
+}
+
+.sv-timeline-row {
+  position: relative;
+}
+
+.sv-timeline-row::before {
+  background: rgba(255, 255, 255, 0.1);
+  content: "";
+  left: 16.5%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.sv-timeline-number .elementor-heading-title {
+  color: transparent;
+  font-size: clamp(56px, 5vw, 110px);
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.2;
+  text-align: right;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.45);
+}
+
+.sv-timeline-content {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sv-timeline-content .elementor-heading-title {
+  color: #fff;
+  font-size: clamp(28px, 3vw, 54px);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.sv-timeline-content .elementor-widget-text-editor {
+  color: #94a3b8;
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.sv-projects-section {
+  background: var(--sv-light);
+  color: var(--sv-text);
+}
+
+.sv-project-card-editable {
+  overflow: hidden;
+  position: relative;
+}
+
+.sv-project-card-editable img,
+.sv-project-card-editable .elementor-image img {
+  aspect-ratio: 4 / 5;
+  filter: grayscale(1);
+  object-fit: cover;
+  transition: transform 0.45s ease, filter 0.45s ease;
+  width: 100%;
+}
+
+.sv-project-card-editable:hover img,
+.sv-project-card-editable:hover .elementor-image img {
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+.sv-contact-section {
+  background: var(--sv-dark-soft);
+  border-top: 8px solid var(--sv-acid);
+  color: #fff;
+}
+
+.sv-real-form .elementor-field-group {
+  margin-bottom: 20px;
+}
+
+.sv-real-form .elementor-field-label {
+  color: #64748b;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sv-real-form .elementor-field,
+.sv-real-form .elementor-select-wrapper select,
+.sv-real-form input,
+.sv-real-form textarea,
+.sv-real-form select {
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-size: 20px !important;
+  padding: 14px 0 !important;
+}
+
+.sv-real-form .elementor-field:focus,
+.sv-real-form textarea:focus,
+.sv-real-form select:focus {
+  border-bottom-color: var(--sv-acid) !important;
+  outline: none !important;
+}
+
+.sv-real-form .elementor-button,
+.sv-real-form button,
+.sv-real-form input[type="submit"] {
+  background: #fff !important;
+  border-radius: 0 !important;
+  color: #000 !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.15em !important;
+  padding: 22px 24px !important;
+  text-transform: uppercase !important;
+  width: 100%;
+}
+
+.sv-real-form .elementor-button:hover,
+.sv-real-form button:hover,
+.sv-real-form input[type="submit"]:hover {
+  background: var(--sv-acid) !important;
+}
+
+.sv-footer-editable {
+  background: #000;
+  color: #64748b;
+  text-align: center;
+}
+
+.sv-footer-editable a {
+  color: #64748b;
+}
+
+.sv-footer-editable a:hover {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .sv-header-bar {
+    position: relative !important;
+  }
+
+  .sv-hero-copy {
+    left: auto;
+    position: relative !important;
+    top: auto;
+    transform: none;
+    width: 100%;
+  }
+
+  .sv-hero-grid-editable,
+  .sv-hero-panel {
+    min-height: auto;
+  }
+
+  .sv-hero-panel {
+    min-height: 52vh;
+  }
+
+  .sv-method-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sv-timeline-row::before {
+    display: none;
+  }
+
+  .sv-timeline-number .elementor-heading-title {
+    text-align: left;
+  }
+}
+
+@media (max-width: 767px) {
+  .sv-heading-xl .elementor-heading-title {
+    font-size: clamp(42px, 13vw, 68px);
+  }
+
+  .sv-heading-lg .elementor-heading-title {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+
+  .sv-hero-panel .elementor-widget-wrap,
+  .sv-hero-panel .e-con-inner {
+    padding: 20px 20px 28px;
+  }
+
+  .sv-real-form .elementor-field,
+  .sv-real-form textarea,
+  .sv-real-form select {
+    font-size: 18px !important;
+  }
+}

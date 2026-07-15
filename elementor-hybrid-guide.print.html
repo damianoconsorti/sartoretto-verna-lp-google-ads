@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>elementor-hybrid-guide.md</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm;
+    }
+    :root {
+      color-scheme: light;
+    }
+    body {
+      margin: 0;
+      color: #111827;
+      background: #ffffff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.55;
+    }
+    main {
+      width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #0f172a;
+      margin: 1.1em 0 0.45em;
+      line-height: 1.2;
+      page-break-after: avoid;
+    }
+    h1 {
+      font-size: 22pt;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 8px;
+      margin-top: 0;
+    }
+    h2 { font-size: 17pt; }
+    h3 { font-size: 14pt; }
+    p, ul, ol {
+      margin: 0 0 0.8em;
+    }
+    ul, ol {
+      padding-left: 1.4em;
+    }
+    li {
+      margin: 0.2em 0;
+    }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.95em;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 0.08em 0.35em;
+    }
+    strong {
+      color: #020617;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Guida Elementor Ibrida e Modificabile</h1>
+<h2>Obiettivo</h2>
+<p>Questa versione e` pensata per essere:</p>
+<ul>
+<li>modificabile dentro Elementor</li>
+<li>responsive su desktop, tablet e mobile</li>
+<li>fedele al look della LP originale</li>
+<li>compatibile con un form reale Elementor Pro o Contact Form 7</li>
+</ul>
+<p>Non usa un singolo widget HTML per tutta la pagina. Invece divide la landing in sezioni Elementor vere.</p>
+<h2>Logica consigliata</h2>
+<ul>
+<li><code>Header</code>: sezione Elementor</li>
+<li><code>Hero</code>: 3 container/colonne modificabili</li>
+<li><code>Statistiche</code>: contatori o heading</li>
+<li><code>Perche noi</code>: heading + text + icon list + cards</li>
+<li><code>Metodo</code>: timeline costruita con container</li>
+<li><code>Progetti</code>: cards immagini</li>
+<li><code>Contatti</code>: colonna testo + colonna form Elementor</li>
+<li><code>Footer</code>: testo e link</li>
+</ul>
+<h2>CSS da usare</h2>
+<p>Incolla il file:</p>
+<ul>
+<li><code>elementor-hybrid-styles.css</code></li>
+</ul>
+<p>in:</p>
+<ul>
+<li>Elementor &gt; Impostazioni sito &gt; CSS personalizzato</li>
+</ul>
+<p>oppure nel CSS personalizzato della singola pagina.</p>
+<h2>Struttura pagina</h2>
+<h2>1. Header</h2>
+<h3>Sezione</h3>
+<ul>
+<li>1 container orizzontale</li>
+<li>classe: <code>sv-header-bar</code></li>
+</ul>
+<h3>Dentro</h3>
+<ul>
+<li>widget immagine logo</li>
+<li>widget bottone CTA</li>
+</ul>
+<h3>Al bottone</h3>
+<ul>
+<li>classe: <code>sv-btn sv-btn-acid</code></li>
+<li>link anchor: <code>#contatti</code></li>
+</ul>
+<h2>2. Hero</h2>
+<h3>Sezione principale</h3>
+<ul>
+<li>1 container full width</li>
+<li>classe: <code>sv-hero-editable</code></li>
+</ul>
+<h3>Titolo overlay</h3>
+<ul>
+<li>aggiungi un container interno</li>
+<li>classe: <code>sv-hero-copy</code></li>
+<li>dentro:</li>
+<li>heading principale</li>
+<li>text editor per sottotitolo</li>
+</ul>
+<h3>Griglia hero</h3>
+<ul>
+<li>aggiungi un container con 3 colonne</li>
+<li>classe: <code>sv-hero-grid-editable</code></li>
+</ul>
+<h3>Ogni colonna hero</h3>
+<ul>
+<li>classe: <code>sv-hero-panel</code></li>
+<li>imposta immagine di sfondo da Elementor</li>
+<li>aggiungi overlay sfondo nero circa 50%</li>
+</ul>
+<h3>Dentro ogni colonna</h3>
+<ul>
+<li>badge piccolo</li>
+<li>heading</li>
+<li>testo descrittivo</li>
+<li>bottone</li>
+</ul>
+<h3>Varianti colore colonna</h3>
+<ul>
+<li>prima colonna: <code>sv-acid-panel</code></li>
+<li>seconda colonna: <code>sv-cyan-panel</code></li>
+<li>terza colonna: <code>sv-magenta-panel</code></li>
+</ul>
+<h2>3. Statistiche</h2>
+<h3>Sezione</h3>
+<ul>
+<li>container con 4 colonne desktop, 2 tablet, 1 mobile</li>
+<li>classe: <code>sv-stats-section</code></li>
+</ul>
+<h3>Ogni stat</h3>
+<ul>
+<li>container singolo</li>
+<li>classe: <code>sv-stat-card</code></li>
+<li>dentro:</li>
+<li>heading numero</li>
+<li>text editor label</li>
+</ul>
+<h2>4. Sezione Perche noi</h2>
+<h3>Sezione</h3>
+<ul>
+<li>2 colonne</li>
+<li>classe: <code>sv-why-section</code></li>
+</ul>
+<h3>Colonna sinistra</h3>
+<ul>
+<li>badge: classe <code>sv-badge</code></li>
+<li>heading</li>
+<li>due paragrafi</li>
+<li>icon list</li>
+</ul>
+<h3>Colonna destra</h3>
+<ul>
+<li>3 container verticali</li>
+<li>classe comune: <code>sv-service-box</code></li>
+<li>varianti:</li>
+<li><code>sv-service-cyan</code></li>
+<li><code>sv-service-magenta</code></li>
+<li><code>sv-service-acid</code></li>
+</ul>
+<h2>5. Metodo</h2>
+<h3>Sezione</h3>
+<ul>
+<li>container verticale</li>
+<li>classe: <code>sv-method-section</code></li>
+</ul>
+<h3>Header sezione</h3>
+<ul>
+<li>container orizzontale</li>
+<li>classe: <code>sv-method-head</code></li>
+</ul>
+<h3>Timeline</h3>
+<ul>
+<li>5 righe</li>
+<li>ogni riga classe: <code>sv-timeline-row</code></li>
+</ul>
+<h3>Dentro ogni riga</h3>
+<ul>
+<li>colonna numero: classe <code>sv-timeline-number</code></li>
+<li>colonna contenuto: classe <code>sv-timeline-content</code></li>
+</ul>
+<p>Su tablet/mobile la timeline collassa in verticale automaticamente.</p>
+<h2>6. Progetti</h2>
+<h3>Sezione</h3>
+<ul>
+<li>classe: <code>sv-projects-section</code></li>
+</ul>
+<h3>Griglia</h3>
+<ul>
+<li>3 card desktop</li>
+<li>2 tablet</li>
+<li>1 mobile</li>
+</ul>
+<h3>Ogni card</h3>
+<ul>
+<li>classe: <code>sv-project-card-editable</code></li>
+<li>immagine come background o widget immagine</li>
+<li>badge categoria</li>
+<li>titolo progetto</li>
+<li>localita</li>
+</ul>
+<h2>7. Contatti</h2>
+<h3>Sezione</h3>
+<ul>
+<li>2 colonne</li>
+<li>classe: <code>sv-contact-section</code></li>
+</ul>
+<h3>Colonna sinistra</h3>
+<ul>
+<li>heading</li>
+<li>testo</li>
+<li>bonus card con classe <code>sv-bonus-card</code></li>
+</ul>
+<h3>Colonna destra</h3>
+<p>Se usi Elementor Pro:</p>
+<ul>
+<li>widget <code>Form</code></li>
+<li>classe form: <code>sv-real-form</code></li>
+</ul>
+<p>Se usi Contact Form 7:</p>
+<ul>
+<li>shortcode dentro widget shortcode</li>
+<li>wrapper classe: <code>sv-real-form</code></li>
+</ul>
+<h2>8. Footer</h2>
+<h3>Sezione</h3>
+<ul>
+<li>classe: <code>sv-footer-editable</code></li>
+</ul>
+<h3>Dentro</h3>
+<ul>
+<li>testo azienda</li>
+<li>link privacy/cookie/termini</li>
+<li>copyright</li>
+</ul>
+<h2>Classi utili rapide</h2>
+<ul>
+<li><code>sv-heading-xl</code></li>
+<li><code>sv-heading-lg</code></li>
+<li><code>sv-dark-section</code></li>
+<li><code>sv-light-section</code></li>
+<li><code>sv-btn</code></li>
+<li><code>sv-btn-acid</code></li>
+<li><code>sv-btn-outline</code></li>
+<li><code>sv-mono-label</code></li>
+</ul>
+<h2>Form Elementor consigliato</h2>
+<p>Campi:</p>
+<ol>
+<li>Nome e Cognome</li>
+<li>Farmacia / Citta</li>
+<li>Email</li>
+<li>Telefono</li>
+<li>Select "Di cosa hai bisogno?"</li>
+<li>Messaggio</li>
+</ol>
+<h3>Stile</h3>
+<p>Al widget assegna:</p>
+<ul>
+<li>classe: <code>sv-real-form</code></li>
+</ul>
+<h3>Azioni dopo invio</h3>
+<p>Puoi configurare:</p>
+<ul>
+<li>email</li>
+<li>redirect</li>
+<li>webhook</li>
+<li>mailchimp</li>
+<li>CRM</li>
+<li>submit multiplo</li>
+</ul>
+<h2>Responsive</h2>
+<p>Questa versione e` pensata cosi:</p>
+<ul>
+<li>desktop: layout vicino all'originale</li>
+<li>tablet: stacked dove serve</li>
+<li>mobile: una colonna, testi leggibili, CTA piene</li>
+</ul>
+<h2>Consiglio pratico</h2>
+<p>Se vuoi lavorare bene in Elementor:</p>
+<ul>
+<li>usa questa guida per la struttura</li>
+<li>usa <code>elementor-hybrid-styles.css</code> per il look</li>
+<li>usa i contenuti del file <code>elementor-exact-embed.html</code> solo come riferimento testuale e visivo</li>
+</ul>
+<p>Il risultato sara` molto piu facile da aggiornare rispetto al blocco HTML unico.</p>
+  </main>
+</body>
+</html>
