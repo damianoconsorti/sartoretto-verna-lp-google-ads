@@ -5,7 +5,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative w-full h-screen min-h-[600px] overflow-hidden bg-dark">
+    <section id="hero" className="relative w-full h-[68svh] md:h-[82svh] min-h-[420px] md:min-h-[560px] overflow-hidden bg-dark">
       {/* Vimeo background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <iframe
@@ -60,7 +60,7 @@ export default function Hero() {
             className="flex flex-col gap-3 shrink-0"
           >
             <a
-              href="#contatti"
+              href="#quick-consulenza"
               className="inline-flex items-center justify-center gap-4 bg-white text-dark font-sans font-bold text-sm tracking-[0.16em] uppercase px-6 py-4 hover:bg-acid transition-colors duration-200"
             >
               Richiedi una consulenza →

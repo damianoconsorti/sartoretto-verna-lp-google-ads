@@ -7,7 +7,7 @@ const faqs = [
   { q: 'Quanto tempo richiede una ristrutturazione completa?',
     a: 'Da 3 a 6 settimane in media, spesso a farmacia aperta. I tempi dipendono dalla metratura e dalla complessità del progetto. In fase di consulenza ti presentiamo un calendario di cantiere preciso.' },
   { q: 'Operate in tutta Italia e all\'estero?',
-    a: 'Sì. Siamo presenti su tutto il territorio italiano e in oltre 30 paesi nel mondo grazie a una rete di partner locali certificati. Ogni cantiere è seguito direttamente da un nostro project manager.' },
+    a: 'Sì. Siamo presenti su tutto il territorio italiano e in 48 paesi nel mondo grazie a una rete di partner locali certificati. Ogni cantiere è seguito direttamente da un nostro project manager.' },
   { q: 'Come funziona il primo contatto?',
     a: 'Dopo la richiesta, un nostro Architect Manager ti contatta per comprendere obiettivi, metratura, stato attuale della farmacia e tempistiche. Da lì definiamo il percorso più adatto: analisi, progetto, produzione e cantiere.' },
   { q: 'È possibile lavorare con la farmacia aperta?',

@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
+import { trackLeadConversion } from '../lib/tracking';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -71,6 +72,7 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(payload).toString(),
       });
+      trackLeadConversion('full-form');
       setSent(true);
     } catch {
       setError('Si è verificato un errore. Riprova o chiamaci.');

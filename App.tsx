@@ -1,6 +1,8 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import QuickForm from './components/QuickForm';
+import MobileStickyBar from './components/MobileStickyBar';
 import TrustBar from './components/TrustBar';
 import PerformanceSection from './components/PerformanceSection';
 import ComparisonTable from './components/ComparisonTable';
@@ -14,9 +16,10 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <main className="bg-dark text-white overflow-x-hidden">
+    <main className="bg-dark text-white overflow-x-hidden pb-[68px] md:pb-0">
       <Navbar />
       <Hero />
+      <QuickForm />
       <TrustBar />
       <PerformanceSection />
       <ComparisonTable />
@@ -27,6 +30,7 @@ function App() {
       <ContactForm />
       <FAQSection />
       <Footer />
+      <MobileStickyBar />
     </main>
   );
 }
