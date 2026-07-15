@@ -49,7 +49,7 @@ export default function QuickForm() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(payload).toString(),
       });
-      trackLeadConversion('quick-form');
+      trackLeadConversion();
       setSent(true);
     } catch {
       setError('Si è verificato un errore. Riprova o chiamaci.');

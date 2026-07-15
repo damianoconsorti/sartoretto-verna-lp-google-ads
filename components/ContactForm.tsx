@@ -72,7 +72,7 @@ export default function ContactForm() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(payload).toString(),
       });
-      trackLeadConversion('full-form');
+      trackLeadConversion();
       setSent(true);
     } catch {
       setError('Si è verificato un errore. Riprova o chiamaci.');
