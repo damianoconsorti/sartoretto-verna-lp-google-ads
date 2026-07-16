@@ -37,7 +37,7 @@ export default function Hero() {
               transition={{ duration: 0.5, ease, delay: 0.5 }}
               className="text-acid text-xs md:text-sm tracking-[0.38em] uppercase font-sans font-semibold mb-4"
             >
-              Specialisti in arredamento per farmacie dal 1960
+              Progettazione • Restyling • Arredamento farmacia
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -46,11 +46,18 @@ export default function Hero() {
               className="font-display text-white uppercase"
               style={{ fontSize: 'clamp(2.6rem, 8vw, 8.5rem)', lineHeight: 0.95 }}
             >
-              Arredamento<br />
-              per farmacie<br />
-              <span className="text-acid">che vendono</span><br />
-              di più.
+              Fai evolvere<br />
+              <span className="text-acid">la tua</span><br />
+              farmacia
             </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease, delay: 0.75 }}
+              className="text-white/85 text-sm md:text-base font-sans font-semibold tracking-wide leading-snug mt-4 max-w-[36ch]"
+            >
+              Trasforma layout e arredamenti per migliorare servizi, flusso clienti e vendite.
+            </motion.p>
           </div>
 
           {/* CTA buttons */}
