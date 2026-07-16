@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const CLIP_START = 9;
+const CLIP_END = 45;
+
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  function handleLoadedMetadata() {
+    if (videoRef.current) videoRef.current.currentTime = CLIP_START;
+  }
+
+  function handleTimeUpdate() {
+    const v = videoRef.current;
+    if (v && v.currentTime >= CLIP_END) v.currentTime = CLIP_START;
+  }
+
   return (
     <section id="hero" className="relative w-full h-[68svh] md:h-[82svh] min-h-[420px] md:min-h-[560px] overflow-hidden bg-dark">
-      {/* Video background */}
+      {/* Video background — loop manuale 9s–45s (native loop riparte da 0) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <video
+          ref={videoRef}
           src="https://sv-it.b-cdn.net/Farmacia%20Catona%20_%20orizzontale.mp4"
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
-          loop
           muted
           playsInline
+          onLoadedMetadata={handleLoadedMetadata}
+          onTimeUpdate={handleTimeUpdate}
           aria-label="Sartoretto Verna"
         />
       </div>
