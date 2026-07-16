@@ -6,15 +6,16 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Hero() {
   return (
     <section id="hero" className="relative w-full h-[68svh] md:h-[82svh] min-h-[420px] md:min-h-[560px] overflow-hidden bg-dark">
-      {/* Vimeo background */}
+      {/* Video background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <iframe
-          src="https://player.vimeo.com/video/1189298848?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ width: 'max(100vw, 177.78vh)', height: 'max(100vh, 56.25vw)' }}
-          allow="autoplay; fullscreen"
-          allowFullScreen
-          title="Sartoretto Verna"
+        <video
+          src="https://sv-it.b-cdn.net/Farmacia%20Catona%20_%20orizzontale.mp4"
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label="Sartoretto Verna"
         />
       </div>
 
