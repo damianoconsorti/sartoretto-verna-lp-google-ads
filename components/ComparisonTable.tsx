@@ -111,7 +111,7 @@ export default function ComparisonTable() {
             <div className="mt-7 flex items-center gap-3">
               <div className="w-2.5 h-2.5 bg-[#0a0a0a] shrink-0" />
               <span className="text-[#0a0a0a] text-sm tracking-[0.22em] uppercase font-sans font-semibold">
-                L'unico specialista di settore dal 1960
+                L'unico specialista di settore dal 1965
               </span>
             </div>
           </motion.div>
