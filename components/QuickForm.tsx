@@ -75,7 +75,6 @@ export default function QuickForm() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease, delay: 1.1 }}
             onSubmit={handleSubmit}
-            noValidate
             className="flex flex-col md:flex-row md:items-end gap-2 md:gap-4"
           >
             <p className="hidden lg:block text-white/65 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pb-2.5">
