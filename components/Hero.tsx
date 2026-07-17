@@ -84,7 +84,7 @@ export default function Hero() {
             className="flex flex-col gap-3 shrink-0"
           >
             <a
-              href="#quick-consulenza"
+              href="#contatti"
               className="inline-flex items-center justify-center gap-4 bg-white text-dark font-sans font-bold text-sm tracking-[0.16em] uppercase px-6 py-4 hover:bg-acid transition-colors duration-200"
             >
               Scopri come ↓

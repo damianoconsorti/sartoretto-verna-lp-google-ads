@@ -30,7 +30,7 @@ export default function ProjectGallery() {
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
-    <section id="realizzazioni" className="bg-[#0a0a0a] pt-16 md:pt-24">
+    <section id="realizzazioni" className="bg-[#0a0a0a] pt-16 md:pt-24 scroll-mt-[110px] md:scroll-mt-[80px]">
 
       {/* Header */}
       <div className="px-6 md:px-14 lg:px-24 flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">

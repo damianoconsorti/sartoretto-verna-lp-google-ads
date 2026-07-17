@@ -59,7 +59,7 @@ export default function QuickForm() {
   }
 
   return (
-    <section id="quick-consulenza" className="bg-[#111111] border-b border-white/10">
+    <section id="quick-consulenza" className="bg-[#111111] border-b border-white/10 scroll-mt-[120px] md:scroll-mt-[100px]">
       <div className="px-5 md:px-14 lg:px-24 py-3.5 md:py-6">
         {sent ? (
           <motion.p

@@ -76,7 +76,7 @@ export default function Navbar() {
         }
       >
         <a
-          href="#quick-consulenza"
+          href="#contatti"
           className="inline-flex items-center bg-white text-dark font-sans font-bold tracking-[0.14em] uppercase hover:bg-acid transition-colors duration-200 text-[11px] px-3 py-[6px] md:text-sm md:px-6 md:py-3"
         >
           Contattaci
