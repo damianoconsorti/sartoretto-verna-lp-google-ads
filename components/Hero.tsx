@@ -19,7 +19,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative w-full h-[68svh] md:h-[82svh] min-h-[420px] md:min-h-[560px] overflow-hidden bg-dark">
+    <section id="hero" className="relative w-full h-[78vh] md:h-[82vh] min-h-[540px] md:min-h-[600px] overflow-hidden bg-dark">
       {/* Video background — loop manuale 9s–45s (native loop riparte da 0) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <video
