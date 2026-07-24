@@ -105,12 +105,12 @@ export default function ContactForm() {
               un progetto?
             </h2>
             <p className="text-[#444] text-base md:text-lg font-sans font-light leading-relaxed max-w-[38ch]">
-              Raccontaci la tua farmacia. Il nostro team ti risponderà entro 48 ore lavorative per una prima valutazione del progetto e dei prossimi passi.
+              Raccontaci la tua farmacia. Il nostro team ti risponderà entro 24 ore lavorative per una prima valutazione del progetto e dei prossimi passi.
             </p>
           </div>
 
           <div className="flex flex-col gap-4">
-            {['Risposta entro 48 ore lavorative', 'Analisi orientativa della tua esigenza', 'Percorso progettuale definito su misura'].map((item) => (
+            {['Risposta entro 24 ore lavorative', 'Analisi orientativa della tua esigenza', 'Percorso progettuale definito su misura'].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 bg-[#0a0a0a] shrink-0" />
                 <span className="text-[#555] text-base font-sans">{item}</span>
@@ -134,7 +134,7 @@ export default function ContactForm() {
                 Messaggio inviato.
               </h3>
               <p className="text-green-600 text-base md:text-lg font-sans font-semibold leading-relaxed">
-                Grazie! Ti ricontatteremo entro 48 ore lavorative.
+                Grazie! Ti ricontatteremo entro 24 ore lavorative.
               </p>
             </div>
           ) : (

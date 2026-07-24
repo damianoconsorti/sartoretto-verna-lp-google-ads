@@ -67,7 +67,7 @@ export default function QuickForm() {
             animate={{ opacity: 1 }}
             className="text-acid font-sans font-semibold text-sm md:text-base text-center py-2"
           >
-            Grazie! Ti ricontatteremo entro 48 ore lavorative.
+            Grazie! Ti ricontatteremo entro 24 ore lavorative.
           </motion.p>
         ) : (
           <motion.form
