@@ -4,7 +4,7 @@ import { trackLeadConversion } from '../lib/tracking';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const ZAPIER_URL = 'https://hooks.zapier.com/hooks/catch/1977593/4y67td9/';
+const ZAPIER_URL = 'https://hooks.zapier.com/hooks/catch/1977593/44jzqgw/';
 
 const projectTypes = ['Ampliamento', 'Ristrutturazione', 'Nuova apertura', 'Trasferimento', 'Restyling', 'Altro'];
 
