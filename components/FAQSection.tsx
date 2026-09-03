@@ -11,11 +11,11 @@ const faqs = [
   { q: 'Come funziona il primo contatto?',
     a: 'Dopo la richiesta, un nostro Architect Manager ti contatta per comprendere obiettivi, metratura, stato attuale della farmacia e tempistiche. Da lì definiamo il percorso più adatto: analisi, progetto, produzione e cantiere.' },
   { q: 'È possibile lavorare con la farmacia aperta?',
-    a: 'Nella grande maggioranza dei cantieri sì. Organizziamo i lavori per fasi, spesso nelle ore notturne o nel weekend, per mantenere la farmacia operativa e proteggere il fatturato durante i lavori.' },
+    a: 'Nella grande maggioranza dei cantieri sì. Organizziamo i lavori per fasi, spesso nelle ore notturne o nel weekend, per mantenere la farmacia operativa e limitare l’impatto sull’attività durante i lavori.' },
   { q: 'Quanto costa arredare una farmacia?',
     a: 'Ogni progetto è unico, quindi non esistono prezzi standard. In consulenza ti forniremo un preventivo dettagliato basato sulla metratura, i materiali, la tipologia di intervento e le tue esigenze specifiche.' },
   { q: 'Producete voi stessi gli arredi?',
-    a: 'Sì. Tutti i nostri arredi sono progettati e prodotti nei nostri stabilimenti italiani. Questo ci garantisce qualità totale, massima personalizzazione e il rispetto rigoroso dei tempi di consegna.' },
+    a: 'Sì. Tutti i nostri arredi sono progettati e prodotti nei nostri stabilimenti italiani. Questo permette controllo diretto della qualità, personalizzazione e coordinamento delle tempistiche di consegna.' },
 ];
 
 const FAQItem: React.FC<{ item: typeof faqs[0]; index: number }> = ({ item, index }) => {
@@ -29,6 +29,7 @@ const FAQItem: React.FC<{ item: typeof faqs[0]; index: number }> = ({ item, inde
       className="border-b border-white/10 last:border-0"
     >
       <button
+        type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         className="w-full flex items-start justify-between gap-5 py-6 text-left group"

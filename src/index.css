@@ -31,6 +31,11 @@ body {
   overflow-x: hidden;
 }
 
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-acid);
+  outline-offset: 3px;
+}
+
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--color-dark); }
 ::-webkit-scrollbar-thumb { background: var(--color-acid); }
@@ -39,6 +44,14 @@ body {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none !important;
   }
 }
 

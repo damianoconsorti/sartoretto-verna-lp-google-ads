@@ -6,7 +6,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const rows = [
   { dimension: 'Focus',     traditional: 'Arredo e fornitura generica',              sv: 'Performance e risultato di vendita' },
   { dimension: 'Metodo',    traditional: 'Catalogo standard e soluzioni predefinite', sv: 'Progetto personalizzato su analisi dei flussi' },
-  { dimension: 'Risultato', traditional: 'Farmacia esteticamente rinnovata',          sv: 'Farmacia che vende di più, già dal primo mese' },
+  { dimension: 'Risultato', traditional: 'Farmacia esteticamente rinnovata',          sv: 'Spazio orientato alla performance commerciale' },
 ];
 
 export default function ComparisonTable() {
@@ -111,7 +111,7 @@ export default function ComparisonTable() {
             <div className="mt-7 flex items-center gap-3">
               <div className="w-2.5 h-2.5 bg-[#0a0a0a] shrink-0" />
               <span className="text-[#0a0a0a] text-sm tracking-[0.22em] uppercase font-sans font-semibold">
-                L'unico specialista di settore dal 1965
+                Specialisti di settore dal 1965
               </span>
             </div>
           </motion.div>

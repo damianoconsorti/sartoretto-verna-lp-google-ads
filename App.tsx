@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import QuickForm from './components/QuickForm';
@@ -13,10 +13,15 @@ import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
+import { captureAttribution } from './lib/forms';
 
 function App() {
+  useEffect(() => {
+    captureAttribution();
+  }, []);
+
   return (
-    <main className="bg-dark text-white overflow-x-hidden pb-[68px] md:pb-0">
+    <main className="bg-dark text-white overflow-x-clip pb-[68px] md:pb-0">
       <Navbar />
       <Hero />
       <QuickForm />

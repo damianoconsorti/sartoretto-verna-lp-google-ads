@@ -1,87 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const ease = [0.22, 1, 0.36, 1] as const;
-
-const LOGO_URL =
-  'https://lh3.googleusercontent.com/s819vmHVAaHH1gM8BEG9wLqIfexiwjnwVARKISZd9tZPmjhj6eO87wTMu7TXKL2CdOxGdWPeyZ9R-Yg3zJQne1zD4ExLLgnyYCI';
+const LOGO_URL = 'https://lh3.googleusercontent.com/s819vmHVAaHH1gM8BEG9wLqIfexiwjnwVARKISZd9tZPmjhj6eO87wTMu7TXKL2CdOxGdWPeyZ9R-Yg3zJQne1zD4ExLLgnyYCI';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
-    const onResize = () => setIsMobile(window.innerWidth < 768);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
-    };
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        zIndex: 100,
-        overflow: 'visible',
-        backgroundColor: scrolled ? '#0a0a0a' : 'transparent',
-        transition: 'background-color 300ms ease',
-        /* Layout */
-        display: 'flex',
-        flexDirection: isMobile ? 'column' : 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: isMobile ? '110px' : '80px',
-        gap: isMobile ? '8px' : '0',
-        paddingTop: !isMobile && !scrolled ? '60px' : '0',
-      }}
+      aria-label="Navigazione principale"
+      className={`fixed inset-x-0 top-0 z-[100] transition-colors duration-300 ${scrolled ? 'bg-[#0a0a0a]' : 'bg-gradient-to-b from-black/75 to-transparent'}`}
     >
-      {/* Logo */}
-      <motion.a
-        href="#hero"
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease, delay: 0.2 }}
-        style={{ display: 'block' }}
-      >
-        <img
-          src={LOGO_URL}
-          alt="Sartoretto Verna"
-          style={{
-            height: isMobile ? '45px' : scrolled ? '60px' : '80px',
-            width: 'auto',
-            display: 'block',
-            margin: '0 auto',
-            maxWidth: 'none',
-            transition: 'height 300ms ease',
-          }}
-        />
-      </motion.a>
-
-      {/* Bottone Contattaci — seconda riga su mobile, assoluto a destra su desktop */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, ease, delay: 0.4 }}
-        style={
-          isMobile
-            ? { display: 'flex', justifyContent: 'center' }
-            : { position: 'absolute', right: '32px', top: '50%', transform: 'translateY(-50%)' }
-        }
-      >
-        <a
-          href="#contatti"
-          className="inline-flex items-center bg-white text-dark font-sans font-bold tracking-[0.14em] uppercase hover:bg-acid transition-colors duration-200 text-[11px] px-3 py-[6px] md:text-sm md:px-6 md:py-3"
+      <div className="flex h-[96px] w-full items-center justify-between gap-3 px-5 md:h-20 md:px-8">
+        <motion.a
+          href="#hero"
+          aria-label="Torna all’inizio"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease, delay: 0.2 }}
+          className="block shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid"
         >
-          Contattaci
-        </a>
-      </motion.div>
+          <img src={LOGO_URL} alt="Sartoretto Verna" className="block h-12 w-auto md:h-16" />
+        </motion.a>
+
+        <motion.a
+          href="#contatti"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease, delay: 0.35 }}
+          className="min-h-11 inline-flex items-center justify-center bg-white text-dark font-sans font-bold tracking-[0.08em] uppercase hover:bg-acid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid transition-colors duration-200 text-[10px] leading-tight text-center px-3 md:text-sm md:px-6"
+        >
+          Parliamo del tuo progetto
+        </motion.a>
+      </div>
     </nav>
   );
 }

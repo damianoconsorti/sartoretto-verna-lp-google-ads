@@ -1,5 +1,6 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { PRIVACY_URL } from '../lib/forms';
 
 type IconProps = {
   className?: string;
@@ -52,7 +53,7 @@ export default function Footer() {
           </div>
         </nav>
 
-        <a href="#" className="order-2 md:order-3 justify-self-center md:justify-self-end text-white/30 text-sm font-sans hover:text-white/60 transition-colors cursor-pointer">
+        <a href={PRIVACY_URL} target="_blank" rel="noreferrer" className="order-2 md:order-3 justify-self-center md:justify-self-end text-white/60 text-sm font-sans underline underline-offset-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid transition-colors cursor-pointer">
           Privacy Policy
         </a>
       </div>

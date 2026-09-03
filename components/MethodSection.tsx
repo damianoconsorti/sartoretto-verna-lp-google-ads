@@ -44,7 +44,7 @@ export default function MethodSection() {
             className="text-[#444] text-base md:text-lg font-sans font-light leading-relaxed max-w-[42ch]"
           >
             Un processo in cinque fasi, collaudato in oltre 3.000 cantieri nel mondo.
-            Ogni fase garantisce continuità tra ciò che immagini e ciò che vivi ogni giorno.
+            Ogni fase mantiene continuità tra ciò che immagini e ciò che vivi ogni giorno.
           </motion.p>
         </div>
 

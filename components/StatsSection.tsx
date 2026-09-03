@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const stats = [
-  { value: '1965', color: 'text-acid',      label: 'Fondazione' },
+  { value: 'Dal 1965', color: 'text-acid',      label: 'esperienza nel settore farmacia' },
   { value: '3A',   color: 'text-teal',      label: 'generazione di architetti' },
   { value: '48',   color: 'text-magenta',   label: 'paesi nel mondo dove abbiamo realizzato farmacie' },
-  { value: '+3000', color: 'text-[#0a0a0a]', label: 'realizzazioni completate nel mondo' },
+  { value: '3.000+', color: 'text-[#0a0a0a]', label: 'realizzazioni completate nel mondo' },
 ];
 
 export default function StatsSection() {

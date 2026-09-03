@@ -60,7 +60,7 @@ export default function ProjectGallery() {
           className="flex flex-col md:items-end gap-4"
         >
           <p className="text-white/55 text-base md:text-lg font-sans font-light max-w-[36ch] md:text-right leading-relaxed">
-            Storie di successo tangibili: design d'impatto e performance commerciali misurabili.
+            Progetti reali con risultati valutabili attraverso case history e dati disponibili.
           </p>
           <a
             href="#contatti"

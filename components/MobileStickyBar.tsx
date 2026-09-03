@@ -4,14 +4,19 @@ export default function MobileStickyBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const target = document.getElementById('quick-consulenza');
-    if (!target) return;
+    const targets = [document.getElementById('quick-form'), document.getElementById('contatti')].filter(Boolean) as HTMLElement[];
+    if (!targets.length) return;
+
+    const visibility = new Map(targets.map((target) => [target.id, false]));
 
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
-      { threshold: 0 }
+      (entries) => {
+        for (const entry of entries) visibility.set(entry.target.id, entry.isIntersecting);
+        setVisible(!Array.from(visibility.values()).some(Boolean));
+      },
+      { threshold: 0.05 }
     );
-    observer.observe(target);
+    targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, []);
 
@@ -23,10 +28,10 @@ export default function MobileStickyBar() {
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <a
-        href="#quick-consulenza"
-        className="flex items-center justify-center w-full bg-acid text-dark font-sans font-bold text-sm tracking-[0.14em] uppercase px-6 py-4 active:bg-white transition-colors duration-150"
+        href="#quick-form"
+        className="min-h-12 flex items-center justify-center w-full bg-acid text-dark font-sans font-bold text-sm tracking-[0.12em] uppercase px-6 py-3 active:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-colors duration-150"
       >
-        Richiedi Consulenza Gratuita
+        Parla con uno specialista
       </a>
     </div>
   );

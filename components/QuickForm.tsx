@@ -1,10 +1,10 @@
-import React, { useState, FormEvent } from 'react';
+import React, { FormEvent, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { buildAttribution, isValidEmail, PRIVACY_URL, submitLead } from '../lib/forms';
 import { trackLeadConversion } from '../lib/tracking';
 
 const ease = [0.22, 1, 0.36, 1] as const;
-
-const ZAPIER_URL = 'https://hooks.zapier.com/hooks/catch/1977593/44jzx6p/';
+const ZAPIER_URL = import.meta.env.VITE_QUICK_FORM_ENDPOINT || 'https://hooks.zapier.com/hooks/catch/1977593/44jzx6p/';
 
 interface QuickFormState {
   nome: string;
@@ -13,114 +13,157 @@ interface QuickFormState {
   telefono: string;
 }
 
+type QuickField = keyof QuickFormState;
+type QuickErrors = Partial<Record<QuickField, string>>;
+
 const empty: QuickFormState = { nome: '', cognome: '', email: '', telefono: '' };
 
 const inputCls =
-  'bg-white border border-transparent text-[#0a0a0a] text-sm font-sans font-medium px-3 py-2 md:py-2.5 w-full rounded-none focus:outline-none focus:border-acid transition-colors duration-200 placeholder:text-[#8a8a8a] placeholder:font-light';
+  'min-h-11 bg-white border text-[#0a0a0a] text-base font-sans font-medium px-3 py-2.5 w-full rounded-none outline-none transition-colors duration-200 placeholder:text-[#707070] placeholder:font-light focus-visible:border-acid focus-visible:ring-2 focus-visible:ring-acid/70';
+
+const fieldMeta: Array<{ key: QuickField; label: string; type: string; autoComplete: string }> = [
+  { key: 'nome', label: 'Nome', type: 'text', autoComplete: 'given-name' },
+  { key: 'cognome', label: 'Cognome', type: 'text', autoComplete: 'family-name' },
+  { key: 'email', label: 'Email', type: 'email', autoComplete: 'email' },
+  { key: 'telefono', label: 'Telefono', type: 'tel', autoComplete: 'tel' },
+];
+
+function validate(form: QuickFormState): QuickErrors {
+  const errors: QuickErrors = {};
+  if (!form.nome.trim()) errors.nome = 'Inserisci il nome.';
+  if (!form.cognome.trim()) errors.cognome = 'Inserisci il cognome.';
+  if (!form.email.trim()) errors.email = 'Inserisci l’email.';
+  else if (!isValidEmail(form.email)) errors.email = 'Inserisci un indirizzo email valido.';
+  if (!form.telefono.trim()) errors.telefono = 'Inserisci il telefono.';
+  return errors;
+}
 
 export default function QuickForm() {
   const [form, setForm] = useState<QuickFormState>(empty);
+  const [errors, setErrors] = useState<QuickErrors>({});
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const submittingRef = useRef(false);
+  const successTrackedRef = useRef(false);
+  const inputRefs = useRef<Partial<Record<QuickField, HTMLInputElement | null>>>({});
 
-  function update(k: keyof QuickFormState, v: string) {
-    setForm((p) => ({ ...p, [k]: v }));
+  function update(key: QuickField, value: string) {
+    setForm((previous) => ({ ...previous, [key]: value }));
+    if (errors[key]) setErrors((previous) => ({ ...previous, [key]: undefined }));
+    if (submitError) setSubmitError(null);
   }
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submittingRef.current) return;
+
+    const nextErrors = validate(form);
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      setSubmitError('Controlla i campi evidenziati prima di inviare.');
+      const firstInvalid = fieldMeta.find(({ key }) => nextErrors[key]);
+      if (firstInvalid) requestAnimationFrame(() => inputRefs.current[firstInvalid.key]?.focus());
+      return;
+    }
+
+    submittingRef.current = true;
     setSending(true);
-    setError(null);
+    setSubmitError(null);
 
     try {
       const payload: Record<string, string> = {
-        nome: form.nome,
-        cognome: form.cognome,
-        email: form.email,
-        telefono: form.telefono,
-        pagina: window.location.href,
+        nome: form.nome.trim(),
+        cognome: form.cognome.trim(),
+        email: form.email.trim(),
+        telefono: form.telefono.trim(),
         origine: 'quick-form-google-ads',
+        ...buildAttribution('quick_form'),
       };
 
-      await fetch(ZAPIER_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(payload).toString(),
-      });
-      trackLeadConversion();
+      await submitLead(ZAPIER_URL, payload);
+      if (!successTrackedRef.current) {
+        trackLeadConversion('quick_form');
+        successTrackedRef.current = true;
+      }
+      setForm(empty);
       setSent(true);
     } catch {
-      setError('Si è verificato un errore. Riprova o chiamaci.');
+      setSubmitError('Invio non riuscito. Verifica la connessione e riprova.');
     } finally {
+      submittingRef.current = false;
       setSending(false);
     }
   }
 
   return (
-    <section id="quick-consulenza" className="bg-[#111111] border-b border-white/10 scroll-mt-[120px] md:scroll-mt-[100px]">
-      <div className="px-5 md:px-14 lg:px-24 py-3.5 md:py-6">
+    <section id="quick-form" className="bg-[#111111] border-b border-white/10 scroll-mt-[120px] md:scroll-mt-[100px]">
+      <div className="px-5 md:px-14 lg:px-24 py-4 md:py-6">
         {sent ? (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-acid font-sans font-semibold text-sm md:text-base text-center py-2"
-          >
-            Grazie! Ti ricontatteremo entro 24 ore lavorative.
-          </motion.p>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-3" role="status" tabIndex={-1}>
+            <p className="text-acid font-sans font-semibold text-base">Richiesta inviata.</p>
+            <p className="text-white/75 text-sm mt-1">Ti ricontatteremo appena possibile, normalmente entro 24 ore lavorative.</p>
+          </motion.div>
         ) : (
           <motion.form
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease, delay: 1.1 }}
+            transition={{ duration: 0.6, ease, delay: 0.8 }}
             onSubmit={handleSubmit}
-            className="flex flex-col md:flex-row md:items-end gap-2 md:gap-4"
+            noValidate
+            aria-describedby="quick-form-status quick-form-privacy"
+            className="relative"
           >
-            <p className="hidden lg:block text-white/65 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pb-2.5">
-              Consulenza gratuita
-            </p>
+            <div className="flex flex-col lg:flex-row lg:items-start gap-3 lg:gap-4">
+              <p className="hidden xl:block text-white/70 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pt-3.5">
+                Consulenza gratuita
+              </p>
 
-            <div className="grid grid-cols-2 md:flex md:flex-1 gap-2 md:gap-4">
-              <input
-                type="text" required autoComplete="given-name" placeholder="Nome"
-                aria-label="Nome"
-                value={form.nome} onChange={(e) => update('nome', e.target.value)}
-                className={inputCls}
-              />
-              <input
-                type="text" required autoComplete="family-name" placeholder="Cognome"
-                aria-label="Cognome"
-                value={form.cognome} onChange={(e) => update('cognome', e.target.value)}
-                className={inputCls}
-              />
-              <input
-                type="email" required autoComplete="email" placeholder="Email"
-                aria-label="Email"
-                value={form.email} onChange={(e) => update('email', e.target.value)}
-                className={inputCls}
-              />
-              <input
-                type="tel" required autoComplete="tel" placeholder="Telefono"
-                aria-label="Telefono"
-                value={form.telefono} onChange={(e) => update('telefono', e.target.value)}
-                className={inputCls}
-              />
+              <div className="grid grid-cols-2 lg:grid-cols-4 flex-1 gap-3">
+                {fieldMeta.map(({ key, label, type, autoComplete }) => {
+                  const id = `quick-${key}`;
+                  const errorId = `${id}-error`;
+                  return (
+                    <div key={key} className="min-w-0">
+                      <label htmlFor={id} className="sr-only">{label}</label>
+                      <input
+                        ref={(element) => { inputRefs.current[key] = element; }}
+                        id={id}
+                        name={key}
+                        type={type}
+                        required
+                        autoComplete={autoComplete}
+                        placeholder={`${label} *`}
+                        value={form[key]}
+                        onChange={(event) => update(key, event.target.value)}
+                        aria-invalid={Boolean(errors[key])}
+                        aria-describedby={errors[key] ? errorId : undefined}
+                        className={`${inputCls} ${errors[key] ? 'border-red-500 ring-1 ring-red-500' : 'border-transparent'}`}
+                      />
+                      {errors[key] && <p id={errorId} className="mt-1 text-xs font-medium text-red-300">{errors[key]}</p>}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <button
+                type="submit"
+                disabled={sending}
+                className="min-h-11 shrink-0 inline-flex items-center justify-center bg-acid text-dark font-sans font-bold text-xs md:text-sm tracking-[0.12em] uppercase px-5 py-3 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {sending ? 'Invio in corso…' : 'Richiedi una consulenza gratuita'}
+              </button>
             </div>
 
-            <button
-              type="submit"
-              disabled={sending}
-              className="shrink-0 inline-flex items-center justify-center gap-3 bg-acid text-dark font-sans font-bold text-xs md:text-sm tracking-[0.14em] uppercase px-6 py-3 hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {sending ? 'Invio…' : 'Richiedi Consulenza Gratuita'}
-            </button>
-
-            {error && (
-              <p className="text-red-400 text-xs font-sans font-medium md:absolute md:-bottom-5">
-                {error}
+            <div className="mt-2 flex flex-col md:flex-row md:items-center md:justify-between gap-1.5">
+              <p id="quick-form-privacy" className="text-white/60 text-xs leading-relaxed">
+                Inviando il modulo dichiari di aver letto la{' '}
+                <a href={PRIVACY_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acid">Privacy Policy</a>.
               </p>
-            )}
+              <p id="quick-form-status" role="alert" aria-live="assertive" className="text-red-300 text-xs font-semibold min-h-4">
+                {submitError}
+              </p>
+            </div>
           </motion.form>
         )}
       </div>
