@@ -1,5 +1,5 @@
 // Google Ads conversion tracking — evento lead (form rapido + form completo).
-const CONVERSION_ID = 'AW-1072446258/BknuCLTJmelbELL2sP8D';
+const CONVERSION_ID = 'AW-1072446258/BknuCLTJmeIbELL2sP8D';
 
 declare global {
   interface Window {
