@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { buildAttribution, isValidEmail, PRIVACY_URL, submitLead } from '../lib/forms';
 import { trackLeadConversion } from '../lib/tracking';
 import CallButton from './CallButton';
+import AudienceNotice from './AudienceNotice';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const ZAPIER_URL = import.meta.env.VITE_QUICK_FORM_ENDPOINT || 'https://hooks.zapier.com/hooks/catch/1977593/44jzx6p/';
@@ -15,7 +16,8 @@ interface QuickFormState {
 }
 
 type QuickField = keyof QuickFormState;
-type QuickErrors = Partial<Record<QuickField, string>>;
+// 'pharmacy' = conferma "Gestisco una farmacia": controllo solo lato client, NON fa parte del payload inviato.
+type QuickErrors = Partial<Record<QuickField | 'pharmacy', string>>;
 
 const empty: QuickFormState = { nome: '', cognome: '', email: '', telefono: '' };
 
@@ -29,19 +31,22 @@ const fieldMeta: Array<{ key: QuickField; label: string; type: string; autoCompl
   { key: 'telefono', label: 'Telefono', type: 'tel', autoComplete: 'tel' },
 ];
 
-function validate(form: QuickFormState): QuickErrors {
+function validate(form: QuickFormState, isPharmacy: boolean): QuickErrors {
   const errors: QuickErrors = {};
   if (!form.nome.trim()) errors.nome = 'Inserisci il nome.';
   if (!form.cognome.trim()) errors.cognome = 'Inserisci il cognome.';
   if (!form.email.trim()) errors.email = 'Inserisci l’email.';
   else if (!isValidEmail(form.email)) errors.email = 'Inserisci un indirizzo email valido.';
   if (!form.telefono.trim()) errors.telefono = 'Inserisci il telefono.';
+  if (!isPharmacy) errors.pharmacy = 'Conferma di gestire una farmacia per inviare la richiesta.';
   return errors;
 }
 
 export default function QuickForm() {
   const [form, setForm] = useState<QuickFormState>(empty);
   const [errors, setErrors] = useState<QuickErrors>({});
+  const [isPharmacy, setIsPharmacy] = useState(false);
+  const pharmacyRef = useRef<HTMLInputElement>(null);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -59,12 +64,13 @@ export default function QuickForm() {
     event.preventDefault();
     if (submittingRef.current) return;
 
-    const nextErrors = validate(form);
+    const nextErrors = validate(form, isPharmacy);
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
       setSubmitError('Controlla i campi evidenziati prima di inviare.');
       const firstInvalid = fieldMeta.find(({ key }) => nextErrors[key]);
       if (firstInvalid) requestAnimationFrame(() => inputRefs.current[firstInvalid.key]?.focus());
+      else requestAnimationFrame(() => pharmacyRef.current?.focus());
       return;
     }
 
@@ -120,7 +126,7 @@ export default function QuickForm() {
               <p className="text-white/70 text-xs sm:text-sm">Oppure lasciaci i tuoi dati: ti ricontattiamo noi.</p>
             </div>
 
-            <div className="flex flex-col lg:flex-row lg:items-start gap-3 lg:gap-4">
+            <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-start gap-3 lg:gap-4">
               <p className="hidden xl:block text-white/70 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pt-3.5">
                 Consulenza gratuita
               </p>
@@ -152,13 +158,38 @@ export default function QuickForm() {
                 })}
               </div>
 
-              <button
-                type="submit"
-                disabled={sending}
-                className="min-h-11 shrink-0 inline-flex items-center justify-center bg-acid text-dark font-sans font-bold text-xs md:text-sm tracking-[0.12em] uppercase px-5 py-3 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {sending ? 'Invio in corso…' : 'Richiedi una consulenza gratuita'}
-              </button>
+              {/* Mobile: checkbox sopra il bottone. Da lg: bottone in riga con i campi, checkbox sulla riga sotto. */}
+              <div className="flex flex-col gap-3 lg:contents">
+                <div className="lg:order-last lg:basis-full">
+                  <label htmlFor="quick-pharmacy" className="flex min-h-11 cursor-pointer items-start gap-3 text-sm font-medium text-white">
+                    <input
+                      ref={pharmacyRef}
+                      id="quick-pharmacy"
+                      type="checkbox"
+                      required
+                      checked={isPharmacy}
+                      onChange={(event) => {
+                        setIsPharmacy(event.target.checked);
+                        if (errors.pharmacy) setErrors((previous) => ({ ...previous, pharmacy: undefined }));
+                        if (submitError) setSubmitError(null);
+                      }}
+                      aria-invalid={Boolean(errors.pharmacy)}
+                      aria-describedby={errors.pharmacy ? 'quick-pharmacy-error' : undefined}
+                      className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer accent-acid"
+                    />
+                    <span>Gestisco una farmacia <span aria-hidden="true">*</span></span>
+                  </label>
+                  {errors.pharmacy && <p id="quick-pharmacy-error" className="text-xs font-medium text-red-300">{errors.pharmacy}</p>}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="min-h-11 shrink-0 inline-flex items-center justify-center bg-acid text-dark font-sans font-bold text-xs md:text-sm tracking-[0.12em] uppercase px-5 py-3 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#111] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {sending ? 'Invio in corso…' : 'Richiedi una consulenza gratuita'}
+                </button>
+              </div>
             </div>
 
             <div className="mt-2 flex flex-col md:flex-row md:items-center md:justify-between gap-1.5">
@@ -170,6 +201,7 @@ export default function QuickForm() {
                 {submitError}
               </p>
             </div>
+            <AudienceNotice tone="dark" className="mt-1" />
           </motion.form>
         )}
       </div>

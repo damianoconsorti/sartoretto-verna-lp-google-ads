@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { buildAttribution, isValidEmail, PRIVACY_URL, submitLead } from '../lib/forms';
 import { trackLeadConversion } from '../lib/tracking';
 import CallButton from './CallButton';
+import AudienceNotice from './AudienceNotice';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const ZAPIER_URL = import.meta.env.VITE_MAIN_FORM_ENDPOINT || 'https://hooks.zapier.com/hooks/catch/1977593/44jzqgw/';
@@ -35,6 +36,7 @@ function validate(form: FormState): FormErrors {
   if (!form.cognome.trim()) errors.cognome = 'Inserisci il cognome.';
   if (!form.email.trim()) errors.email = 'Inserisci l’email.';
   else if (!isValidEmail(form.email)) errors.email = 'Inserisci un indirizzo email valido.';
+  if (!form.farmacia.trim()) errors.farmacia = 'Inserisci il nome della farmacia.';
   if (!form.tipologia) errors.tipologia = 'Seleziona il tipo di progetto.';
   return errors;
 }
@@ -88,7 +90,7 @@ export default function ContactForm() {
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
       setSubmitError('Correggi i campi indicati prima di inviare la richiesta.');
-      const firstInvalid = (['nome', 'cognome', 'email', 'tipologia'] as FormField[]).find((key) => nextErrors[key]);
+      const firstInvalid = (['nome', 'cognome', 'email', 'farmacia', 'tipologia'] as FormField[]).find((key) => nextErrors[key]);
       if (firstInvalid) requestAnimationFrame(() => fieldRefs.current[firstInvalid]?.focus());
       return;
     }
@@ -208,8 +210,8 @@ export default function ContactForm() {
                 <Field label="Città" id="main-citta">
                   <input ref={(el) => { fieldRefs.current.citta = el; }} id="main-citta" name="citta" type="text" autoComplete="address-level2" placeholder="Es. Roma" value={form.citta} onChange={(e) => update('citta', e.target.value)} className={`${inputCls} border-[#aaa]`} />
                 </Field>
-                <Field label="Nome farmacia" id="main-farmacia">
-                  <input ref={(el) => { fieldRefs.current.farmacia = el; }} id="main-farmacia" name="nome_farmacia" type="text" placeholder="Farmacia Centrale" value={form.farmacia} onChange={(e) => update('farmacia', e.target.value)} className={`${inputCls} border-[#aaa]`} />
+                <Field label="Nome farmacia" id="main-farmacia" required error={errors.farmacia}>
+                  <input ref={(el) => { fieldRefs.current.farmacia = el; }} id="main-farmacia" name="nome_farmacia" type="text" required placeholder="Farmacia Centrale" value={form.farmacia} onChange={(e) => update('farmacia', e.target.value)} className={`${inputCls} ${errors.farmacia ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('farmacia')} />
                 </Field>
               </div>
 
@@ -234,6 +236,7 @@ export default function ContactForm() {
                   Inviando il modulo dichiari di aver letto la{' '}
                   <a href={PRIVACY_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-[#222] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal">Privacy Policy</a>.
                 </p>
+                <AudienceNotice tone="light" />
               </div>
             </form>
           )}
