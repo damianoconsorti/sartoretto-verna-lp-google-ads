@@ -93,6 +93,10 @@ export default function ProjectGallery() {
                 <img
                   src={featured.imgSrc}
                   alt={featured.name}
+                  width={1600}
+                  height={1066}
+                  loading="lazy"
+                  decoding="async"
                   className="absolute inset-0 w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 [transition:filter_400ms_ease]"
                 />
                 <div className="absolute inset-0" style={{ background: featured.gradient }} />
@@ -130,6 +134,7 @@ export default function ProjectGallery() {
                       src={p.imgSrc}
                       alt={p.name}
                       loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 [transition:filter_400ms_ease]"
                     />
                     <div className="absolute inset-0" style={{ background: p.gradient }} />

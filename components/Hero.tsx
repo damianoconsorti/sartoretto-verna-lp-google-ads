@@ -3,14 +3,33 @@ import { motion } from 'framer-motion';
 import { getHeroVariant } from '../lib/variants';
 
 const ease = [0.22, 1, 0.36, 1] as const;
+// TODO: sostituire con la clip leggera (720p, pochi MB). Se la nuova clip è già tagliata, impostare CLIP_START = 0
+// e CLIP_END = durata del file (oppure un valore molto alto: il loop torna a CLIP_START).
 const CLIP_START = 9;
 const CLIP_END = 45;
 const VIDEO_URL = 'https://sv-it.b-cdn.net/Farmacia%20Catona%20_%20orizzontale.mp4';
-const POSTER_URL = 'CATONA.jpg';
+
+// Poster responsive: il file da 1920px pesa ~180 KB, quello da 640px ~26 KB (il JPG originale pesava 830 KB).
+const POSTER_SRC = 'CATONA-1280.webp';
+const POSTER_SRCSET = 'CATONA-640.webp 640w, CATONA-1280.webp 1280w, CATONA-1920.webp 1920w';
+
+// Il video (clip da oltre 100 MB) parte solo da 768px in su, a pagina caricata, senza risparmio dati e su reti non lente.
+const VIDEO_MIN_WIDTH_QUERY = '(min-width: 768px)';
+const VIDEO_DELAY_AFTER_LOAD_MS = 400;
+
+function isConstrainedConnection() {
+  const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  if (!connection) return false;
+  return Boolean(connection.saveData) || /^(slow-2g|2g|3g)$/.test(connection.effectiveType ?? '');
+}
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const posterRef = useRef<HTMLImageElement>(null);
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [wideScreen, setWideScreen] = useState(() => window.matchMedia(VIDEO_MIN_WIDTH_QUERY).matches);
+  const [constrained] = useState(isConstrainedConnection);
+  const [pageReady, setPageReady] = useState(false);
   const [videoFallback, setVideoFallback] = useState(false);
   const variant = getHeroVariant();
 
@@ -20,6 +39,27 @@ export default function Hero() {
     media.addEventListener('change', handleChange);
     return () => media.removeEventListener('change', handleChange);
   }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia(VIDEO_MIN_WIDTH_QUERY);
+    const handleChange = () => setWideScreen(media.matches);
+    media.addEventListener('change', handleChange);
+    return () => media.removeEventListener('change', handleChange);
+  }, []);
+
+  // Il video non deve competere con poster, font e JS: parte dopo l'evento load della pagina.
+  useEffect(() => {
+    let timer: number | undefined;
+    const arm = () => { timer = window.setTimeout(() => setPageReady(true), VIDEO_DELAY_AFTER_LOAD_MS); };
+    if (document.readyState === 'complete') arm();
+    else window.addEventListener('load', arm, { once: true });
+    return () => {
+      window.removeEventListener('load', arm);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
+
+  const showVideo = pageReady && wideScreen && !constrained && !reducedMotion && !videoFallback;
 
   function handleLoadedMetadata() {
     if (videoRef.current) videoRef.current.currentTime = CLIP_START;
@@ -45,16 +85,22 @@ export default function Hero() {
     <section id="hero" className="relative isolate flex min-h-[560px] md:min-h-[640px] lg:min-h-[min(84vh,860px)] flex-col justify-end overflow-hidden bg-dark scroll-mt-[110px] md:scroll-mt-[80px]">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <img
-          src={POSTER_URL}
+          ref={posterRef}
+          src={POSTER_SRC}
+          srcSet={POSTER_SRCSET}
+          sizes="100vw"
+          width={1920}
+          height={1278}
           alt=""
           fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        {!reducedMotion && !videoFallback && (
+        {showVideo && (
           <video
             ref={videoRef}
             src={VIDEO_URL}
-            poster={POSTER_URL}
+            poster={posterRef.current?.currentSrc || POSTER_SRC}
             className="absolute inset-0 h-full w-full object-cover object-center"
             autoPlay
             muted

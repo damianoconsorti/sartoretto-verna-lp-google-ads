@@ -72,6 +72,8 @@ export default function PerformanceSection() {
             <img
               src={panel.img}
               alt={panel.heading}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div
