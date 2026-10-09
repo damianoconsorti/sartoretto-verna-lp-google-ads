@@ -40,7 +40,9 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" className="relative w-full h-[560px] md:h-[76vh] md:min-h-[640px] lg:h-[84vh] overflow-hidden bg-dark scroll-mt-[110px] md:scroll-mt-[80px]">
+    // Altezza guidata dal contenuto: min-h per l'impatto visivo, padding-top = altezza navbar (96px mobile, 80px md+)
+    // così titolo ed eyebrow non finiscono mai sotto la navbar, qualunque sia la risoluzione o la lunghezza del testo.
+    <section id="hero" className="relative isolate flex min-h-[560px] md:min-h-[640px] lg:min-h-[min(84vh,860px)] flex-col justify-end overflow-hidden bg-dark scroll-mt-[110px] md:scroll-mt-[80px]">
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <img
           src={POSTER_URL}
@@ -69,8 +71,8 @@ export default function Hero() {
 
       <div className="absolute inset-0 z-10 bg-[linear-gradient(160deg,rgba(0,181,181,0.16)_0%,rgba(0,0,0,0.35)_45%,rgba(0,0,0,0.78)_100%)]" />
 
-      <div className="absolute inset-0 z-20 flex flex-col justify-end px-5 md:px-14 lg:px-24 pb-4 md:pb-16">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-10">
+      <div className="relative z-20 px-5 md:px-14 lg:px-24 pt-[112px] md:pt-[104px] pb-5 md:pb-14">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 md:gap-8 lg:gap-10">
           <div className="max-w-5xl">
             <motion.p
               initial={{ opacity: 0 }}
@@ -85,7 +87,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease, delay: 0.4 }}
               className="font-display text-white uppercase"
-              style={{ fontSize: 'clamp(2.15rem, 7.6vw, 8rem)', lineHeight: 0.92 }}
+              style={{ fontSize: 'clamp(2.15rem, 5.2vw, 5.75rem)', lineHeight: 0.95 }}
             >
               {variant.title}<br />
               <span className="text-acid">{variant.accent}</span>

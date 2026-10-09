@@ -12,11 +12,11 @@ export interface HeroVariant {
 const variants: Record<LandingIntent, HeroVariant> = {
   default: {
     intent: 'default',
-    eyebrow: 'Progettazione · Restyling · Arredamento farmacia',
+    eyebrow: 'Progettazione · Allestimento · Arredamento farmacia',
     title: 'Progettazione e arredi',
     accent: 'su misura',
     suffix: 'per farmacie',
-    subtitle: 'Trasformiamo layout, flussi e spazi per migliorare servizi, esperienza del cliente e performance della farmacia.',
+    subtitle: 'Trasformiamo layout, allestimento e spazi per migliorare servizi, esperienza del cliente e performance della farmacia.',
   },
   progettazione: {
     intent: 'progettazione',
