@@ -1,7 +1,7 @@
 import React, { FormEvent, ReactNode, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { buildAttribution, isValidEmail, PRIVACY_URL, submitLead } from '../lib/forms';
-import { trackLeadConversion } from '../lib/tracking';
+import { redirectToThankYou } from '../lib/leadConversion';
 import CallButton from './CallButton';
 import AudienceNotice from './AudienceNotice';
 
@@ -68,12 +68,9 @@ function Field({
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(empty);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const submittingRef = useRef(false);
-  const successTrackedRef = useRef(false);
-  const successRef = useRef<HTMLDivElement>(null);
   const fieldRefs = useRef<Partial<Record<FormField, HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null>>>({});
 
   function update(key: FormField, value: string) {
@@ -98,6 +95,7 @@ export default function ContactForm() {
     submittingRef.current = true;
     setSending(true);
     setSubmitError(null);
+    let redirecting = false;
 
     try {
       const payload: Record<string, string> = {
@@ -114,19 +112,20 @@ export default function ContactForm() {
       };
 
       await submitLead(ZAPIER_URL, payload);
-      if (!successTrackedRef.current) {
-        trackLeadConversion('main_form');
-        successTrackedRef.current = true;
-      }
-      setForm(empty);
-      setErrors({});
-      setSent(true);
-      requestAnimationFrame(() => successRef.current?.focus());
+      // Invio riuscito: la conversione parte nella pagina /grazie/ (una sola volta). Il form resta bloccato fino al cambio pagina.
+      redirecting = true;
+      redirectToThankYou('main_form');
+      window.setTimeout(() => {
+        submittingRef.current = false;
+        setSending(false);
+      }, 8000);
     } catch {
       setSubmitError('Invio non riuscito. Verifica la connessione e riprova: i dati inseriti sono ancora disponibili.');
     } finally {
-      submittingRef.current = false;
-      setSending(false);
+      if (!redirecting) {
+        submittingRef.current = false;
+        setSending(false);
+      }
     }
   }
 
@@ -176,70 +175,60 @@ export default function ContactForm() {
           transition={{ duration: 0.75, ease, delay: 0.1 }}
           className="px-6 md:px-14 lg:px-16 py-16 md:py-28 bg-[#f5f5f5]"
         >
-          {sent ? (
-            <div ref={successRef} tabIndex={-1} role="status" className="flex flex-col gap-5 outline-none">
-              <div className="w-12 h-1 bg-green-600" />
-              <h3 className="font-display text-[#0a0a0a] uppercase text-3xl md:text-4xl leading-none">Messaggio inviato.</h3>
-              <p className="text-green-700 text-base md:text-lg font-sans font-semibold leading-relaxed">
-                Grazie. Ti ricontatteremo appena possibile, normalmente entro 24 ore lavorative.
-              </p>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-8" noValidate aria-describedby="main-form-status main-form-privacy">
+            <p className="text-[#555] text-sm">I campi contrassegnati con * sono obbligatori.</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <Field label="Nome" id="main-nome" required error={errors.nome}>
+                <input ref={(el) => { fieldRefs.current.nome = el; }} id="main-nome" name="nome" type="text" required autoComplete="given-name" placeholder="Mario" value={form.nome} onChange={(e) => update('nome', e.target.value)} className={`${inputCls} ${errors.nome ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('nome')} />
+              </Field>
+              <Field label="Cognome" id="main-cognome" required error={errors.cognome}>
+                <input ref={(el) => { fieldRefs.current.cognome = el; }} id="main-cognome" name="cognome" type="text" required autoComplete="family-name" placeholder="Rossi" value={form.cognome} onChange={(e) => update('cognome', e.target.value)} className={`${inputCls} ${errors.cognome ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('cognome')} />
+              </Field>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-8" noValidate aria-describedby="main-form-status main-form-privacy">
-              <p className="text-[#555] text-sm">I campi contrassegnati con * sono obbligatori.</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <Field label="Nome" id="main-nome" required error={errors.nome}>
-                  <input ref={(el) => { fieldRefs.current.nome = el; }} id="main-nome" name="nome" type="text" required autoComplete="given-name" placeholder="Mario" value={form.nome} onChange={(e) => update('nome', e.target.value)} className={`${inputCls} ${errors.nome ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('nome')} />
-                </Field>
-                <Field label="Cognome" id="main-cognome" required error={errors.cognome}>
-                  <input ref={(el) => { fieldRefs.current.cognome = el; }} id="main-cognome" name="cognome" type="text" required autoComplete="family-name" placeholder="Rossi" value={form.cognome} onChange={(e) => update('cognome', e.target.value)} className={`${inputCls} ${errors.cognome ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('cognome')} />
-                </Field>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <Field label="Email" id="main-email" required error={errors.email}>
-                  <input ref={(el) => { fieldRefs.current.email = el; }} id="main-email" name="email" type="email" required autoComplete="email" placeholder="mario@farmacia.it" value={form.email} onChange={(e) => update('email', e.target.value)} className={`${inputCls} ${errors.email ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('email')} />
-                </Field>
-                <Field label="Telefono" id="main-telefono">
-                  <input ref={(el) => { fieldRefs.current.telefono = el; }} id="main-telefono" name="telefono" type="tel" autoComplete="tel" placeholder="+39 06 1234567" value={form.telefono} onChange={(e) => update('telefono', e.target.value)} className={`${inputCls} border-[#aaa]`} />
-                </Field>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <Field label="Città" id="main-citta">
-                  <input ref={(el) => { fieldRefs.current.citta = el; }} id="main-citta" name="citta" type="text" autoComplete="address-level2" placeholder="Es. Roma" value={form.citta} onChange={(e) => update('citta', e.target.value)} className={`${inputCls} border-[#aaa]`} />
-                </Field>
-                <Field label="Nome farmacia" id="main-farmacia" required error={errors.farmacia}>
-                  <input ref={(el) => { fieldRefs.current.farmacia = el; }} id="main-farmacia" name="nome_farmacia" type="text" required placeholder="Farmacia Centrale" value={form.farmacia} onChange={(e) => update('farmacia', e.target.value)} className={`${inputCls} ${errors.farmacia ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('farmacia')} />
-                </Field>
-              </div>
-
-              <Field label="Tipo di progetto" id="main-tipologia" required error={errors.tipologia}>
-                <select ref={(el) => { fieldRefs.current.tipologia = el; }} id="main-tipologia" name="tipo_progetto" required value={form.tipologia} onChange={(e) => update('tipologia', e.target.value)} className={`${inputCls} cursor-pointer appearance-none ${errors.tipologia ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('tipologia')}>
-                  <option value="" disabled>Seleziona una tipologia…</option>
-                  {projectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
-                </select>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <Field label="Email" id="main-email" required error={errors.email}>
+                <input ref={(el) => { fieldRefs.current.email = el; }} id="main-email" name="email" type="email" required autoComplete="email" placeholder="mario@farmacia.it" value={form.email} onChange={(e) => update('email', e.target.value)} className={`${inputCls} ${errors.email ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('email')} />
               </Field>
-
-              <Field label="Messaggio (opzionale)" id="main-messaggio">
-                <textarea ref={(el) => { fieldRefs.current.messaggio = el; }} id="main-messaggio" name="messaggio" rows={4} placeholder="Descrivi brevemente la tua farmacia e il progetto…" value={form.messaggio} onChange={(e) => update('messaggio', e.target.value)} className={`${inputCls} border-[#aaa] resize-none`} />
+              <Field label="Telefono" id="main-telefono">
+                <input ref={(el) => { fieldRefs.current.telefono = el; }} id="main-telefono" name="telefono" type="tel" autoComplete="tel" placeholder="+39 06 1234567" value={form.telefono} onChange={(e) => update('telefono', e.target.value)} className={`${inputCls} border-[#aaa]`} />
               </Field>
+            </div>
 
-              <div className="flex flex-col gap-3">
-                <button type="submit" disabled={sending} className="min-h-11 w-full sm:w-auto self-start inline-flex items-center justify-center bg-[#0a0a0a] text-white font-sans font-bold text-sm tracking-[0.18em] uppercase px-8 py-4 hover:bg-acid hover:text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed">
-                  {sending ? 'Invio in corso…' : 'Richiedi una consulenza gratuita'}
-                </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <Field label="Città" id="main-citta">
+                <input ref={(el) => { fieldRefs.current.citta = el; }} id="main-citta" name="citta" type="text" autoComplete="address-level2" placeholder="Es. Roma" value={form.citta} onChange={(e) => update('citta', e.target.value)} className={`${inputCls} border-[#aaa]`} />
+              </Field>
+              <Field label="Nome farmacia" id="main-farmacia" required error={errors.farmacia}>
+                <input ref={(el) => { fieldRefs.current.farmacia = el; }} id="main-farmacia" name="nome_farmacia" type="text" required placeholder="Farmacia Centrale" value={form.farmacia} onChange={(e) => update('farmacia', e.target.value)} className={`${inputCls} ${errors.farmacia ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('farmacia')} />
+              </Field>
+            </div>
 
-                <p id="main-form-status" role="alert" aria-live="assertive" className="text-red-700 text-sm font-sans font-semibold min-h-5">{submitError}</p>
-                <p id="main-form-privacy" className="text-[#666] text-sm font-sans leading-relaxed">
-                  Inviando il modulo dichiari di aver letto la{' '}
-                  <a href={PRIVACY_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-[#222] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal">Privacy Policy</a>.
-                </p>
-                <AudienceNotice tone="light" />
-              </div>
-            </form>
-          )}
+            <Field label="Tipo di progetto" id="main-tipologia" required error={errors.tipologia}>
+              <select ref={(el) => { fieldRefs.current.tipologia = el; }} id="main-tipologia" name="tipo_progetto" required value={form.tipologia} onChange={(e) => update('tipologia', e.target.value)} className={`${inputCls} cursor-pointer appearance-none ${errors.tipologia ? 'border-red-600' : 'border-[#aaa]'}`} {...controlState('tipologia')}>
+                <option value="" disabled>Seleziona una tipologia…</option>
+                {projectTypes.map((type) => <option key={type} value={type}>{type}</option>)}
+              </select>
+            </Field>
+
+            <Field label="Messaggio (opzionale)" id="main-messaggio">
+              <textarea ref={(el) => { fieldRefs.current.messaggio = el; }} id="main-messaggio" name="messaggio" rows={4} placeholder="Descrivi brevemente la tua farmacia e il progetto…" value={form.messaggio} onChange={(e) => update('messaggio', e.target.value)} className={`${inputCls} border-[#aaa] resize-none`} />
+            </Field>
+
+            <div className="flex flex-col gap-3">
+              <button type="submit" disabled={sending} className="min-h-11 w-full sm:w-auto self-start inline-flex items-center justify-center bg-[#0a0a0a] text-white font-sans font-bold text-sm tracking-[0.18em] uppercase px-8 py-4 hover:bg-acid hover:text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed">
+                {sending ? 'Invio in corso…' : 'Richiedi una consulenza gratuita'}
+              </button>
+
+              <p id="main-form-status" role="alert" aria-live="assertive" className="text-red-700 text-sm font-sans font-semibold min-h-5">{submitError}</p>
+              <p id="main-form-privacy" className="text-[#666] text-sm font-sans leading-relaxed">
+                Inviando il modulo dichiari di aver letto la{' '}
+                <a href={PRIVACY_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-[#222] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal">Privacy Policy</a>.
+              </p>
+              <AudienceNotice tone="light" />
+            </div>
+          </form>
         </motion.div>
       </div>
     </section>

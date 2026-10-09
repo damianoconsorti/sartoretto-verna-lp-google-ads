@@ -1,0 +1,1 @@
+export const LOGO_URL = 'https://lh3.googleusercontent.com/s819vmHVAaHH1gM8BEG9wLqIfexiwjnwVARKISZd9tZPmjhj6eO87wTMu7TXKL2CdOxGdWPeyZ9R-Yg3zJQne1zD4ExLLgnyYCI';

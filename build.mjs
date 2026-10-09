@@ -34,5 +34,15 @@ await build({
   base: './',
   plugins: [react(), tailwindcss()],
   resolve: { alias: { '@': root } },
-  build: { outDir, emptyOutDir: true },
+  build: {
+    outDir,
+    emptyOutDir: true,
+    // Due pagine: la LP (index.html) e la thank-you page /grazie/ (noindex).
+    rollupOptions: {
+      input: {
+        main: resolve(root, 'index.html'),
+        grazie: resolve(root, 'grazie/index.html'),
+      },
+    },
+  },
 });

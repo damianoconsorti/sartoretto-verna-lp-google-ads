@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { LOGO_URL } from '../lib/brand';
 
 const ease = [0.22, 1, 0.36, 1] as const;
-const LOGO_URL = 'https://lh3.googleusercontent.com/s819vmHVAaHH1gM8BEG9wLqIfexiwjnwVARKISZd9tZPmjhj6eO87wTMu7TXKL2CdOxGdWPeyZ9R-Yg3zJQne1zD4ExLLgnyYCI';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

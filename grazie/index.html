@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Pagina in una sottocartella: con <base href="/"> gli asset in public/ (poster testimonianze, favicon) restano risolti dalla root del dominio. -->
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" href="/favicon-trasp.png" />
+    <title>Richiesta inviata | Sartoretto Verna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) — copia identica dello snippet di index.html: serve per far partire la conversione su questa pagina -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-1072446258"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-1072446258');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/grazie.tsx"></script>
+  </body>
+</html>
