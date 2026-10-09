@@ -117,9 +117,10 @@ export default function QuickForm() {
           aria-describedby="quick-form-status quick-form-privacy"
           className="relative"
         >
-          <div className="mb-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-            <CallButton location="quick_form" tone="dark" className="w-full sm:w-auto" />
-            <p className="text-white/70 text-xs sm:text-sm">Oppure lasciaci i tuoi dati: ti ricontattiamo noi.</p>
+          {/* Solo da md in su: su mobile il pulsante Chiama è nella barra fissa (MobileStickyBar) e il modulo resta sopra la piega. */}
+          <div className="hidden md:flex md:items-center md:gap-4 mb-3">
+            <CallButton location="quick_form" tone="dark" />
+            <p className="text-white/70 text-sm">Oppure lasciaci i tuoi dati: ti ricontattiamo noi.</p>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-start gap-3 lg:gap-4">
