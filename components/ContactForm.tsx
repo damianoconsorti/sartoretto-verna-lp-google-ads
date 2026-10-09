@@ -2,6 +2,7 @@ import React, { FormEvent, ReactNode, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { buildAttribution, isValidEmail, PRIVACY_URL, submitLead } from '../lib/forms';
 import { trackLeadConversion } from '../lib/tracking';
+import CallButton from './CallButton';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const ZAPIER_URL = import.meta.env.VITE_MAIN_FORM_ENDPOINT || 'https://hooks.zapier.com/hooks/catch/1977593/44jzqgw/';
@@ -150,6 +151,10 @@ export default function ContactForm() {
             <p className="text-[#333] text-base md:text-lg font-sans font-normal leading-relaxed max-w-[40ch]">
               Raccontaci la tua farmacia. Il nostro team risponde normalmente entro 24 ore lavorative per una prima valutazione del progetto e dei prossimi passi.
             </p>
+            <div className="mt-8 flex flex-col gap-3">
+              <p className="text-[#444] text-base font-sans">Preferisci parlarne a voce?</p>
+              <CallButton location="contact_section" tone="light" className="self-start" />
+            </div>
           </div>
 
           <div className="flex flex-col gap-4">

@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <main className="bg-dark text-white overflow-x-clip pb-[68px] md:pb-0">
+    <main className="bg-dark text-white overflow-x-clip pb-[72px] md:pb-0">
       <Navbar />
       <Hero />
       <QuickForm />

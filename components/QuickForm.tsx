@@ -2,6 +2,7 @@ import React, { FormEvent, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { buildAttribution, isValidEmail, PRIVACY_URL, submitLead } from '../lib/forms';
 import { trackLeadConversion } from '../lib/tracking';
+import CallButton from './CallButton';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const ZAPIER_URL = import.meta.env.VITE_QUICK_FORM_ENDPOINT || 'https://hooks.zapier.com/hooks/catch/1977593/44jzx6p/';
@@ -114,6 +115,11 @@ export default function QuickForm() {
             aria-describedby="quick-form-status quick-form-privacy"
             className="relative"
           >
+            <div className="mb-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+              <CallButton location="quick_form" tone="dark" className="w-full sm:w-auto" />
+              <p className="text-white/70 text-xs sm:text-sm">Oppure lasciaci i tuoi dati: ti ricontattiamo noi.</p>
+            </div>
+
             <div className="flex flex-col lg:flex-row lg:items-start gap-3 lg:gap-4">
               <p className="hidden xl:block text-white/70 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pt-3.5">
                 Consulenza gratuita
