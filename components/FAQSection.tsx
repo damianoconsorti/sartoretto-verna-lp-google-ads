@@ -4,14 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const faqs = [
-  { q: 'Quanto tempo richiede una ristrutturazione completa?',
-    a: 'Da 3 a 6 settimane in media, spesso a farmacia aperta. I tempi dipendono dalla metratura e dalla complessità del progetto. In fase di consulenza ti presentiamo un calendario di cantiere preciso.' },
+  { q: 'Quanto tempo richiede il progetto di una farmacia?',
+    a: 'Dipende da metratura e complessità. In consulenza definiamo insieme un calendario realistico per progetto, produzione e installazione.' },
   { q: 'Operate in tutta Italia e all\'estero?',
-    a: 'Sì. Siamo presenti su tutto il territorio italiano e in 48 paesi nel mondo grazie a una rete di partner locali certificati. Ogni cantiere è seguito direttamente da un nostro project manager.' },
+    a: 'Sì. Abbiamo realizzato progetti in tutta Italia e in 48 Paesi nel mondo.' },
   { q: 'Come funziona il primo contatto?',
-    a: 'Dopo la richiesta, un nostro Architect Manager ti contatta per comprendere obiettivi, metratura, stato attuale della farmacia e tempistiche. Da lì definiamo il percorso più adatto: analisi, progetto, produzione e cantiere.' },
-  { q: 'È possibile lavorare con la farmacia aperta?',
-    a: 'Nella grande maggioranza dei cantieri sì. Organizziamo i lavori per fasi, spesso nelle ore notturne o nel weekend, per mantenere la farmacia operativa e limitare l’impatto sull’attività durante i lavori.' },
+    a: 'Dopo la richiesta, un nostro Architect Manager ti contatta per comprendere obiettivi, metratura, stato attuale della farmacia e tempistiche. Da lì definiamo il percorso più adatto: analisi, progetto, produzione e installazione.' },
+  { q: 'È possibile restare aperti durante l\'installazione?',
+    a: 'Possiamo pianificare l\'installazione degli arredi per fasi, in accordo con te, per limitare l\'impatto sull\'attività. Per i lavori edili possiamo consigliarti imprese di fiducia.' },
   { q: 'Quanto costa arredare una farmacia?',
     a: 'Ogni progetto è unico, quindi non esistono prezzi standard. In consulenza ti forniremo un preventivo dettagliato basato sulla metratura, i materiali, la tipologia di intervento e le tue esigenze specifiche.' },
   { q: 'Producete voi stessi gli arredi?',

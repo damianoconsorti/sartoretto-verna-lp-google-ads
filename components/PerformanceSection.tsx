@@ -7,7 +7,7 @@ const panels = [
   {
     label: '01 — PHARMACY',
     heading: 'ESPERIENZA',
-    body: 'Oltre 60 anni di cantieri nel mondo. Sappiamo cosa funziona, cosa fallisce e perché. Ogni progetto porta dentro di sé decenni di apprendimento sul campo.',
+    body: 'Oltre 60 anni di progetti e realizzazioni nel mondo. Sappiamo cosa funziona, cosa fallisce e perché: ogni progetto porta dentro di sé decenni di esperienza.',
     link: 'Scopri la nostra storia',
     overlayColor: 'rgba(204,255,0,0.50)',
     img: 'https://storage.googleapis.com/lp-assets-prod/yHL3HA6j9ARWnPLvbF8fdD/ec5y4oSZuvQ5uF56eyWyGh',
@@ -52,8 +52,8 @@ export default function PerformanceSection() {
           className="font-display text-white uppercase leading-none"
           style={{ fontSize: 'clamp(2.4rem, 7vw, 7.5rem)' }}
         >
-          Non arredi.{' '}
-          <span className="text-acid">Performance.</span>
+          Non solo arredi.{' '}
+          <span className="text-acid">Un progetto.</span>
         </motion.h2>
       </div>
 

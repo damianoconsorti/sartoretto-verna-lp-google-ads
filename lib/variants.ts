@@ -16,7 +16,7 @@ const variants: Record<LandingIntent, HeroVariant> = {
     title: 'Progettazione e arredi',
     accent: 'su misura',
     suffix: 'per farmacie',
-    subtitle: 'Trasformiamo layout, allestimento e spazi per migliorare servizi, esperienza del cliente e performance della farmacia.',
+    subtitle: 'Progettiamo layout, allestimento e arredi su misura, fino ai disegni esecutivi, per migliorare servizi ed esperienza del cliente.',
   },
   progettazione: {
     intent: 'progettazione',
@@ -24,7 +24,7 @@ const variants: Record<LandingIntent, HeroVariant> = {
     title: 'Progettiamo farmacie',
     accent: 'che lavorano meglio',
     suffix: 'e comunicano più valore',
-    subtitle: 'Layout, flussi e identità visiva progettati per comunicare più valore e migliorare l’esperienza quotidiana di clienti e team.',
+    subtitle: 'Layout, flussi e identità visiva, fino ai disegni esecutivi, per comunicare più valore e migliorare l’esperienza di clienti e team.',
   },
   arredo: {
     intent: 'arredo',
@@ -36,10 +36,10 @@ const variants: Record<LandingIntent, HeroVariant> = {
   },
   ristrutturazione: {
     intent: 'ristrutturazione',
-    eyebrow: 'Progetto · Produzione · Cantiere · Installazione',
+    eyebrow: 'Progetto · Produzione italiana · Installazione',
     title: 'Ristruttura la tua farmacia',
-    accent: 'con un unico partner',
-    subtitle: 'Coordiniamo progetto, produzione, installazione e gestione del cantiere, lavorando spesso per fasi anche a farmacia aperta.',
+    accent: 'con un progetto su misura',
+    subtitle: 'Progettiamo layout e arredi, produciamo in Italia e installiamo. Per i lavori edili possiamo consigliarti imprese di fiducia.',
   },
 };
 

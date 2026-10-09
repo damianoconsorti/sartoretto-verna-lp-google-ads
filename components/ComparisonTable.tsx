@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const rows = [
-  { dimension: 'Focus',     traditional: 'Arredo e fornitura generica',              sv: 'Performance e risultato di vendita' },
+  { dimension: 'Focus',     traditional: 'Arredo e fornitura generica',              sv: 'Progetto su misura per la tua farmacia' },
   { dimension: 'Metodo',    traditional: 'Catalogo standard e soluzioni predefinite', sv: 'Progetto personalizzato su analisi dei flussi' },
-  { dimension: 'Risultato', traditional: 'Farmacia esteticamente rinnovata',          sv: 'Spazio orientato alla performance commerciale' },
+  { dimension: 'Risultato', traditional: 'Farmacia esteticamente rinnovata',          sv: 'Spazi pensati per il lavoro quotidiano di clienti e team' },
 ];
 
 export default function ComparisonTable() {
@@ -33,7 +33,7 @@ export default function ComparisonTable() {
             </h2>
             <p className="text-[#444] text-lg font-sans font-light leading-relaxed max-w-[38ch]">
               La differenza non è nel prodotto. È nell'approccio. Mentre un fornitore tradizionale
-              ti vende arredi, noi ti consegniamo una strategia di spazio progettata per crescere.
+              ti vende arredi, noi ti consegniamo un progetto di spazio costruito sulle esigenze della tua farmacia.
             </p>
           </motion.div>
 

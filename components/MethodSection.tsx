@@ -5,10 +5,10 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const steps = [
   { num: '01', title: 'Ascolto',       body: 'Analizziamo la tua farmacia, il territorio e i tuoi obiettivi di business prima di disegnare la prima linea.' },
-  { num: '02', title: 'Progetto',      body: 'Layout, materiali, illuminazione e comunicazione visiva: tutto definito in un concept 3D su misura.' },
+  { num: '02', title: 'Progetto',      body: 'Layout, materiali, illuminazione e comunicazione visiva: dal concept 3D ai disegni esecutivi.' },
   { num: '03', title: 'Produzione',    body: 'Arredi e complementi prodotti interamente in Italia. Controllo qualità totale prima di ogni spedizione.' },
-  { num: '04', title: 'Installazione', body: 'Cantiere rapido e coordinato, spesso a farmacia aperta, per minimizzare l\'impatto operativo.' },
-  { num: '05', title: 'Supporto',      body: 'Non scompariamo dopo l\'apertura. Monitoriamo i risultati e affianchiamo la tua crescita nel tempo.' },
+  { num: '04', title: 'Installazione', body: 'Installazione degli arredi pianificata per limitare l\'impatto sull\'attività della farmacia. Per i lavori edili possiamo consigliarti imprese di fiducia.' },
+  { num: '05', title: 'Supporto',      body: 'Non scompariamo dopo l\'installazione: restiamo a tua disposizione per qualsiasi necessità.' },
 ];
 
 export default function MethodSection() {
@@ -43,7 +43,7 @@ export default function MethodSection() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[#444] text-base md:text-lg font-sans font-light leading-relaxed max-w-[42ch]"
           >
-            Un processo in cinque fasi, collaudato in oltre 3.000 cantieri nel mondo.
+            Un processo in cinque fasi, applicato in oltre 3.000 realizzazioni nel mondo.
             Ogni fase mantiene continuità tra ciò che immagini e ciò che vivi ogni giorno.
           </motion.p>
         </div>
