@@ -1,0 +1,29 @@
+# progetta.sartorettoverna.it — tutto il sito è consultabile da crawler di ricerca e assistenti AI.
+# Stessa policy del sito aziendale (sartorettoverna.it: User-agent: * / Disallow: vuoto).
+# /grazie/ NON è bloccata di proposito: è esclusa dall'indice con meta robots "noindex", e per vederlo il crawler deve poterla leggere.
+
+User-agent: *
+Allow: /
+
+# Motori di ricerca
+User-agent: Googlebot
+User-agent: Bingbot
+Allow: /
+
+# Assistenti e motori di risposta AI (elenco esplicito; modificabile)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: DuckAssistBot
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://progetta.sartorettoverna.it/sitemap.xml

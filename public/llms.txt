@@ -1,0 +1,31 @@
+# Sartoretto Verna — progettazione e arredi su misura per farmacie
+
+> Sartoretto Verna progetta, allestisce e arreda farmacie su misura. Dal 1965, oltre 3.000 realizzazioni in 48 Paesi.
+
+Questa è la landing page dedicata alla progettazione e all'arredamento di farmacie. Il sito aziendale è sartorettoverna.it.
+
+## Cosa facciamo
+- Progettazione di layout, flussi e identità visiva della farmacia, fino ai disegni esecutivi
+- Allestimento e arredi su misura: banconi, scaffali, espositori, cassettiere
+- Produzione italiana e installazione degli arredi
+- Per i lavori edili possiamo consigliare imprese di fiducia
+
+## Pagine
+- [Progettazione e arredi su misura per farmacie](https://progetta.sartorettoverna.it/)
+- [Progettazione, restyling e layout della farmacia](https://progetta.sartorettoverna.it/?intent=progettazione)
+- [Arredi e mobili su misura per farmacie](https://progetta.sartorettoverna.it/?intent=arredo)
+- [Ristrutturare la farmacia con un progetto su misura](https://progetta.sartorettoverna.it/?intent=ristrutturazione)
+
+## Sito aziendale
+- [Sartoretto Verna](https://sartorettoverna.it/)
+- [Pharmacy](https://sartorettoverna.it/pharmacy/)
+- [Visita lo showroom](https://sartorettoverna.it/visita-lo-showroom/)
+- [Contatti](https://sartorettoverna.it/contatti/)
+
+## Contatti
+- Telefono: 06 9558 1450 (lun–ven 9–13 / 14–18)
+- Indirizzo: Via Trionfale 13592, Roma
+
+## Optional
+- [llms.txt del sito aziendale](https://sartorettoverna.it/llms.txt)
+- [Sitemap](https://progetta.sartorettoverna.it/sitemap.xml)

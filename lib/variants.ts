@@ -44,6 +44,8 @@ const variants: Record<LandingIntent, HeroVariant> = {
 };
 
 export function getLandingIntent(): LandingIntent {
+  // Pre-render a build (Node, nessuna URL): l'HTML statico usa la variante default; nel browser il client la sostituisce.
+  if (typeof window === 'undefined') return 'default';
   const intent = new URLSearchParams(window.location.search).get('intent');
   return intent === 'progettazione' || intent === 'arredo' || intent === 'ristrutturazione'
     ? intent

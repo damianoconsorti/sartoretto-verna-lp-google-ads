@@ -90,6 +90,56 @@ if (existsSync(landingPath) && existsSync(thankYouPath)) {
     check(!read(landingEntryPath).includes(EXPECTED_LABEL), 'landing: il bundle principale NON contiene la label (nessuna conversione dai form)');
     check(read(thankYouEntryPath).includes(EXPECTED_LABEL), 'grazie: il bundle della pagina /grazie/ contiene la label');
   }
+
+  // --- Contenuto nell'HTML servito (pre-render) ---------------------------------------------------------------------
+  // Contenuto di <div id="root"> (da qui alla chiusura del <body>). null se il contenitore non si trova: i controlli sotto falliscono.
+  const rootInner = (html) => {
+    const start = html.indexOf('<div id="root">');
+    const end = html.lastIndexOf('</div>', html.indexOf('</body>'));
+    return start === -1 || end < start ? null : html.slice(start + '<div id="root">'.length, end);
+  };
+  const landingRoot = rootInner(landing) ?? '';
+  check(rootInner(landing) !== null, 'index.html: <div id="root"> trovato');
+  const visibleWords = landingRoot
+    .replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<[^>]+>/g, ' ')
+    .split(/\s+/).filter(Boolean).length;
+  check(visibleWords >= 400, `index.html: contenuto testuale nell'HTML grezzo (${visibleWords} parole nel <body>, minimo 400)`);
+  check(countOf(landingRoot, '<h1') === 1, `index.html: esattamente un <h1> nell'HTML grezzo (trovati ${countOf(landingRoot, '<h1')})`);
+  check(countOf(landingRoot, '<h2') >= 5, `index.html: almeno 5 <h2> nell'HTML grezzo (trovati ${countOf(landingRoot, '<h2')})`);
+  check(!/<video\b[^>]*\sposter=/.test(landingRoot), 'index.html: nessun poster video nel markup statico (non anticipa download prima del JS)');
+  check(!/<link rel="preload"/.test(landingRoot), 'index.html: nessun <link rel="preload"> sollevato nel markup statico');
+  check(!landing.includes(`${ADS_ACCOUNT}/`), 'index.html: la label di conversione NON compare nell\'HTML della landing');
+  check(thankYou.includes('<div id="root"></div>'), 'grazie/index.html: NON pre-renderizzata (resta <div id="root"></div>, flusso conversione invariato)');
+
+  // --- robots.txt / sitemap.xml / llms.txt ---------------------------------------------------------------------------
+  const SITE = 'https://progetta.sartorettoverna.it';
+  const robotsPath = join(outDir, 'robots.txt');
+  const sitemapPath = join(outDir, 'sitemap.xml');
+  const llmsPath = join(outDir, 'llms.txt');
+  check(existsSync(robotsPath), 'robots.txt presente');
+  if (existsSync(robotsPath)) {
+    const robots = read(robotsPath);
+    check(/^User-agent: \*\s*$/m.test(robots) && /^Allow: \/\s*$/m.test(robots), 'robots.txt: User-agent: * con Allow: /');
+    check(!/^Disallow:\s*\/\s*$/m.test(robots), 'robots.txt: nessun "Disallow: /" (il sito non deve essere bloccato)');
+    check(!/^Disallow:.*grazie/mi.test(robots), 'robots.txt: /grazie/ non bloccata (il noindex deve poter essere letto)');
+    check(robots.includes(`Sitemap: ${SITE}/sitemap.xml`), `robots.txt: dichiara la sitemap (${SITE}/sitemap.xml)`);
+  }
+  check(existsSync(sitemapPath), 'sitemap.xml presente');
+  if (existsSync(sitemapPath)) {
+    const sitemap = read(sitemapPath);
+    const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+    check(/^<\?xml/.test(sitemap) && sitemap.includes('<urlset') && sitemap.includes('</urlset>'), 'sitemap.xml: struttura urlset valida');
+    check(locs.length === 4 && locs.every((u) => u === `${SITE}/` || u.startsWith(`${SITE}/?intent=`)), `sitemap.xml: 4 URL, tutti su ${SITE} (trovati ${locs.length})`);
+    check(!locs.some((u) => u.includes('grazie')), 'sitemap.xml: /grazie/ (noindex) non elencata');
+  }
+  check(existsSync(llmsPath), 'llms.txt presente');
+  if (existsSync(llmsPath)) {
+    const llms = read(llmsPath);
+    const links = [...llms.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => m[1]);
+    check(/^# \S/.test(llms) && /^> \S/m.test(llms), 'llms.txt: titolo H1 e riassunto in blockquote');
+    check(links.length >= 6 && links.every((u) => u.startsWith('https://')), `llms.txt: link https (${links.length})`);
+    check(!links.some((u) => u.includes('grazie')), 'llms.txt: /grazie/ non elencata');
+  }
 }
 
 for (const message of passes) console.log(`  ok   ${message}`);

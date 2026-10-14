@@ -18,16 +18,22 @@ const VIDEO_MIN_WIDTH_QUERY = '(min-width: 768px)';
 const VIDEO_DELAY_AFTER_LOAD_MS = 400;
 
 function isConstrainedConnection() {
+  if (typeof navigator === 'undefined') return false;
   const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
   if (!connection) return false;
   return Boolean(connection.saveData) || /^(slow-2g|2g|3g)$/.test(connection.effectiveType ?? '');
 }
 
+// Nel browser restituisce il valore reale (identico a prima); in Node durante il pre-render a build restituisce false.
+function mediaMatches(query: string) {
+  return typeof window !== 'undefined' && window.matchMedia(query).matches;
+}
+
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const posterRef = useRef<HTMLImageElement>(null);
-  const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [wideScreen, setWideScreen] = useState(() => window.matchMedia(VIDEO_MIN_WIDTH_QUERY).matches);
+  const [reducedMotion, setReducedMotion] = useState(() => mediaMatches('(prefers-reduced-motion: reduce)'));
+  const [wideScreen, setWideScreen] = useState(() => mediaMatches(VIDEO_MIN_WIDTH_QUERY));
   const [constrained] = useState(isConstrainedConnection);
   const [pageReady, setPageReady] = useState(false);
   const [videoFallback, setVideoFallback] = useState(false);

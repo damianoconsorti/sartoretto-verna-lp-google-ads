@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { mkdirSync, unlinkSync, writeFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { tmpdir } from 'os';
+import { prerenderLanding } from './scripts/prerender.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 
@@ -46,3 +47,7 @@ await build({
     },
   },
 });
+
+// Contenuto testuale nell'HTML servito (crawler senza JS). Solo la landing; vedi scripts/prerender.mjs.
+const { bytes } = await prerenderLanding({ root, outDir: resolve(root, outDir) });
+console.log(`prerender: index.html con ${(bytes / 1024).toFixed(1)} KB di markup statico nel <div id="root">`);
