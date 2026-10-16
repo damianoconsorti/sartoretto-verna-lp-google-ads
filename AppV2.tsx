@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Navbar from './components/Navbar';
+import NavbarV2 from './components/v2/NavbarV2';
 import HeroV2 from './components/v2/HeroV2';
 import QuickForm from './components/QuickForm';
 import PerformanceSection from './components/PerformanceSection';
@@ -23,9 +23,9 @@ export default function AppV2() {
 
   return (
     <main className="bg-dark text-white overflow-x-clip pb-[72px] md:pb-0">
-      <Navbar />
+      <NavbarV2 />
       <HeroV2 />
-      <QuickForm />
+      <QuickForm showCall={false} />
       <PerformanceSection />
       <GalleryV2 />
       <StatsSection />

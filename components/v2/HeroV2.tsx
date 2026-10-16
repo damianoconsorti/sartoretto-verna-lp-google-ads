@@ -155,20 +155,14 @@ export default function HeroV2() {
           >
             {variant.subtitle}
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.7, ease, delay: 0.6 }}
-            className="mt-6 flex flex-col gap-4 md:mt-9 md:flex-row md:items-center md:gap-8"
+            className="mt-5 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-white/85 md:mt-7 md:text-sm"
           >
-            <a
-              href="#contatti"
-              className="inline-flex min-h-12 items-center justify-center bg-white px-8 py-4 text-center font-sans text-sm font-bold uppercase tracking-[0.14em] text-dark [text-shadow:none] transition-colors duration-200 hover:bg-[#e9e4da] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-            >
-              Richiedi una consulenza gratuita
-            </a>
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-white/85 md:text-sm">Dal 1965 · 3.000+ realizzazioni · 48 Paesi</p>
-          </motion.div>
+            Dal 1965 · 3.000+ realizzazioni · 48 Paesi
+          </motion.p>
         </div>
       </div>
     </section>

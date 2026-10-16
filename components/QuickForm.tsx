@@ -42,7 +42,8 @@ function validate(form: QuickFormState, isPharmacy: boolean): QuickErrors {
   return errors;
 }
 
-export default function QuickForm() {
+// showCall: l'anteprima nasconde la riga "Chiama" (spostata nell'header); la landing online usa il valore predefinito (true).
+export default function QuickForm({ showCall = true }: { showCall?: boolean } = {}) {
   const [form, setForm] = useState<QuickFormState>(empty);
   const [errors, setErrors] = useState<QuickErrors>({});
   const [isPharmacy, setIsPharmacy] = useState(false);
@@ -118,10 +119,12 @@ export default function QuickForm() {
           className="relative"
         >
           {/* Solo da md in su: su mobile il pulsante Chiama è nella barra fissa (MobileStickyBar) e il modulo resta sopra la piega. */}
-          <div className="hidden md:flex md:items-center md:gap-4 mb-3">
-            <CallButton location="quick_form" tone="dark" />
-            <p className="text-white/70 text-sm">Oppure lasciaci i tuoi dati: ti ricontattiamo noi.</p>
-          </div>
+          {showCall && (
+            <div className="hidden md:flex md:items-center md:gap-4 mb-3">
+              <CallButton location="quick_form" tone="dark" />
+              <p className="text-white/70 text-sm">Oppure lasciaci i tuoi dati: ti ricontattiamo noi.</p>
+            </div>
+          )}
 
           <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-start gap-3 lg:gap-4">
             <p className="hidden xl:block text-white/70 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pt-3.5">

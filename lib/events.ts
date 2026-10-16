@@ -1,4 +1,4 @@
-export type CallLocation = 'sticky_bar' | 'quick_form' | 'contact_section' | 'thank_you';
+export type CallLocation = 'sticky_bar' | 'quick_form' | 'contact_section' | 'thank_you' | 'navbar';
 
 declare global {
   interface Window {
