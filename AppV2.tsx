@@ -8,7 +8,7 @@ import GalleryV2 from './components/v2/GalleryV2';
 import StatsSection from './components/StatsSection';
 import MethodWaveV2 from './components/v2/MethodWaveV2';
 import TestimonialsV2 from './components/v2/TestimonialsV2';
-import ComparisonTable from './components/ComparisonTable';
+import ComparisonV2 from './components/v2/ComparisonV2';
 import ContactForm from './components/ContactForm';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
@@ -31,7 +31,7 @@ export default function AppV2() {
       <StatsSection />
       <MethodWaveV2 />
       <TestimonialsV2 />
-      <ComparisonTable />
+      <ComparisonV2 />
       <ContactForm />
       <FAQSection />
       <Footer />
