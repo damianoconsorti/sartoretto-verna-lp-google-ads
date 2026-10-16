@@ -37,12 +37,12 @@ export default function MethodWaveV2() {
     <section id="metodo" className="bg-[#F3F6F4] py-16 md:py-28">
       <div className="px-6 md:px-14 lg:px-24">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
-          <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-teal md:text-sm">
+          <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-[#137A6B] md:text-sm">
             <span className="text-[#8a948f]">06/</span>&nbsp;&nbsp;[ Il nostro metodo ]
           </p>
           <h2 className="font-display uppercase leading-[1.02] text-[#121816]" style={{ fontSize: 'clamp(2.3rem, 5.6vw, 5.5rem)' }}>
             Dalla visione al nuovo spazio<br />
-            in <span className="text-teal">sei fasi</span>
+            in <span className="text-[#137A6B]">sei fasi</span>
           </h2>
         </motion.div>
 
@@ -74,7 +74,7 @@ export default function MethodWaveV2() {
                 className="absolute h-0 w-0"
                 style={{ left: `${((100 + i * 200) / 1200) * 100}%`, top: `${(WAVE[i] / 620) * 100}%` }}
               >
-                <span className="absolute left-0 top-0 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-teal text-white shadow-[0_0_0_5px_#fff,0_6px_20px_rgba(18,24,22,0.18)]">
+                <span className="absolute left-0 top-0 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#137A6B] text-white shadow-[0_0_0_5px_#fff,0_6px_20px_rgba(18,24,22,0.18)]">
                   <Icon size={26} strokeWidth={1.6} aria-hidden="true" />
                 </span>
                 <div className={`absolute left-0 w-[210px] -translate-x-1/2 text-center ${high ? 'bottom-[52px]' : 'top-[52px]'}`}>
@@ -98,7 +98,7 @@ export default function MethodWaveV2() {
               transition={{ duration: 0.6, ease, delay: 0.05 }}
               className="relative flex gap-5"
             >
-              <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal text-white shadow-[0_0_0_4px_#F3F6F4]">
+              <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#137A6B] text-white shadow-[0_0_0_4px_#F3F6F4]">
                 <Icon size={22} strokeWidth={1.6} aria-hidden="true" />
               </span>
               <div className="pt-0.5">
@@ -113,7 +113,7 @@ export default function MethodWaveV2() {
         <div className="mt-10 flex flex-col items-start gap-5 md:mt-14 lg:mt-2">
           <a
             href="#contatti"
-            className="inline-flex min-h-12 items-center gap-4 bg-teal px-7 py-4 font-display text-base uppercase tracking-[0.06em] text-white transition-colors duration-200 hover:bg-[#0e5f53] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
+            className="inline-flex min-h-12 items-center gap-4 bg-[#137A6B] px-7 py-4 font-display text-base uppercase tracking-[0.06em] text-white transition-colors duration-200 hover:bg-[#0e5f53] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#137A6B] focus-visible:ring-offset-2"
           >
             Richiedi una consulenza <span aria-hidden="true">→</span>
           </a>

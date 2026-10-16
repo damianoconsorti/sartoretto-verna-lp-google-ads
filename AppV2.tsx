@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroV2 from './components/v2/HeroV2';
 import QuickForm from './components/QuickForm';
+import PerformanceSection from './components/PerformanceSection';
 import MobileStickyBar from './components/MobileStickyBar';
 import GalleryV2 from './components/v2/GalleryV2';
-import StatsV2 from './components/v2/StatsV2';
+import StatsSection from './components/StatsSection';
 import MethodWaveV2 from './components/v2/MethodWaveV2';
 import TestimonialsV2 from './components/v2/TestimonialsV2';
-import PerformanceSection from './components/PerformanceSection';
 import ComparisonTable from './components/ComparisonTable';
 import ContactForm from './components/ContactForm';
 import FAQSection from './components/FAQSection';
@@ -26,11 +26,11 @@ export default function AppV2() {
       <Navbar />
       <HeroV2 />
       <QuickForm />
+      <PerformanceSection />
       <GalleryV2 />
-      <StatsV2 />
+      <StatsSection />
       <MethodWaveV2 />
       <TestimonialsV2 />
-      <PerformanceSection />
       <ComparisonTable />
       <ContactForm />
       <FAQSection />
