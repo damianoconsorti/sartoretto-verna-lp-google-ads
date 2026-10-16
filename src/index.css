@@ -260,3 +260,15 @@ body {
   height: 0;
   animation: svDrawRight 4s linear infinite;
 }
+
+/* ── Anteprima (tema v2) ──────────────────────────────────────────
+   Attivo solo se <html> ha la classe .theme-v2 (pagina /anteprima/): la landing online non cambia.
+   Sostituisce i colori fluo con una palette sobria e calda, così i componenti condivisi (form, FAQ, footer…) si adattano
+   senza modificarne il codice. */
+.theme-v2 {
+  --color-acid:    #F2EEE6;
+  --color-teal:    #137A6B;
+  --color-magenta: #137A6B;
+  --color-dark:    #0B0B0A;
+}
+.theme-v2 ::-webkit-scrollbar-thumb { background: #8a8579; }

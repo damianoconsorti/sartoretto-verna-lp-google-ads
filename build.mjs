@@ -38,11 +38,12 @@ await build({
   build: {
     outDir,
     emptyOutDir: true,
-    // Due pagine: la LP (index.html) e la thank-you page /grazie/ (noindex).
+    // Tre pagine: la LP (index.html), la thank-you page /grazie/ (noindex) e l'anteprima della nuova LP /anteprima/ (noindex).
     rollupOptions: {
       input: {
         main: resolve(root, 'index.html'),
         grazie: resolve(root, 'grazie/index.html'),
+        anteprima: resolve(root, 'anteprima/index.html'),
       },
     },
   },
