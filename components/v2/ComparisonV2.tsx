@@ -7,8 +7,9 @@ const ease = [0.32, 0.72, 0, 1] as const;
 // Pesa circa 107 MB (145 s, Full HD) ed è su un archivio di prova (svtest1): parte solo al clic, così non appesantisce la pagina.
 // Quando c'è una versione leggera (720p, pochi MB) o definitiva, basta cambiare VIDEO_URL.
 const VIDEO_URL = 'https://svtest1.b-cdn.net/Un%20giorno%20da%20cliente%20in%20Sartoretto%20Verna.mp4';
-const POSTER_SMALL = 'anteprima/showroom-poster-960.webp';
-const POSTER_LARGE = 'anteprima/showroom-poster-1920.webp';
+// Copertina: il nostro edificio a Roma (cartella "Sartoretto Verna RM").
+const POSTER_SMALL = 'anteprima/showroom-edificio-960.webp';
+const POSTER_LARGE = 'anteprima/showroom-edificio-1500.webp';
 
 // Testi dalla pagina "Visita lo showroom" del sito aziendale, accorciati.
 const steps = [
@@ -82,7 +83,7 @@ function ShowroomVideo() {
   }
 
   return (
-    <div className="h-full rounded-[2rem] bg-white/[0.04] p-2 ring-1 ring-white/10">
+    <div className="h-full rounded-[2rem] bg-black/15 p-2 ring-1 ring-white/20">
       <div ref={frameRef} className="relative aspect-video h-full w-full overflow-hidden rounded-[calc(2rem-0.5rem)] bg-[#161615] lg:aspect-auto lg:min-h-[460px]">
         {playing ? (
           <video
@@ -99,11 +100,11 @@ function ShowroomVideo() {
           <>
             <motion.img
               src={POSTER_SMALL}
-              srcSet={`${POSTER_SMALL} 960w, ${POSTER_LARGE} 1920w`}
+              srcSet={`${POSTER_SMALL} 960w, ${POSTER_LARGE} 1500w`}
               sizes="(min-width: 1024px) 58vw, 100vw"
-              alt="Una cliente arriva nello showroom Sartoretto Verna"
-              width={1920}
-              height={1080}
+              alt="La sede Sartoretto Verna a Roma al tramonto"
+              width={1500}
+              height={1001}
               loading="lazy"
               decoding="async"
               style={{ scale }}
@@ -161,25 +162,19 @@ function VisitSteps() {
 
 export default function ComparisonV2() {
   return (
-    <section className="relative overflow-hidden bg-[#0B0B0A] py-24 md:py-36">
-      {/* Bagliori tenui: profondità senza colori fluo */}
-      <div className="pointer-events-none absolute -left-40 top-24 h-[28rem] w-[28rem] rounded-full bg-[#137A6B]/15 blur-[130px]" aria-hidden="true" />
-      <div className="pointer-events-none absolute -right-40 bottom-40 h-[30rem] w-[30rem] rounded-full bg-[#137A6B]/15 blur-[140px]" aria-hidden="true" />
-
+    <section className="relative overflow-hidden bg-[#137A6B] bg-[radial-gradient(120%_90%_at_0%_0%,#1B9381_0%,#137A6B_45%,#0E5F53_100%)] py-24 md:py-36">
       <div className="relative px-5 md:px-14 lg:px-24">
         {/* Intestazione: tutto a sinistra, testo sotto il titolo */}
         <motion.div {...reveal} transition={{ duration: 1, ease }} className="mb-14 max-w-4xl md:mb-20">
-          <span className="mb-6 inline-block rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-white/70">
-            Perché scegliere noi
+          <span className="mb-6 inline-block rounded-full border border-white/30 bg-white/10 px-3.5 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-white">
+            Experience presso la nostra sede
           </span>
           <h2 className="font-display uppercase leading-[0.94] text-white" style={{ fontSize: 'clamp(2.8rem, 7vw, 7rem)' }}>
-            Non tutti i fornitori<br />
-            sono{' '}
-            <span className="text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.9)] md:[-webkit-text-stroke:2px_rgba(255,255,255,0.9)]">uguali.</span>
+            Vivi la tua farmacia<br />
+            <span className="text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.95)] md:[-webkit-text-stroke:2px_rgba(255,255,255,0.95)]">prima che esista.</span>
           </h2>
-          <p className="mt-8 max-w-[54ch] font-sans text-lg font-light leading-relaxed text-white/70 md:text-xl">
-            La differenza non è nel prodotto. È nell&apos;approccio. Mentre un fornitore tradizionale ti vende arredi, noi ti consegniamo un
-            progetto di spazio costruito sulle esigenze della tua farmacia.
+          <p className="mt-8 max-w-[54ch] font-sans text-lg font-light leading-relaxed text-white/90 md:text-xl">
+            Nel nostro showroom di Roma la tua farmacia prende forma prima della realizzazione: non la immagini più, inizi a viverla. Una giornata con il nostro team, dalle prime idee alle scelte concrete.
           </p>
         </motion.div>
 
@@ -189,10 +184,10 @@ export default function ComparisonV2() {
             <ShowroomVideo />
           </motion.div>
 
-          <motion.div {...reveal} transition={{ duration: 1, ease, delay: 0.1 }} className="rounded-[2rem] bg-white/[0.04] p-2 ring-1 ring-white/10 lg:col-span-5">
+          <motion.div {...reveal} transition={{ duration: 1, ease, delay: 0.1 }} className="rounded-[2rem] bg-black/15 p-2 ring-1 ring-white/20 lg:col-span-5">
             <div className="flex h-full flex-col rounded-[calc(2rem-0.5rem)] bg-[#F6F4EF] p-6 text-dark md:p-8">
-              <p className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[#137A6B]">La visita in showroom</p>
-              <h3 className="mb-7 font-display text-3xl uppercase leading-none md:text-4xl">Prima degli arredi, partiamo da te.</h3>
+              <p className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[#137A6B]">La giornata in showroom</p>
+              <h3 className="mb-7 font-display text-3xl uppercase leading-none md:text-4xl">Una giornata dedicata al tuo progetto.</h3>
               <VisitSteps />
             </div>
           </motion.div>
@@ -201,17 +196,17 @@ export default function ComparisonV2() {
         {/* Numeri dello showroom, che salgono quando compaiono */}
         <motion.dl {...reveal} transition={{ duration: 1, ease, delay: 0.1 }} className="mt-4 grid grid-cols-2 gap-4 lg:mt-5 lg:grid-cols-4">
           {facts.map((fact) => (
-            <div key={fact.label} className="rounded-[1.5rem] bg-white/[0.04] px-6 py-7 ring-1 ring-white/10">
+            <div key={fact.label} className="rounded-[1.5rem] bg-black/15 px-6 py-7 ring-1 ring-white/20">
               <dt className="font-display text-4xl uppercase leading-none text-white md:text-5xl">
                 <CountUp from={fact.from} to={fact.to} suffix={fact.suffix} />
               </dt>
-              <dd className="mt-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/55">{fact.label}</dd>
+              <dd className="mt-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">{fact.label}</dd>
             </div>
           ))}
         </motion.dl>
 
         <motion.div {...reveal} transition={{ duration: 0.9, ease, delay: 0.2 }} className="mt-10 flex flex-col items-start gap-5 md:mt-14 md:flex-row md:items-center md:justify-between">
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-white/60 md:text-sm">Showroom · Via Trionfale 13592, Roma</p>
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-white/85 md:text-sm">Experience presso la nostra sede · Via Trionfale 13592, Roma</p>
           <a
             href="#contatti"
             className="group/pill inline-flex items-center gap-3 rounded-full bg-white py-1.5 pl-6 pr-1.5 font-sans text-xs font-bold uppercase tracking-[0.18em] text-dark transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
