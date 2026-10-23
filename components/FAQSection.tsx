@@ -69,7 +69,8 @@ const FAQItem: React.FC<{ item: typeof faqs[0]; index: number }> = ({ item, inde
   );
 };
 
-export default function FAQSection() {
+// titlePeriod: l'anteprima toglie il punto finale dei titoli; la landing online usa il valore predefinito (true).
+export default function FAQSection({ titlePeriod = true }: { titlePeriod?: boolean } = {}) {
   return (
     <section className="bg-[#1a1a1a] border-t border-white/10 py-20 md:py-32">
       <div className="px-6 md:px-14 lg:px-24">
@@ -91,7 +92,7 @@ export default function FAQSection() {
             >
               Hai dubbi?<br />
               <span className="text-acid">Li abbiamo</span><br />
-              già sentiti.
+              già sentiti{titlePeriod ? '.' : ''}
             </h2>
             <p className="text-white/50 text-base md:text-lg font-sans font-light leading-relaxed max-w-[28ch]">
               Le domande più comuni dei farmacisti che si avvicinano a noi per la prima volta.

@@ -26,14 +26,14 @@ export default function AppV2() {
       <NavbarV2 />
       <HeroV2 />
       <QuickForm showCall={false} />
-      <PerformanceSection />
+      <PerformanceSection titlePeriod={false} />
       <GalleryV2 />
       <StatsV2 />
       <MethodWaveV2 />
       <TestimonialsV2 />
       <ComparisonV2 />
       <ContactForm />
-      <FAQSection />
+      <FAQSection titlePeriod={false} />
       <Footer />
       <MobileStickyBar />
     </main>

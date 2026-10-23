@@ -7,9 +7,9 @@ const ease = [0.32, 0.72, 0, 1] as const;
 // Pesa circa 107 MB (145 s, Full HD) ed è su un archivio di prova (svtest1): parte solo al clic, così non appesantisce la pagina.
 // Quando c'è una versione leggera (720p, pochi MB) o definitiva, basta cambiare VIDEO_URL.
 const VIDEO_URL = 'https://svtest1.b-cdn.net/Un%20giorno%20da%20cliente%20in%20Sartoretto%20Verna.mp4';
-// Copertina: il nostro edificio a Roma (cartella "Sartoretto Verna RM").
-const POSTER_SMALL = 'anteprima/showroom-edificio-960.webp';
-const POSTER_LARGE = 'anteprima/showroom-edificio-1500.webp';
+// Copertina: la nostra sede a Roma con il giardino (fotogramma iniziale del video).
+const POSTER_SMALL = 'anteprima/showroom-giorno-960.webp';
+const POSTER_LARGE = 'anteprima/showroom-giorno-1920.webp';
 
 // Testi dalla pagina "Visita lo showroom" del sito aziendale, accorciati.
 const steps = [
@@ -100,11 +100,11 @@ function ShowroomVideo() {
           <>
             <motion.img
               src={POSTER_SMALL}
-              srcSet={`${POSTER_SMALL} 960w, ${POSTER_LARGE} 1500w`}
+              srcSet={`${POSTER_SMALL} 960w, ${POSTER_LARGE} 1920w`}
               sizes="(min-width: 1024px) 58vw, 100vw"
-              alt="La sede Sartoretto Verna a Roma al tramonto"
-              width={1500}
-              height={1001}
+              alt="La sede Sartoretto Verna a Roma, vista dal giardino"
+              width={1920}
+              height={1080}
               loading="lazy"
               decoding="async"
               style={{ scale }}
@@ -171,7 +171,7 @@ export default function ComparisonV2() {
           </span>
           <h2 className="font-display uppercase leading-[0.94] text-white" style={{ fontSize: 'clamp(2.8rem, 7vw, 7rem)' }}>
             Vivi la tua farmacia<br />
-            <span className="text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.95)] md:[-webkit-text-stroke:2px_rgba(255,255,255,0.95)]">prima che esista.</span>
+            prima che esista
           </h2>
           <p className="mt-8 max-w-[54ch] font-sans text-lg font-light leading-relaxed text-white/90 md:text-xl">
             Nel nostro showroom di Roma la tua farmacia prende forma prima della realizzazione: non la immagini più, inizi a viverla. Una giornata con il nostro team, dalle prime idee alle scelte concrete.
@@ -187,7 +187,7 @@ export default function ComparisonV2() {
           <motion.div {...reveal} transition={{ duration: 1, ease, delay: 0.1 }} className="rounded-[2rem] bg-black/15 p-2 ring-1 ring-white/20 lg:col-span-5">
             <div className="flex h-full flex-col rounded-[calc(2rem-0.5rem)] bg-[#F6F4EF] p-6 text-dark md:p-8">
               <p className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[#137A6B]">La giornata in showroom</p>
-              <h3 className="mb-7 font-display text-3xl uppercase leading-none md:text-4xl">Una giornata dedicata al tuo progetto.</h3>
+              <h3 className="mb-7 font-display text-3xl uppercase leading-none md:text-4xl">Una giornata dedicata al tuo progetto</h3>
               <VisitSteps />
             </div>
           </motion.div>

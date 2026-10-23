@@ -30,7 +30,8 @@ const panels = [
   },
 ];
 
-export default function PerformanceSection() {
+// titlePeriod: l'anteprima toglie il punto finale dei titoli; la landing online usa il valore predefinito (true).
+export default function PerformanceSection({ titlePeriod = true }: { titlePeriod?: boolean } = {}) {
   return (
     <section className="w-full bg-[#0a0a0a]">
       {/* Section header */}
@@ -52,8 +53,8 @@ export default function PerformanceSection() {
           className="font-display text-white uppercase leading-none"
           style={{ fontSize: 'clamp(2.4rem, 7vw, 7.5rem)' }}
         >
-          Non solo arredi.{' '}
-          <span className="text-acid">Un progetto.</span>
+          Non solo arredi{titlePeriod ? '.' : ''}{' '}
+          <span className="text-acid">Un progetto{titlePeriod ? '.' : ''}</span>
         </motion.h2>
       </div>
 
