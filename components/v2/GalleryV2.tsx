@@ -44,7 +44,7 @@ function Panel({ project, index, progress, onOpen }: { project: ProjectEntry; in
 
   return (
     <article className={`relative shrink-0 ${tall ? 'w-[min(34vw,520px)] translate-y-[5vh]' : 'w-[min(58vw,900px)] -translate-y-[3vh]'}`}>
-      <button type="button" onClick={onOpen} aria-label={`Espandi ${project.name}: apri tutte le foto`} className="group block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+      <button type="button" onClick={onOpen} aria-label={`Espandi ${project.name}: apri tutto il progetto`} className="group block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
         <div className={`relative overflow-hidden rounded-[1.75rem] bg-[#161615] ${tall ? 'aspect-[4/5]' : 'aspect-[3/2]'}`}>
           <motion.img
             src={photoSrc(project.photos[0].id, 1920)}
@@ -72,7 +72,7 @@ function Panel({ project, index, progress, onOpen }: { project: ProjectEntry; in
               {project.name}
             </p>
             <p className="mt-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50">
-              {project.photos.length} scatti · {kindsOf(project)}
+              {kindsOf(project)} · {project.photos.length} ambienti
             </p>
           </div>
           <ExpandPill label="Espandi" />
@@ -132,53 +132,53 @@ function PinnedGallery({ onOpen }: { onOpen: (slug: string) => void }) {
           <div className="relative h-px flex-1 bg-white/15">
             <motion.div style={{ scaleX: bar }} className="absolute inset-0 origin-left bg-white" />
           </div>
-          <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white/50">Scorri</span>
+          <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white/50">Esplora</span>
         </div>
       </div>
     </div>
   );
 }
 
-// Telefono, tablet e "riduci animazioni": carosello da sfiorare, senza scorrimento agganciato.
-function SwipeGallery({ onOpen }: { onOpen: (slug: string) => void }) {
+// Telefono, tablet e "riduci animazioni": schede che si impilano scorrendo la pagina verso il basso
+// (ogni progetto si ferma in alto e il successivo gli scorre sopra). Nessun gesto laterale da scoprire.
+function StackGallery({ onOpen }: { onOpen: (slug: string) => void }) {
   return (
-    <div>
-      <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 pt-8 [scrollbar-width:none] md:px-14 [&::-webkit-scrollbar]:hidden">
-        {projects.map((project, i) => (
-          <motion.article
-            key={project.slug}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease, delay: Math.min(i, 3) * 0.06 }}
-            className="relative w-[82vw] max-w-[460px] shrink-0 snap-center"
-          >
-            <button type="button" onClick={() => onOpen(project.slug)} aria-label={`Espandi ${project.name}`} className="block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-[#161615]">
-                <img
-                  src={photoSrc(project.photos[0].id, 960)}
-                  alt={project.name}
-                  width={project.photos[0].width}
-                  height={project.photos[0].height}
-                  loading={i < 2 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-                <span className="absolute left-4 top-3 select-none font-display leading-none text-white" style={{ fontSize: '3.6rem', textShadow: '0 1px 18px rgba(0,0,0,0.4)' }}>
-                  {pad(i + 1)}
-                </span>
+    <div className="px-4 pb-6 pt-10 md:px-10">
+      {projects.map((project, i) => (
+        <article
+          key={project.slug}
+          className="sticky mx-auto mb-5 max-w-[640px] rounded-[1.75rem] bg-[#0B0B0A] p-1.5 ring-1 ring-white/10 shadow-[0_-18px_40px_-20px_rgba(0,0,0,0.9)]"
+          style={{ top: `${92 + i * 12}px` }}
+        >
+          <button type="button" onClick={() => onOpen(project.slug)} aria-label={`Espandi ${project.name}`} className="block w-full cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <div className="relative aspect-[4/5] max-h-[60svh] w-full overflow-hidden rounded-[calc(1.75rem-0.375rem)] bg-[#161615] md:aspect-[4/3]">
+              <img
+                src={photoSrc(project.photos[0].id, 960)}
+                srcSet={`${photoSrc(project.photos[0].id, 960)} 960w, ${photoSrc(project.photos[0].id, 1920)} 1920w`}
+                sizes="(min-width: 768px) 640px, 92vw"
+                alt={project.name}
+                width={project.photos[0].width}
+                height={project.photos[0].height}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+              <span className="absolute left-4 top-3 select-none font-display leading-none text-white" style={{ fontSize: '3.6rem', textShadow: '0 1px 18px rgba(0,0,0,0.4)' }}>
+                {pad(i + 1)}
+              </span>
+            </div>
+            <div className="flex items-center justify-between gap-3 px-3 pb-2 pt-4">
+              <div>
+                <p className="font-display text-2xl uppercase leading-none text-white">{project.name}</p>
+                <p className="mt-2 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">
+                  {kindsOf(project)} · {project.photos.length} ambienti
+                </p>
               </div>
-              <div className="flex items-center justify-between gap-3 pt-4">
-                <div>
-                  <p className="font-display text-2xl uppercase leading-none text-white">{project.name}</p>
-                  <p className="mt-2 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">{project.photos.length} scatti</p>
-                </div>
-                <ExpandPill label="Espandi" />
-              </div>
-            </button>
-          </motion.article>
-        ))}
-      </div>
+              <ExpandPill label="Espandi" />
+            </div>
+          </button>
+        </article>
+      ))}
     </div>
   );
 }
@@ -236,14 +236,14 @@ export default function GalleryV2() {
             </h2>
           </div>
           <p className="max-w-[38ch] font-sans text-base font-light leading-relaxed text-white/60 md:text-lg">
-            Progetti reali, progettati e arredati su misura. Scorri e scegli un progetto per scoprirne ogni dettaglio.
+            Ambienti progettati e arredati su misura. Entra in ogni progetto e scopri ogni dettaglio.
           </p>
         </motion.div>
       </div>
 
       {reduced ? null : <PinnedGallery onOpen={open} />}
       <div className={reduced ? '' : 'lg:hidden'}>
-        <SwipeGallery onOpen={open} />
+        <StackGallery onOpen={open} />
       </div>
 
       <div className={`flex flex-col items-start gap-5 px-5 pb-24 pt-14 md:px-14 md:pb-36 lg:px-24 ${reduced ? '' : 'lg:hidden'}`}>

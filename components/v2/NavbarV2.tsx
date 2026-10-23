@@ -7,7 +7,8 @@ import { trackClickToCall } from '../../lib/events';
 
 const ease = [0.32, 0.72, 0, 1] as const;
 
-// Nell'hero resta solo il logo. Superato l'hero compaiono "Chiama" (centro, da tablet in su) e "Parliamo del tuo progetto" (giallo fluo).
+// Nell'hero resta solo il logo. Superato l'hero compaiono "Chiama" (centro) e "Parliamo del tuo progetto" (giallo fluo), entrambi da tablet in su:
+// su telefono ci sono già "Chiama" e "Richiedi consulenza" nella barra fissa in basso.
 export default function NavbarV2() {
   const [pastHero, setPastHero] = useState(false);
 
@@ -64,7 +65,7 @@ export default function NavbarV2() {
           href="#contatti"
           tabIndex={pastHero ? 0 : -1}
           aria-hidden={!pastHero}
-          className={`inline-flex min-h-11 items-center justify-center bg-acid px-3 text-center font-sans text-[10px] font-bold uppercase leading-tight tracking-[0.08em] text-dark shadow-[0_0_24px_rgba(204,255,0,0.35)] transition-[opacity,transform,background-color] delay-75 duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:px-6 md:text-sm ${pastHero ? shown : hidden}`}
+          className={`hidden min-h-11 items-center justify-center bg-acid px-3 text-center font-sans text-[10px] font-bold uppercase leading-tight tracking-[0.08em] text-dark shadow-[0_0_24px_rgba(204,255,0,0.35)] transition-[opacity,transform,background-color] delay-75 duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:inline-flex md:px-6 md:text-sm ${pastHero ? shown : hidden}`}
         >
           Parliamo del tuo progetto
         </a>

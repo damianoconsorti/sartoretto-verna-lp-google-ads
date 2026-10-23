@@ -81,7 +81,7 @@ export default function ProjectPageV2({ project, index, next, onClose, onSwitch 
     <motion.div
       role="dialog"
       aria-modal="true"
-      aria-label={`${project.name}: tutte le foto`}
+      aria-label={`${project.name}: tutte le immagini`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease }}
@@ -110,7 +110,7 @@ export default function ProjectPageV2({ project, index, next, onClose, onSwitch 
             {project.name}
           </h2>
           <p className="mt-6 font-sans text-sm font-semibold uppercase tracking-[0.22em] text-white/50">
-            {total} scatti · arredi{servizi > 0 ? ' e sale servizi' : ''}
+            Arredi{servizi > 0 ? ' e sale servizi' : ''} · {total} ambienti
           </p>
         </motion.div>
 
@@ -120,7 +120,7 @@ export default function ProjectPageV2({ project, index, next, onClose, onSwitch 
               key={photo.id}
               type="button"
               onClick={() => setZoom(i)}
-              aria-label={`Apri la foto ${i + 1} di ${total}`}
+              aria-label={`Apri l'immagine ${i + 1} di ${total}`}
               initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.9, ease, delay: 0.2 + Math.min(i, 7) * 0.07 }}
@@ -130,7 +130,7 @@ export default function ProjectPageV2({ project, index, next, onClose, onSwitch 
                 src={photoSrc(photo.id, 960)}
                 srcSet={`${photoSrc(photo.id, 960)} 960w, ${photoSrc(photo.id, 1920)} 1920w`}
                 sizes="(min-width: 768px) 66vw, 100vw"
-                alt={`${project.name}, foto ${i + 1}`}
+                alt={`${project.name}, immagine ${i + 1}`}
                 width={photo.width}
                 height={photo.height}
                 loading={i < 3 ? 'eager' : 'lazy'}
@@ -189,21 +189,21 @@ export default function ProjectPageV2({ project, index, next, onClose, onSwitch 
         <motion.div
           role="dialog"
           aria-modal="true"
-          aria-label={`${project.name}, foto ${zoom + 1} di ${total}`}
+          aria-label={`${project.name}, immagine ${zoom + 1} di ${total}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, ease }}
           className="fixed inset-0 z-[200] flex items-center justify-center bg-[#0B0B0A]"
           onClick={() => setZoom(null)}
         >
-          <img src={photoSrc(project.photos[zoom].id, 1920)} alt={`${project.name}, foto ${zoom + 1}`} className="max-h-[88vh] max-w-[96vw] rounded-xl object-contain" onClick={(e) => e.stopPropagation()} />
+          <img src={photoSrc(project.photos[zoom].id, 1920)} alt={`${project.name}, immagine ${zoom + 1}`} className="max-h-[88vh] max-w-[96vw] rounded-xl object-contain" onClick={(e) => e.stopPropagation()} />
           <p className="absolute bottom-5 left-5 font-sans text-xs uppercase tracking-[0.22em] text-white/75 md:bottom-8 md:left-10">
             {pad(zoom + 1)} / {pad(total)} · {project.name}
           </p>
           <button
             type="button"
             onClick={() => setZoom(null)}
-            aria-label="Chiudi la foto"
+            aria-label="Chiudi l'immagine"
             className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full border border-white/40 text-white transition-colors hover:bg-white hover:text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white md:right-8 md:top-8"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -211,8 +211,8 @@ export default function ProjectPageV2({ project, index, next, onClose, onSwitch 
             </svg>
           </button>
           <div className="absolute bottom-4 right-4 flex gap-2 md:bottom-8 md:right-8" onClick={(e) => e.stopPropagation()}>
-            <Arrow dir="prev" label="Foto precedente" onClick={() => setZoom((zoom - 1 + total) % total)} />
-            <Arrow dir="next" label="Foto successiva" onClick={() => setZoom((zoom + 1) % total)} />
+            <Arrow dir="prev" label="Immagine precedente" onClick={() => setZoom((zoom - 1 + total) % total)} />
+            <Arrow dir="next" label="Immagine successiva" onClick={() => setZoom((zoom + 1) % total)} />
           </div>
         </motion.div>
       )}
