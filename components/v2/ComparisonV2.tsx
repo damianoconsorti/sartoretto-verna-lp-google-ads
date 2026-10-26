@@ -23,11 +23,11 @@ const steps = [
 ];
 
 // Numeri della pagina "Visita lo showroom" (senza ripetere quelli già nella fascia dei numeri più sopra).
-const facts = [
+const facts: { from?: number; to?: number; suffix?: string; text?: string; label: string }[] = [
   { from: 0, to: 850, suffix: ' mq', label: 'di showroom a Roma' },
-  { from: 0, to: 7, suffix: '', label: 'tappe nella giornata di visita' },
+  { from: 0, to: 1, suffix: '', label: 'giornata dedicata al tuo progetto' },
   { from: 0, to: 2, suffix: '', label: 'modi per incontrarci: in showroom o in digitale' },
-  { from: 0, to: 1, suffix: '', label: 'sala cinema immersiva' },
+  { text: 'Cinema', label: 'per vedere il concept prima della realizzazione' },
 ];
 
 const reveal = {
@@ -200,7 +200,7 @@ export default function ComparisonV2() {
           {facts.map((fact) => (
             <div key={fact.label} className="flex flex-col items-center rounded-[1.5rem] bg-black/15 px-6 py-7 text-center ring-1 ring-white/20">
               <dt className="font-display text-4xl uppercase leading-none text-white md:text-5xl">
-                <CountUp from={fact.from} to={fact.to} suffix={fact.suffix} />
+                {fact.text ?? <CountUp from={fact.from ?? 0} to={fact.to ?? 0} suffix={fact.suffix ?? ''} />}
               </dt>
               <dd className="mt-3 max-w-[26ch] font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">{fact.label}</dd>
             </div>

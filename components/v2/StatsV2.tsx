@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 const ease = [0.32, 0.72, 0, 1] as const;
 
-// Stessi numeri della fascia attuale, con didascalie dalla pagina "Chi siamo" del sito aziendale; testi in nero e centrati.
+// Numeri della fascia attuale con didascalie brevi; testi in nero e centrati. 4ª = quarta generazione di architetti.
 const stats = [
-  { value: 'Dal 1965', label: 'fondata a Roma da Giovanni Sartoretto Verna' },
-  { value: '3A', label: 'generazioni di architetti al lavoro sulla farmacia' },
-  { value: '48', label: 'paesi nel mondo in cui abbiamo progettato farmacie' },
-  { value: '3.000+', label: 'realizzazioni, con un team multidisciplinare' },
+  { value: 'Dal 1965', label: 'fondazione' },
+  { value: '4ª', label: 'generazione di architetti' },
+  { value: '48', label: 'paesi nel mondo' },
+  { value: '3.000+', label: 'realizzazioni' },
 ];
 
 export default function StatsV2() {
