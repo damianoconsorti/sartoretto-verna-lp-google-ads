@@ -16,16 +16,18 @@ const steps = [
   { title: 'L’inizio dell’esperienza', text: 'Un autista ti accompagna in sede e il nostro team ti ascolta: prima degli arredi, partiamo da te.' },
   { title: 'Visione strategica', text: 'Analizziamo territorio, clienti, flussi, servizi e aree a maggiore potenziale.' },
   { title: 'La Sala Cinema', text: 'Il concept della tua farmacia prende forma prima della realizzazione.' },
+  { title: 'Il pranzo', text: 'Un momento riservato e informale per continuare il confronto.' },
   { title: 'Touch & Feel', text: 'Materiali, finiture, sistemi espositivi e automazione: li vedi, li tocchi, li confronti.' },
   { title: 'Realtà immersiva', text: 'Entri nel progetto prima che venga realizzato, per decidere meglio.' },
   { title: 'Il primo passo', text: 'Esci con idee più chiare, priorità definite e prime scelte concrete.' },
 ];
 
+// Numeri della pagina "Visita lo showroom" (senza ripetere quelli già nella fascia dei numeri più sopra).
 const facts = [
   { from: 0, to: 850, suffix: ' mq', label: 'di showroom a Roma' },
-  { from: 1900, to: 1965, suffix: '', label: 'anno di fondazione' },
-  { from: 0, to: 48, suffix: '', label: 'nazioni raggiunte' },
-  { from: 0, to: 4, suffix: '', label: 'continenti' },
+  { from: 0, to: 7, suffix: '', label: 'tappe nella giornata di visita' },
+  { from: 0, to: 2, suffix: '', label: 'modi per incontrarci: in showroom o in digitale' },
+  { from: 0, to: 1, suffix: '', label: 'sala cinema immersiva' },
 ];
 
 const reveal = {
@@ -196,11 +198,11 @@ export default function ComparisonV2() {
         {/* Numeri dello showroom, che salgono quando compaiono */}
         <motion.dl {...reveal} transition={{ duration: 1, ease, delay: 0.1 }} className="mt-4 grid grid-cols-2 gap-4 lg:mt-5 lg:grid-cols-4">
           {facts.map((fact) => (
-            <div key={fact.label} className="rounded-[1.5rem] bg-black/15 px-6 py-7 ring-1 ring-white/20">
+            <div key={fact.label} className="flex flex-col items-center rounded-[1.5rem] bg-black/15 px-6 py-7 text-center ring-1 ring-white/20">
               <dt className="font-display text-4xl uppercase leading-none text-white md:text-5xl">
                 <CountUp from={fact.from} to={fact.to} suffix={fact.suffix} />
               </dt>
-              <dd className="mt-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">{fact.label}</dd>
+              <dd className="mt-3 max-w-[26ch] font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">{fact.label}</dd>
             </div>
           ))}
         </motion.dl>
