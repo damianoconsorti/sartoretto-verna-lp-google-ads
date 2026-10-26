@@ -92,13 +92,8 @@ function ShowroomVideo() {
                 </span>
               </span>
             </button>
-            <div className="pointer-events-none absolute bottom-3 left-3 right-3 flex max-w-[27rem] items-center gap-4 rounded-2xl bg-white/95 px-5 py-4 text-dark md:bottom-4 md:left-4 md:right-auto">
-              <div>
-                <p className="mb-1 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-[#137A6B]">Guarda il video</p>
-                <p className="font-sans text-base font-semibold leading-snug md:text-lg">Un giorno da cliente in Sartoretto Verna</p>
-              </div>
-              <span className="shrink-0 rounded-full border border-dark/15 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.1em]">2:25</span>
-            </div>
+            {/* Solo la durata, piccola: la copertina resta tutta visibile (il titolo del video è nell'etichetta di accessibilità) */}
+            <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 font-sans text-[11px] font-semibold tracking-[0.12em] text-white backdrop-blur-sm md:bottom-4 md:left-4">2:25</span>
           </>
         )}
       </div>
