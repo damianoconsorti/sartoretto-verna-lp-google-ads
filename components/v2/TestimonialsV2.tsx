@@ -5,7 +5,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 interface VideoItem {
   name: string;
-  /** Città della farmacia; omessa quando le sedi sono più di una. */
+  /** Città della farmacia. */
   location?: string;
   src: string;
   poster: string;
@@ -19,7 +19,7 @@ const videos: VideoItem[] = [
   { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'anteprima/testimonianza-zucca.webp', owner: 'D.ssa Sara Zucca' },
   { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'anteprima/testimonianza-sundas.webp', owner: 'Dott. Mattia Sundas' },
   { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'anteprima/testimonianza-berardelli.webp', owner: 'D.ssa Roberta D’Angelo' },
-  { name: 'Farmacie Marzoli', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Francesca Marzoli' },
+  { name: 'Farmacie Marzoli', location: 'Roma (RM)', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Francesca Marzoli' },
 ];
 
 function VideoCard({ video, index }: { video: VideoItem; index: number; key?: React.Key }) {
