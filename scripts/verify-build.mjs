@@ -111,15 +111,6 @@ if (existsSync(landingPath) && existsSync(thankYouPath)) {
   check(!landing.includes(`${ADS_ACCOUNT}/`), 'index.html: la label di conversione NON compare nell\'HTML della landing');
   check(thankYou.includes('<div id="root"></div>'), 'grazie/index.html: NON pre-renderizzata (resta <div id="root"></div>, flusso conversione invariato)');
 
-  // --- /anteprima/ (anteprima interna della nuova LP) -----------------------------------------------------------------
-  const previewPath = join(outDir, 'anteprima', 'index.html');
-  check(existsSync(previewPath), 'anteprima/index.html presente');
-  if (existsSync(previewPath)) {
-    const preview = read(previewPath);
-    check(/<meta name="robots" content="noindex/.test(preview), 'anteprima/index.html: noindex presente (non indicizzabile)');
-    check(!preview.includes(ADS_ACCOUNT), 'anteprima/index.html: nessun tag Google (non invia dati a Google Ads)');
-  }
-
   // --- robots.txt / sitemap.xml / llms.txt ---------------------------------------------------------------------------
   const SITE = 'https://progetta.sartorettoverna.it';
   const robotsPath = join(outDir, 'robots.txt');
