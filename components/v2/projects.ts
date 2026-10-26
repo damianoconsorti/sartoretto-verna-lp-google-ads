@@ -17,6 +17,16 @@ export interface ProjectEntry {
 
 export const projects: ProjectEntry[] = [
   {
+    slug: 'catona',
+    name: 'Farmacia Catona',
+    photos: [
+      { id: 'catona-01', width: 1920, height: 1280, kind: 'arredi' },
+      { id: 'catona-02', width: 1469, height: 1920, kind: 'servizi' },
+      { id: 'catona-03', width: 1920, height: 1280, kind: 'arredi' },
+      { id: 'catona-04', width: 1920, height: 1280, kind: 'arredi' },
+    ],
+  },
+  {
     slug: 'lezzi',
     name: 'Farmacia Lezzi',
     photos: [
