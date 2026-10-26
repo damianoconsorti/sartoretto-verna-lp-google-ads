@@ -8,14 +8,17 @@ interface VideoItem {
   location: string;
   src: string;
   poster: string;
+  /** Nome del titolare, mostrato in alto sulla copertina (solo se noto). */
+  owner?: string;
 }
 
-// Stessi video e stessi poster della landing attuale; cambia solo l'aspetto (bianco, nessun colore fluo).
+// Copertine con il volto di chi parla (fotogrammi dei video). I nomi dei titolari compaiono in alto solo dove sono noti.
 const videos: VideoItem[] = [
-  { name: 'Farmacia San Leo', location: 'Reggio Calabria (RC)', src: 'https://sv-it.b-cdn.net/Farmacia%20San%20Leo%20-%20%20intervista.mp4', poster: 'SAN-LEO.jpg' },
-  { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'ZUCCA.jpg' },
-  { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'SUNDAS.jpg' },
-  { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'BERARDELLI.jpg' },
+  { name: 'Farmacia San Leo', location: 'Reggio Calabria (RC)', src: 'https://sv-it.b-cdn.net/Farmacia%20San%20Leo%20-%20%20intervista.mp4', poster: 'anteprima/testimonianza-sanleo.webp' },
+  { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'anteprima/testimonianza-zucca.webp' },
+  { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'anteprima/testimonianza-sundas.webp' },
+  { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'anteprima/testimonianza-berardelli.webp' },
+  { name: 'Farmacia Marzoli', location: 'Roma (RM)', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Marzoli' },
 ];
 
 function VideoCard({ video, index }: { video: VideoItem; index: number; key?: React.Key }) {
@@ -58,7 +61,7 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.65, ease, delay: index * 0.1 }}
-      className="relative overflow-hidden bg-[#ece9e3]"
+      className="relative overflow-hidden bg-[#ece9e3] last:col-span-2 last:mx-auto last:w-1/2 md:last:col-span-1 md:last:w-full"
     >
       <div className="relative aspect-[9/16] w-full">
         <video
@@ -77,6 +80,12 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
         {!playing && (
           <>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent" />
+            {video.owner && (
+              <>
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1/5 bg-gradient-to-b from-black/55 to-transparent" />
+                <p className="pointer-events-none absolute left-4 top-4 z-20 font-sans text-xs font-bold uppercase tracking-[0.2em] text-white md:left-5 md:top-5">{video.owner}</p>
+              </>
+            )}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 md:p-5">
               <p className="mb-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/80">{video.location}</p>
               <h3 className="font-display text-lg uppercase leading-none text-white md:text-xl">{video.name}</h3>
@@ -111,7 +120,7 @@ export default function TestimonialsV2() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
           {videos.map((video, index) => (
             <VideoCard key={video.name} video={video} index={index} />
           ))}
