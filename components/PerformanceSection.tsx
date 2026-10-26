@@ -31,7 +31,8 @@ const panels = [
 ];
 
 // titlePeriod: l'anteprima toglie il punto finale dei titoli; la landing online usa il valore predefinito (true).
-export default function PerformanceSection({ titlePeriod = true }: { titlePeriod?: boolean } = {}) {
+// alignTitles: l'anteprima ancora i tre titoli alla stessa altezza dall'alto (con il testo ancorato in basso, il pannello col testo più corto abbassava il titolo); la landing online usa il valore predefinito (false).
+export default function PerformanceSection({ titlePeriod = true, alignTitles = false }: { titlePeriod?: boolean; alignTitles?: boolean } = {}) {
   return (
     <section className="w-full bg-[#0a0a0a]">
       {/* Section header */}
@@ -96,8 +97,8 @@ export default function PerformanceSection({ titlePeriod = true }: { titlePeriod
               </svg>
             </div>
 
-            {/* Content bottom */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
+            {/* Contenuto: in basso (landing online) oppure con il titolo alla stessa altezza in tutti i pannelli (anteprima) */}
+            <div className={`absolute left-0 right-0 p-6 md:p-8 z-10 ${alignTitles ? 'top-14' : 'bottom-0'}`}>
               <h3
                 className="font-display text-white uppercase leading-none mb-4"
                 style={{ fontSize: 'clamp(2rem, 4vw, 4.5rem)' }}

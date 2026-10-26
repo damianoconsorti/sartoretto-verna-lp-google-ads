@@ -26,7 +26,7 @@ export default function AppV2() {
       <NavbarV2 />
       <HeroV2 />
       <QuickForm showCall={false} />
-      <PerformanceSection titlePeriod={false} />
+      <PerformanceSection titlePeriod={false} alignTitles />
       <GalleryV2 />
       <StatsV2 />
       <MethodWaveV2 />

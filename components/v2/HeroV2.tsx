@@ -37,6 +37,9 @@ export default function HeroV2() {
   const [pageReady, setPageReady] = useState(false);
   const [videoFallback, setVideoFallback] = useState(false);
   const variant = getHeroVariant();
+  // Pagina standard: testi del nuovo posizionamento. Le varianti per gli annunci (?intent=...) mantengono i loro testi, coerenti con la ricerca.
+  const isDefault = variant.intent === 'default';
+  const eyebrow = isDefault ? 'Progettiamo · Arrediamo · Comunichiamo' : variant.eyebrow;
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -130,7 +133,7 @@ export default function HeroV2() {
             transition={{ duration: 0.6, ease, delay: 0.2 }}
             className="mb-3 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white/90 md:mb-5 md:text-sm md:tracking-[0.32em]"
           >
-            {variant.eyebrow}
+            {eyebrow}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -139,11 +142,21 @@ export default function HeroV2() {
             className="font-display uppercase text-white"
             style={{ fontSize: 'clamp(2.2rem, 4.6vw, 4.9rem)', lineHeight: 1 }}
           >
-            {variant.title} {variant.accent}
-            {variant.suffix && (
+            {isDefault ? (
               <>
+                Architetture e sistemi
                 <br />
-                {variant.suffix}
+                per farmacie
+              </>
+            ) : (
+              <>
+                {variant.title} {variant.accent}
+                {variant.suffix && (
+                  <>
+                    <br />
+                    {variant.suffix}
+                  </>
+                )}
               </>
             )}
           </motion.h1>
