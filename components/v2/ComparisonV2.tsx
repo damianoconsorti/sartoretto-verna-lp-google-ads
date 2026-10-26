@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { animate, motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 
 const ease = [0.32, 0.72, 0, 1] as const;
 
@@ -22,44 +22,11 @@ const steps = [
   { title: 'Il primo passo', text: 'Esci con idee più chiare, priorità definite e prime scelte concrete.' },
 ];
 
-// Numeri della pagina "Visita lo showroom" (senza ripetere quelli già nella fascia dei numeri più sopra).
-const facts: { from?: number; to?: number; suffix?: string; text?: string; label: string }[] = [
-  { from: 0, to: 850, suffix: ' mq', label: 'di showroom a Roma' },
-  { from: 0, to: 1, suffix: '', label: 'giornata dedicata al tuo progetto' },
-  { from: 0, to: 2, suffix: '', label: 'modi per incontrarci: in showroom o in digitale' },
-  { text: 'Cinema', label: 'per vedere il concept prima della realizzazione' },
-];
-
 const reveal = {
   initial: { opacity: 0, y: 40, filter: 'blur(8px)' },
   whileInView: { opacity: 1, y: 0, filter: 'blur(0px)' },
   viewport: { once: true, amount: 0.2 },
 };
-
-// Numero che "sale" fino al valore quando entra nello schermo (nessuna animazione se si preferisce meno movimento).
-function CountUp({ from, to, suffix }: { from: number; to: number; suffix: string }) {
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
-  const reduced = useReducedMotion();
-  const [value, setValue] = useState(reduced ? to : from);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (reduced) {
-      setValue(to);
-      return;
-    }
-    const controls = animate(from, to, { duration: 1.8, ease, onUpdate: (v) => setValue(Math.round(v)) });
-    return () => controls.stop();
-  }, [inView, reduced, from, to]);
-
-  return (
-    <span ref={ref}>
-      {value}
-      {suffix}
-    </span>
-  );
-}
 
 function PlayIcon() {
   return (
@@ -176,7 +143,7 @@ export default function ComparisonV2() {
             prima che esista
           </h2>
           <p className="mt-8 max-w-[54ch] font-sans text-lg font-light leading-relaxed text-white/90 md:text-xl">
-            Nel nostro showroom di Roma la tua farmacia prende forma prima della realizzazione: non la immagini più, inizi a viverla. Una giornata con il nostro team, dalle prime idee alle scelte concrete.
+            Nel nostro showroom di Roma, <strong className="font-display text-[1.35em] font-normal uppercase tracking-[0.02em] text-white">850 mq</strong> dedicati alla progettazione e all&apos;innovazione, la tua farmacia prende forma prima della realizzazione: non la immagini più, inizi a viverla. Una giornata con il nostro team, dalle prime idee alle scelte concrete.
           </p>
         </motion.div>
 
@@ -194,18 +161,6 @@ export default function ComparisonV2() {
             </div>
           </motion.div>
         </div>
-
-        {/* Numeri dello showroom, che salgono quando compaiono */}
-        <motion.dl {...reveal} transition={{ duration: 1, ease, delay: 0.1 }} className="mt-4 grid grid-cols-2 gap-4 lg:mt-5 lg:grid-cols-4">
-          {facts.map((fact) => (
-            <div key={fact.label} className="flex flex-col items-center rounded-[1.5rem] bg-black/15 px-6 py-7 text-center ring-1 ring-white/20">
-              <dt className="font-display text-4xl uppercase leading-none text-white md:text-5xl">
-                {fact.text ?? <CountUp from={fact.from ?? 0} to={fact.to ?? 0} suffix={fact.suffix ?? ''} />}
-              </dt>
-              <dd className="mt-3 max-w-[26ch] font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white/80">{fact.label}</dd>
-            </div>
-          ))}
-        </motion.dl>
 
         <motion.div {...reveal} transition={{ duration: 0.9, ease, delay: 0.2 }} className="mt-10 flex flex-col items-start gap-5 md:mt-14 md:flex-row md:items-center md:justify-between">
           <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-white/85 md:text-sm">Experience presso la nostra sede · Via Trionfale 13592, Roma</p>

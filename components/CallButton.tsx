@@ -6,6 +6,8 @@ import { CallLocation, trackClickToCall } from '../lib/events';
 const tones = {
   dark: 'border-acid text-acid hover:bg-acid hover:text-dark focus-visible:ring-white',
   light: 'border-[#0a0a0a] text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-white focus-visible:ring-teal',
+  // Anteprima: pieno giallo fluo, come gli altri pulsanti principali.
+  fluo: 'border-acid bg-acid text-dark hover:border-white hover:bg-white focus-visible:ring-dark',
 } as const;
 
 interface CallButtonProps {

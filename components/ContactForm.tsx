@@ -65,7 +65,8 @@ function Field({
   );
 }
 
-export default function ContactForm() {
+// fluoButtons: l'anteprima usa i pulsanti giallo fluo; la landing online usa il valore predefinito (false, pulsanti neri).
+export default function ContactForm({ fluoButtons = false }: { fluoButtons?: boolean } = {}) {
   const [form, setForm] = useState<FormState>(empty);
   const [errors, setErrors] = useState<FormErrors>({});
   const [sending, setSending] = useState(false);
@@ -154,7 +155,7 @@ export default function ContactForm() {
             </p>
             <div className="mt-8 flex flex-col gap-3">
               <p className="text-[#444] text-base font-sans">Preferisci parlarne a voce?</p>
-              <CallButton location="contact_section" tone="light" className="self-start" />
+              <CallButton location="contact_section" tone={fluoButtons ? 'fluo' : 'light'} className="self-start" />
             </div>
           </div>
 
@@ -217,7 +218,7 @@ export default function ContactForm() {
             </Field>
 
             <div className="flex flex-col gap-3">
-              <button type="submit" disabled={sending} className="min-h-11 w-full sm:w-auto self-start inline-flex items-center justify-center bg-[#0a0a0a] text-white font-sans font-bold text-sm tracking-[0.18em] uppercase px-8 py-4 hover:bg-acid hover:text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed">
+              <button type="submit" disabled={sending} className={`min-h-11 w-full sm:w-auto self-start inline-flex items-center justify-center font-sans font-bold text-sm tracking-[0.18em] uppercase px-8 py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed ${fluoButtons ? 'bg-acid text-dark hover:bg-[#0a0a0a] hover:text-acid' : 'bg-[#0a0a0a] text-white hover:bg-acid hover:text-dark'}`}>
                 {sending ? 'Invio in corso…' : 'Richiedi una consulenza gratuita'}
               </button>
 

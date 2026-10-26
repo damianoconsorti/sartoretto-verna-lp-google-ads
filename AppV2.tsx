@@ -32,7 +32,7 @@ export default function AppV2() {
       <MethodWaveV2 />
       <TestimonialsV2 />
       <ComparisonV2 />
-      <ContactForm />
+      <ContactForm fluoButtons />
       <FAQSection titlePeriod={false} />
       <Footer />
       <MobileStickyBar />
