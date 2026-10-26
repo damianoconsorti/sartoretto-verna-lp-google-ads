@@ -5,20 +5,21 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 interface VideoItem {
   name: string;
-  location: string;
+  /** Città della farmacia; omessa quando le sedi sono più di una. */
+  location?: string;
   src: string;
   poster: string;
   /** Nome del titolare, mostrato in alto sulla copertina (solo se noto). */
   owner?: string;
 }
 
-// Copertine con il volto di chi parla (fotogrammi dei video). I nomi dei titolari compaiono in alto solo dove sono noti.
+// Copertine con il volto di chi parla (fotogrammi dei video), con il nome del titolare in alto.
 const videos: VideoItem[] = [
-  { name: 'Farmacia San Leo', location: 'Reggio Calabria (RC)', src: 'https://sv-it.b-cdn.net/Farmacia%20San%20Leo%20-%20%20intervista.mp4', poster: 'anteprima/testimonianza-sanleo.webp' },
-  { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'anteprima/testimonianza-zucca.webp' },
-  { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'anteprima/testimonianza-sundas.webp' },
-  { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'anteprima/testimonianza-berardelli.webp' },
-  { name: 'Farmacia Marzoli', location: 'Roma (RM)', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Marzoli' },
+  { name: 'Farmacia San Leo', location: 'Reggio Calabria (RC)', src: 'https://sv-it.b-cdn.net/Farmacia%20San%20Leo%20-%20%20intervista.mp4', poster: 'anteprima/testimonianza-sanleo.webp', owner: 'D.ssa Flavia Pellicanò' },
+  { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'anteprima/testimonianza-zucca.webp', owner: 'D.ssa Sara Zucca' },
+  { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'anteprima/testimonianza-sundas.webp', owner: 'Dott. Mattia Sundas' },
+  { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'anteprima/testimonianza-berardelli.webp', owner: 'D.ssa Roberta D’Angelo' },
+  { name: 'Farmacie Marzoli', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Francesca Marzoli' },
 ];
 
 function VideoCard({ video, index }: { video: VideoItem; index: number; key?: React.Key }) {
@@ -87,7 +88,7 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
               </>
             )}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 md:p-5">
-              <p className="mb-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/80">{video.location}</p>
+              {video.location && <p className="mb-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/80">{video.location}</p>}
               <h3 className="font-display text-lg uppercase leading-none text-white md:text-xl">{video.name}</h3>
             </div>
             <button
