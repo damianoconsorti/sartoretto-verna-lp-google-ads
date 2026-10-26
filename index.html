@@ -34,6 +34,19 @@
       gtag('js', new Date());
       gtag('config', 'AW-1072446258');
     </script>
+
+    <!-- OpenAI Ads Pixel -->
+    <script>
+      !function(w,d,s,u){
+        if(w.oaiq)return;
+        var q=w.oaiq=function(){q.q.push(arguments)};
+        q.q=[];
+        var j=d.createElement(s);j.async=1;j.src=u;
+        var f=d.getElementsByTagName(s)[0];
+        f.parentNode.insertBefore(j,f);
+      }(window,document,'script','https://bzrcdn.openai.com/sdk/oaiq.min.js');
+      oaiq('init', { pixelId: 'XTJjt9WSetPHSoQZpqfYBd' });
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

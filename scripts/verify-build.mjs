@@ -13,6 +13,8 @@ const outDir = resolve(root, process.env.VITE_OUT_DIR || 'dist');
 
 const ADS_ACCOUNT = 'AW-1072446258';
 const EXPECTED_LABEL = 'AW-1072446258/BknuCLTJmeIbELL2sP8D'; // I maiuscola dopo "BknuCLTJme"
+const OPENAI_PIXEL_ID = 'XTJjt9WSetPHSoQZpqfYBd';
+const OPENAI_EVENT = 'lead_created';
 const EXPECTED_WEBHOOKS = [
   'https://hooks.zapier.com/hooks/catch/1977593/44jzqgw/', // form principale
   'https://hooks.zapier.com/hooks/catch/1977593/44jzx6p/', // quick form
@@ -72,6 +74,8 @@ if (existsSync(landingPath) && existsSync(thankYouPath)) {
   for (const [name, html] of [['index.html', landing], ['grazie/index.html', thankYou]]) {
     check(countOf(html, `gtag('config', '${ADS_ACCOUNT}')`) === 1, `${name}: Google tag configurato una sola volta (${ADS_ACCOUNT})`);
     check(html.includes(`https://www.googletagmanager.com/gtag/js?id=${ADS_ACCOUNT}`), `${name}: script gtag.js presente`);
+    check(countOf(html, `pixelId: '${OPENAI_PIXEL_ID}'`) === 1, `${name}: pixel OpenAI inizializzato una sola volta (${OPENAI_PIXEL_ID})`);
+    check(html.includes('https://bzrcdn.openai.com/sdk/oaiq.min.js'), `${name}: SDK OpenAI Ads presente`);
   }
   check(/<meta name="robots" content="noindex/.test(thankYou), 'grazie/index.html: noindex presente');
   check(!/noindex/i.test(landing), 'index.html: nessun noindex (la landing deve restare indicizzabile)');
@@ -89,6 +93,8 @@ if (existsSync(landingPath) && existsSync(thankYouPath)) {
   if (landingEntryPath && thankYouEntryPath && existsSync(landingEntryPath) && existsSync(thankYouEntryPath)) {
     check(!read(landingEntryPath).includes(EXPECTED_LABEL), 'landing: il bundle principale NON contiene la label (nessuna conversione dai form)');
     check(read(thankYouEntryPath).includes(EXPECTED_LABEL), 'grazie: il bundle della pagina /grazie/ contiene la label');
+    check(!read(landingEntryPath).includes(OPENAI_EVENT), 'landing: il bundle principale NON contiene lead_created (nessuna conversione dalla sola visita)');
+    check(read(thankYouEntryPath).includes(OPENAI_EVENT), 'grazie: il bundle della pagina /grazie/ contiene lead_created');
   }
 
   // --- Contenuto nell'HTML servito (pre-render) ---------------------------------------------------------------------
