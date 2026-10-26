@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { getHeroVariant } from '../../lib/variants';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -9,6 +8,8 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const CLIP_START = 9;
 const CLIP_END = 45;
 const VIDEO_URL = 'https://sv-it.b-cdn.net/Farmacia%20Catona%20_%20orizzontale.mp4';
+
+const DEFAULT_SUBTITLE = 'Progettiamo layout, allestimento e arredi su misura, fino ai disegni esecutivi, per migliorare servizi ed esperienza del cliente.';
 
 const POSTER_SRC = 'CATONA-1280.webp';
 const POSTER_SRCSET = 'CATONA-640.webp 640w, CATONA-1280.webp 1280w, CATONA-1920.webp 1920w';
@@ -36,10 +37,9 @@ export default function HeroV2() {
   const [constrained] = useState(isConstrainedConnection);
   const [pageReady, setPageReady] = useState(false);
   const [videoFallback, setVideoFallback] = useState(false);
-  const variant = getHeroVariant();
-  // Pagina standard: testi del nuovo posizionamento. Le varianti per gli annunci (?intent=...) mantengono i loro testi, coerenti con la ricerca.
-  const isDefault = variant.intent === 'default';
-  const eyebrow = isDefault ? 'Progettiamo · Arrediamo · Comunichiamo' : variant.eyebrow;
+  // Stesso hero per tutti gli ingressi (anche ?intent=...): titolo e testi identici alla pagina standard.
+  const eyebrow = 'Progettiamo · Arrediamo · Comunichiamo';
+  const subtitle = DEFAULT_SUBTITLE;
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -142,23 +142,7 @@ export default function HeroV2() {
             className="font-display uppercase text-white"
             style={{ fontSize: 'clamp(2.2rem, 4.6vw, 4.9rem)', lineHeight: 1 }}
           >
-            {isDefault ? (
-              <>
-                Architetture e sistemi
-                <br />
-                per farmacie
-              </>
-            ) : (
-              <>
-                {variant.title} {variant.accent}
-                {variant.suffix && (
-                  <>
-                    <br />
-                    {variant.suffix}
-                  </>
-                )}
-              </>
-            )}
+            Architetture e sistemi<br />per farmacie
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -166,7 +150,7 @@ export default function HeroV2() {
             transition={{ duration: 0.7, ease, delay: 0.45 }}
             className="mt-4 max-w-[56ch] font-sans text-base font-normal leading-relaxed text-white md:mt-6 md:text-lg"
           >
-            {variant.subtitle}
+            {subtitle}
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
