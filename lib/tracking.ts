@@ -5,6 +5,7 @@ declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     oaiq?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -25,5 +26,10 @@ export function trackLeadConversion(formType: 'quick_form' | 'main_form') {
   // OpenAI Ads: stesso evento configurato in Ads Manager per le campagne ITA, USA e GCC.
   if (typeof window.oaiq === 'function') {
     window.oaiq('measure', 'lead_created', { type: 'customer_action' });
+  }
+
+  // Meta Ads: evento standard Lead (dataset "Pixel Landing Pages ITA", collegato all'account SARTORETTO VERNA).
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'Lead', { form_type: formType, value: 1.0, currency: 'EUR' });
   }
 }
