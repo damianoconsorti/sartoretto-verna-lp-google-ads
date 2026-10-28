@@ -7,7 +7,7 @@ const panels = [
   {
     label: '01 — PHARMACY',
     heading: 'ESPERIENZA',
-    body: 'Oltre 60 anni di progetti e realizzazioni nel mondo. Sappiamo cosa funziona, cosa fallisce e perché: ogni progetto porta dentro di sé decenni di esperienza.',
+    body: 'Dal 1965 abbiamo progettato oltre 3.000 farmacie in 48 Paesi. Ogni nuovo progetto eredita ciò che queste realizzazioni ci hanno insegnato: le soluzioni che funzionano, gli errori da non ripetere e le ragioni dell’una e dell’altra cosa.',
     link: 'Scopri la nostra storia',
     overlayColor: 'rgba(204,255,0,0.50)',
     img: 'https://storage.googleapis.com/lp-assets-prod/yHL3HA6j9ARWnPLvbF8fdD/ec5y4oSZuvQ5uF56eyWyGh',
@@ -15,7 +15,7 @@ const panels = [
   {
     label: '02 — BUSINESS',
     heading: 'STRATEGIA',
-    body: 'Il layout non è solo estetica: è strategia. Ogni scelta — dall\'altezza dello scaffale all\'illuminazione — è progettata per migliorare flussi, visibilità e qualità dell\'esperienza.',
+    body: 'In farmacia il layout è una scelta strategica. L’altezza di uno scaffale, la posizione del banco, la luce su una categoria orientano i percorsi, rendono visibili i servizi e trasformano la visita in un’esperienza di cura.',
     link: 'Scopri il metodo',
     overlayColor: 'rgba(0,181,181,0.38)',
     img: 'https://storage.googleapis.com/lp-assets-prod/yHL3HA6j9ARWnPLvbF8fdD/mpFUHVbKW3PQXRUAg9RxuY',
@@ -23,7 +23,7 @@ const panels = [
   {
     label: '03 — ARCHITECTS',
     heading: 'ARCHITETTURA',
-    body: 'Nessun compromesso tra bellezza e funzionalità. I nostri progetti firmano la tua identità nella mente del paziente fin dal primo sguardo.',
+    body: 'Bellezza e funzionalità procedono insieme. Ogni spazio traduce l’identità della farmacia in un’immagine riconoscibile, che il cliente-paziente ricorda fin dal primo ingresso.',
     link: 'Vedi i progetti',
     overlayColor: 'rgba(180,0,230,0.45)',
     img: 'https://storage.googleapis.com/lp-assets-prod/yHL3HA6j9ARWnPLvbF8fdD/cjipopvikKzfsH9rGTYjcW',
@@ -54,8 +54,8 @@ export default function PerformanceSection({ titlePeriod = true, alignTitles = f
           className="font-display text-white uppercase leading-none"
           style={{ fontSize: 'clamp(2.4rem, 7vw, 7.5rem)' }}
         >
-          Non solo arredi{titlePeriod ? '.' : ''}{' '}
-          <span className="text-acid">Un progetto{titlePeriod ? '.' : ''}</span>
+          Arredi che nascono{' '}
+          <span className="text-acid">da un progetto{titlePeriod ? '.' : ''}</span>
         </motion.h2>
       </div>
 
@@ -68,8 +68,7 @@ export default function PerformanceSection({ titlePeriod = true, alignTitles = f
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease, delay: i * 0.12 }}
-            className="relative flex-1 overflow-hidden"
-            style={{ minHeight: '380px' }}
+            className="relative flex-1 overflow-hidden min-h-[400px] md:min-h-[470px]"
           >
             <img
               src={panel.img}
@@ -105,7 +104,7 @@ export default function PerformanceSection({ titlePeriod = true, alignTitles = f
               >
                 {panel.heading}
               </h3>
-              <p className="text-white/80 text-base md:text-lg font-sans font-light leading-relaxed max-w-[28ch]">
+              <p className="text-white/80 text-base md:text-lg font-sans font-light leading-relaxed max-w-[32ch]">
                 {panel.body}
               </p>
             </div>

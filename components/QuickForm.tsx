@@ -128,7 +128,7 @@ export default function QuickForm({ showCall = true }: { showCall?: boolean } = 
 
           <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-start gap-3 lg:gap-4">
             <p className="hidden xl:block text-white/70 text-xs tracking-[0.2em] uppercase font-sans font-semibold shrink-0 pt-3.5">
-              Consulenza gratuita
+              Richiedi la tua consulenza gratuita
             </p>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 flex-1 gap-3">

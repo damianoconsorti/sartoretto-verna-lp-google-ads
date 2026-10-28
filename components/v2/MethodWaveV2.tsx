@@ -13,11 +13,11 @@ interface Phase {
 
 const phases: Phase[] = [
   { title: 'Ascolto', body: 'Iniziamo con un incontro per conoscerti: ascoltiamo esigenze, obiettivi e ciò che rende unica la tua farmacia.', Icon: MessagesSquare },
-  { title: 'Analisi', body: 'Analizziamo gli ambienti, il flusso dei clienti, i dati di vendita e la concorrenza locale.', Icon: Search },
-  { title: 'Strategia', body: 'Definiamo un concept chiaro e distintivo, coerente con il tuo pubblico e il tuo posizionamento.', Icon: Lightbulb },
+  { title: 'Analisi', body: 'Studiamo gli spazi, i flussi dei clienti-pazienti, i dati di vendita e il contesto competitivo del territorio.', Icon: Search },
+  { title: 'Strategia', body: 'Definiamo un concept chiaro e distintivo, coerente con la tua comunità, i tuoi servizi e il posizionamento che desideri.', Icon: Lightbulb },
   { title: 'Progetto', body: 'Trasformiamo la strategia in un progetto funzionale ed estetico, dal concept 3D ai disegni esecutivi.', Icon: PencilRuler },
-  { title: 'Realizzazione', body: 'Gli arredi sono prodotti in Italia e installati in farmacia. Per i lavori edili possiamo consigliarti imprese di fiducia.', Icon: Armchair },
-  { title: 'Supporto', body: 'Restiamo al tuo fianco anche dopo l’inaugurazione, per qualsiasi necessità.', Icon: Headset },
+  { title: 'Realizzazione', body: 'Produciamo gli arredi in Italia e li installiamo direttamente in farmacia; se lo desideri, ti segnaliamo imprese di fiducia per le opere edili.', Icon: Armchair },
+  { title: 'Supporto', body: 'Restiamo al tuo fianco anche dopo l’inaugurazione, ogni volta che ne avrai bisogno.', Icon: Headset },
 ];
 
 // Percorso a onda: sei nodi, alternati in basso e in alto (viewBox 1200 x 620).
@@ -38,11 +38,11 @@ export default function MethodWaveV2() {
       <div className="px-6 md:px-14 lg:px-24">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease }}>
           <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-[#137A6B] md:text-sm">
-            <span className="text-[#8a948f]">06/</span>&nbsp;&nbsp;[ Il nostro metodo ]
+            Il nostro metodo
           </p>
           <h2 className="font-display uppercase leading-[1.02] text-[#121816]" style={{ fontSize: 'clamp(2.3rem, 5.6vw, 5.5rem)' }}>
-            Dalla visione al nuovo spazio<br />
-            in <span className="text-[#137A6B]">sei fasi</span>
+            Dall’idea alla nuova farmacia,<br />
+            in <span className="text-[#137A6B]">6 fasi</span>
           </h2>
         </motion.div>
 
@@ -117,7 +117,7 @@ export default function MethodWaveV2() {
           >
             Richiedi una consulenza <span aria-hidden="true">→</span>
           </a>
-          <p className="font-mono text-xs text-[#6b7570] md:text-sm">Un solo partner, dal primo incontro all&apos;arredo installato.</p>
+          <p className="font-mono text-xs text-[#6b7570] md:text-sm">Un unico interlocutore, dal primo incontro all&apos;arredo installato.</p>
         </div>
       </div>
     </section>

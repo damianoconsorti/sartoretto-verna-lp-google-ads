@@ -151,7 +151,7 @@ export default function ContactForm({ fluoButtons = false }: { fluoButtons?: boo
               Hai in mente<br />un progetto?
             </h2>
             <p className="text-[#333] text-base md:text-lg font-sans font-normal leading-relaxed max-w-[40ch]">
-              Raccontaci la tua farmacia. Il nostro team risponde normalmente entro 24 ore lavorative per una prima valutazione del progetto e dei prossimi passi.
+              Descrivici il tuo progetto: entro 24 ore lavorative un nostro specialista ti ricontatterà per una prima valutazione e per definire insieme i passi successivi.
             </p>
             <div className="mt-8 flex flex-col gap-3">
               <p className="text-[#444] text-base font-sans">Preferisci parlarne a voce?</p>
@@ -160,7 +160,7 @@ export default function ContactForm({ fluoButtons = false }: { fluoButtons?: boo
           </div>
 
           <div className="flex flex-col gap-4">
-            {['Tempo medio di risposta: 24 ore lavorative', 'Analisi orientativa della tua esigenza', 'Percorso progettuale definito su misura'].map((item) => (
+            {['Una prima analisi della tua esigenza, senza impegno', 'Un percorso progettuale costruito su misura'].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <div className="w-1.5 h-1.5 bg-[#0a0a0a] shrink-0" />
                 <span className="text-[#444] text-base font-sans">{item}</span>

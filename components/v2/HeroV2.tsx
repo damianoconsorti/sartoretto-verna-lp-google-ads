@@ -9,7 +9,7 @@ const CLIP_START = 9;
 const CLIP_END = 45;
 const VIDEO_URL = 'https://sv-it.b-cdn.net/Farmacia%20Catona%20_%20orizzontale.mp4';
 
-const DEFAULT_SUBTITLE = 'Progettiamo layout, allestimento e arredi su misura, fino ai disegni esecutivi, per migliorare servizi ed esperienza del cliente.';
+const DEFAULT_SUBTITLE = 'Dal layout ai disegni esecutivi, fino agli arredi: un unico progetto che valorizza servizi, flussi e l’esperienza dei tuoi clienti-pazienti.';
 
 const POSTER_SRC = 'CATONA-1280.webp';
 const POSTER_SRCSET = 'CATONA-640.webp 640w, CATONA-1280.webp 1280w, CATONA-1920.webp 1920w';
@@ -142,7 +142,7 @@ export default function HeroV2() {
             className="font-display uppercase text-white"
             style={{ fontSize: 'clamp(2.2rem, 4.6vw, 4.9rem)', lineHeight: 1 }}
           >
-            Architetture e sistemi<br />per farmacie
+            La farmacia che<br />la tua comunità sceglie
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -158,7 +158,7 @@ export default function HeroV2() {
             transition={{ duration: 0.7, ease, delay: 0.6 }}
             className="mt-5 font-sans text-xs font-semibold uppercase tracking-[0.14em] text-white/85 md:mt-7 md:text-sm"
           >
-            Dal 1965 · 3.000+ realizzazioni · 48 Paesi
+            Dal 1965 · Oltre 3.000 farmacie realizzate · 48 Paesi
           </motion.p>
         </div>
       </div>

@@ -14,12 +14,12 @@ const POSTER_LARGE = 'anteprima/showroom-giorno-1920.webp';
 // Testi dalla pagina "Visita lo showroom" del sito aziendale, accorciati.
 const steps = [
   { title: 'L’inizio dell’esperienza', text: 'Un autista ti accompagna in sede e il nostro team ti ascolta: prima degli arredi, partiamo da te.' },
-  { title: 'Visione strategica', text: 'Analizziamo territorio, clienti, flussi, servizi e aree a maggiore potenziale.' },
+  { title: 'Visione strategica', text: 'Analizziamo insieme territorio, clienti-pazienti, flussi, servizi e aree a maggiore potenziale.' },
   { title: 'La Sala Cinema', text: 'Il concept della tua farmacia prende forma prima della realizzazione.' },
-  { title: 'Il pranzo', text: 'Un momento riservato e informale per continuare il confronto.' },
+  { title: 'Il pranzo', text: 'Un momento riservato e conviviale per proseguire il confronto.' },
   { title: 'Touch & Feel', text: 'Materiali, finiture, sistemi espositivi e automazione: li vedi, li tocchi, li confronti.' },
-  { title: 'Realtà immersiva', text: 'Entri nel progetto prima che venga realizzato, per decidere meglio.' },
-  { title: 'Il primo passo', text: 'Esci con idee più chiare, priorità definite e prime scelte concrete.' },
+  { title: 'Realtà immersiva', text: 'Cammini all’interno del progetto prima della sua realizzazione, per decidere con piena consapevolezza.' },
+  { title: 'Il primo passo', text: 'Riparti con idee chiare, priorità definite e le prime scelte già concrete.' },
 ];
 
 const reveal = {
@@ -131,14 +131,14 @@ export default function ComparisonV2() {
         {/* Intestazione: tutto a sinistra, testo sotto il titolo */}
         <motion.div {...reveal} transition={{ duration: 1, ease }} className="mb-14 max-w-4xl md:mb-20">
           <span className="mb-6 inline-block rounded-full border border-white/30 bg-white/10 px-3.5 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-white">
-            Experience presso la nostra sede
+            L’esperienza nella nostra sede
           </span>
           <h2 className="font-display uppercase leading-[0.94] text-white" style={{ fontSize: 'clamp(2.8rem, 7vw, 7rem)' }}>
             Vivi la tua farmacia<br />
             prima che esista
           </h2>
           <p className="mt-8 max-w-[54ch] font-sans text-lg font-light leading-relaxed text-white/90 md:text-xl">
-            Nel nostro showroom di Roma, <strong className="font-display text-[1.35em] font-normal uppercase tracking-[0.02em] text-white">850 mq</strong> dedicati alla progettazione e all&apos;innovazione, la tua farmacia prende forma prima della realizzazione: non la immagini più, inizi a viverla. Una giornata con il nostro team, dalle prime idee alle scelte concrete.
+            Nel nostro showroom di Roma, <strong className="font-display text-[1.35em] font-normal uppercase tracking-[0.02em] text-white">850 mq</strong> dedicati alla progettazione e all&apos;innovazione, la tua farmacia prende forma prima ancora di essere costruita: smetti di immaginarla e cominci ad abitarla. Una giornata con il nostro team, dalle prime intuizioni alle scelte concrete.
           </p>
         </motion.div>
 
@@ -158,12 +158,12 @@ export default function ComparisonV2() {
         </div>
 
         <motion.div {...reveal} transition={{ duration: 0.9, ease, delay: 0.2 }} className="mt-10 flex flex-col items-start gap-5 md:mt-14 md:flex-row md:items-center md:justify-between">
-          <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-white/85 md:text-sm">Experience presso la nostra sede · Via Trionfale 13592, Roma</p>
+          <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-white/85 md:text-sm">L’esperienza nella nostra sede · Via Trionfale 13592, Roma</p>
           <a
             href="#contatti"
             className="group/pill inline-flex items-center gap-3 rounded-full bg-white py-1.5 pl-6 pr-1.5 font-sans text-xs font-bold uppercase tracking-[0.18em] text-dark transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           >
-            Parla con uno specialista
+            Prenota la tua giornata in showroom
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-dark/10 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/pill:translate-x-0.5 group-hover/pill:-translate-y-px">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M2.5 9.5l7-7M3.5 2.5h6v6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />

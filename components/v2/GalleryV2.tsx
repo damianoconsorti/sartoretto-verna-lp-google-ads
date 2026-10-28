@@ -118,7 +118,7 @@ function PinnedGallery({ onOpen }: { onOpen: (slug: string) => void }) {
             <Panel key={project.slug} project={project} index={i} progress={scrollYProgress} onOpen={() => onOpen(project.slug)} />
           ))}
           <div className="flex w-[22vw] shrink-0 flex-col items-start gap-6 pr-[6vw]">
-            <p className="font-display text-4xl uppercase leading-[1.02] text-white">Vuoi una farmacia così?</p>
+            <p className="font-display text-4xl uppercase leading-[1.02] text-white">Immagini una farmacia così per la tua comunità?</p>
             <a href="#contatti" className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
               <ExpandPill label="Parliamone" />
             </a>
@@ -236,7 +236,7 @@ export default function GalleryV2() {
             </h2>
           </div>
           <p className="max-w-[38ch] font-sans text-base font-light leading-relaxed text-white/60 md:text-lg">
-            Ambienti progettati e arredati su misura. Entra in ogni progetto e scopri ogni dettaglio.
+            Ambienti progettati e arredati su misura. Entra in ciascun progetto e osservane ogni dettaglio.
           </p>
         </motion.div>
       </div>
@@ -247,7 +247,7 @@ export default function GalleryV2() {
       </div>
 
       <div className={`flex flex-col items-start gap-5 px-5 pb-24 pt-14 md:px-14 md:pb-36 lg:px-24 ${reduced ? '' : 'lg:hidden'}`}>
-        <p className="font-sans text-base text-white/60 md:text-lg">Vuoi vedere come diventerebbe la tua farmacia?</p>
+        <p className="font-sans text-base text-white/60 md:text-lg">Immagini una farmacia così per la tua comunità?</p>
         <a href="#contatti" className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black">
           <ExpandPill label="Richiedi una consulenza" />
         </a>

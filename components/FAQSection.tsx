@@ -90,9 +90,8 @@ export default function FAQSection({ titlePeriod = true }: { titlePeriod?: boole
               className="font-display text-white uppercase leading-none mb-6"
               style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5.5rem)' }}
             >
-              Hai dubbi?<br />
-              <span className="text-acid">Li abbiamo</span><br />
-              già sentiti{titlePeriod ? '.' : ''}
+              Le risposte alle<br />
+              <span className="text-acid">domande più frequenti</span>{titlePeriod ? '.' : ''}
             </h2>
             <p className="text-white/50 text-base md:text-lg font-sans font-light leading-relaxed max-w-[28ch]">
               Le domande più comuni dei farmacisti che si avvicinano a noi per la prima volta.

@@ -5,7 +5,6 @@ import QuickForm from './components/QuickForm';
 import PerformanceSection from './components/PerformanceSection';
 import MobileStickyBar from './components/MobileStickyBar';
 import GalleryV2 from './components/v2/GalleryV2';
-import StatsV2 from './components/v2/StatsV2';
 import MethodWaveV2 from './components/v2/MethodWaveV2';
 import TestimonialsV2 from './components/v2/TestimonialsV2';
 import ComparisonV2 from './components/v2/ComparisonV2';
@@ -27,7 +26,6 @@ export default function App() {
       <QuickForm showCall={false} />
       <PerformanceSection titlePeriod={false} alignTitles />
       <GalleryV2 />
-      <StatsV2 />
       <MethodWaveV2 />
       <TestimonialsV2 />
       <ComparisonV2 />

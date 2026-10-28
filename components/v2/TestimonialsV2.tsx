@@ -117,7 +117,7 @@ export default function TestimonialsV2() {
         <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease }} className="mb-10 md:mb-14">
           <p className="mb-4 font-sans text-sm font-semibold uppercase tracking-[0.34em] text-[#7a7a76]">Testimonianze</p>
           <h2 className="font-display uppercase leading-[1.02] text-[#0b0b0a]" style={{ fontSize: 'clamp(2.3rem, 5.6vw, 5.5rem)' }}>
-            Chi ha scelto<br />di evolvere la farmacia
+            Farmacisti che hanno<br />scelto di evolvere
           </h2>
         </motion.div>
 
