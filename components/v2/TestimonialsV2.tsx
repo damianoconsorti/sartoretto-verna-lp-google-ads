@@ -26,7 +26,7 @@ const videos: VideoItem[] = [
   { name: 'Farmacie Marzoli', location: 'Roma (RM)', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Francesca Marzoli', tagline: 'Il salotto della salute', subtitles: 'sottotitoli/marzoli.vtt' },
 ];
 
-function VideoCard({ video, index }: { video: VideoItem; index: number; key?: React.Key }) {
+function VideoCard({ video, index, subsOn, onToggleSubs }: { video: VideoItem; index: number; subsOn: boolean; onToggleSubs: () => void; key?: React.Key }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [sourceEnabled, setSourceEnabled] = useState(false);
@@ -53,6 +53,19 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
     if (!playRequested || !sourceEnabled || !videoRef.current) return;
     videoRef.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
   }, [playRequested, sourceEnabled]);
+
+  // Sottotitoli accesi/spenti: stessa scelta per tutti i video. Va riapplicata quando il video carica il tracciato.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const apply = () => {
+      const track = video.textTracks[0];
+      if (track) track.mode = subsOn ? 'showing' : 'hidden';
+    };
+    apply();
+    video.addEventListener('loadedmetadata', apply);
+    return () => video.removeEventListener('loadedmetadata', apply);
+  }, [subsOn, sourceEnabled]);
 
   function handlePlay() {
     setSourceEnabled(true);
@@ -83,6 +96,18 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
         >
           <track kind="subtitles" srcLang="it" label="Italiano" src={video.subtitles} default />
         </video>
+
+        {playing && (
+          <button
+            type="button"
+            onClick={onToggleSubs}
+            aria-pressed={subsOn}
+            aria-label={subsOn ? 'Disattiva i sottotitoli' : 'Attiva i sottotitoli'}
+            className={`absolute right-3 top-3 z-30 inline-flex min-h-8 min-w-11 items-center justify-center rounded-full border px-3 font-sans text-[11px] font-bold uppercase tracking-[0.14em] backdrop-blur-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${subsOn ? 'border-acid bg-acid text-dark' : 'border-white/60 bg-black/55 text-white/80'}`}
+          >
+            <span aria-hidden="true" className={subsOn ? '' : 'line-through decoration-2'}>CC</span>
+          </button>
+        )}
 
         {!playing && (
           <>
@@ -120,7 +145,30 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
   );
 }
 
+const SUBS_KEY = 'sv-sottotitoli';
+
 export default function TestimonialsV2() {
+  // Sottotitoli accesi di default; chi li spegne trova la scelta ricordata (se il browser lo permette).
+  const [subsOn, setSubsOn] = useState(true);
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(SUBS_KEY) === 'off') setSubsOn(false);
+    } catch {
+      /* archivio non disponibile: resta il valore predefinito */
+    }
+  }, []);
+  function toggleSubs() {
+    setSubsOn((previous) => {
+      const next = !previous;
+      try {
+        window.localStorage.setItem(SUBS_KEY, next ? 'on' : 'off');
+      } catch {
+        /* ignora */
+      }
+      return next;
+    });
+  }
+
   return (
     <section className="bg-white py-16 md:py-28">
       <div className="px-6 md:px-14 lg:px-24">
@@ -133,7 +181,7 @@ export default function TestimonialsV2() {
 
         <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-5">
           {videos.map((video, index) => (
-            <VideoCard key={video.name} video={video} index={index} />
+            <VideoCard key={video.name} video={video} index={index} subsOn={subsOn} onToggleSubs={toggleSubs} />
           ))}
         </div>
       </div>
