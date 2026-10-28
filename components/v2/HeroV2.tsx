@@ -140,7 +140,7 @@ export default function HeroV2() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.3 }}
             className="font-display uppercase text-white"
-            style={{ fontSize: 'clamp(2.2rem, 4.6vw, 4.9rem)', lineHeight: 1 }}
+            style={{ fontSize: 'clamp(2.2rem, 4.6vw, 4.9rem)', lineHeight: 1.1 }}
           >
             La farmacia che<br />la tua comunità sceglie
           </motion.h1>
