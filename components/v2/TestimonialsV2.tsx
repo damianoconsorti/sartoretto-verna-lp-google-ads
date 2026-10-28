@@ -92,8 +92,8 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/65 to-transparent" />
                 <div className="pointer-events-none absolute inset-x-4 top-4 z-20 md:inset-x-5 md:top-5">
                   <p className="overflow-hidden text-ellipsis whitespace-nowrap font-sans font-bold uppercase tracking-[0.12em] text-white" style={{ fontSize: 'clamp(9px, calc((100cqw - 40px) / 19), 12px)' }}>{video.owner}</p>
-                  {/* Una riga sola: il corpo si adatta alla larghezza della scheda (container query) */}
-                  <p className="mt-1.5 overflow-hidden text-ellipsis whitespace-nowrap font-sans font-medium text-white/90" style={{ fontSize: 'clamp(11px, calc((100cqw - 40px) / 15), 14px)' }}>{video.tagline}</p>
+                  {/* Citazione dal video: corsivo con virgolette caporali in verde acido; una riga sola, il corpo si adatta alla scheda (container query) */}
+                  <q className="mt-1.5 block overflow-hidden text-ellipsis whitespace-nowrap font-sans font-normal italic text-white [quotes:'«'_'»'] before:mr-px before:content-[open-quote] after:content-[close-quote] before:font-bold before:not-italic before:text-acid after:ml-px after:font-bold after:not-italic after:text-acid" style={{ fontSize: 'clamp(11px, calc((100cqw - 40px) / 16), 14.5px)' }}>{video.tagline}</q>
                 </div>
               </>
             )}
