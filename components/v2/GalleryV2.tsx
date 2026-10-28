@@ -234,10 +234,10 @@ export default function GalleryV2() {
             <h2 className="font-display uppercase leading-[0.96] text-white" style={{ fontSize: 'clamp(2.6rem, 6.4vw, 6.4rem)' }}>
               Farmacie da <br className="hidden md:block" />ammirare da vicino
             </h2>
+            <p className="mt-6 max-w-[46ch] font-sans text-base font-light leading-relaxed text-white/60 md:mt-8 md:text-lg">
+              Ambienti progettati e arredati su misura. Entra in ciascun progetto e osservane ogni dettaglio.
+            </p>
           </div>
-          <p className="max-w-[38ch] font-sans text-base font-light leading-relaxed text-white/60 md:text-lg">
-            Ambienti progettati e arredati su misura. Entra in ciascun progetto e osservane ogni dettaglio.
-          </p>
         </motion.div>
       </div>
 
