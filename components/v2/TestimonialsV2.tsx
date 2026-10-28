@@ -11,15 +11,19 @@ interface VideoItem {
   poster: string;
   /** Nome del titolare, mostrato in alto sulla copertina (solo se noto). */
   owner?: string;
+  /** Frase breve (una riga) presa dal parlato del video, sotto il nome della farmacia. */
+  tagline: string;
+  /** Sottotitoli in italiano (WebVTT), accesi di default e disattivabili dal lettore. */
+  subtitles: string;
 }
 
 // Copertine con il volto di chi parla (fotogrammi dei video), con il nome del titolare in alto.
 const videos: VideoItem[] = [
-  { name: 'Farmacia San Leo', location: 'Reggio Calabria (RC)', src: 'https://sv-it.b-cdn.net/Farmacia%20San%20Leo%20-%20%20intervista.mp4', poster: 'anteprima/testimonianza-sanleo.webp', owner: 'D.ssa Flavia Pellicanò' },
-  { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'anteprima/testimonianza-zucca.webp', owner: 'D.ssa Sara Zucca' },
-  { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'anteprima/testimonianza-sundas.webp', owner: 'Dott. Mattia Sundas' },
-  { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'anteprima/testimonianza-berardelli.webp', owner: 'D.ssa Roberta D’Angelo' },
-  { name: 'Farmacie Marzoli', location: 'Roma (RM)', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Francesca Marzoli' },
+  { name: 'Farmacia San Leo', location: 'Reggio Calabria (RC)', src: 'https://sv-it.b-cdn.net/Farmacia%20San%20Leo%20-%20%20intervista.mp4', poster: 'anteprima/testimonianza-sanleo.webp', owner: 'D.ssa Flavia Pellicanò', tagline: 'Una seconda casa', subtitles: 'sottotitoli/sanleo.vtt' },
+  { name: 'Farmacia Zucca', location: 'Segrate (MI)', src: 'https://sv-it.b-cdn.net/zucca%20intervista.mp4', poster: 'anteprima/testimonianza-zucca.webp', owner: 'D.ssa Sara Zucca', tagline: 'Più luminosa, più accogliente', subtitles: 'sottotitoli/zucca.vtt' },
+  { name: 'Farmacia Sundas', location: 'Senorbì (CA)', src: 'https://sv-it.b-cdn.net/intervista%20Sundas.mp4', poster: 'anteprima/testimonianza-sundas.webp', owner: 'Dott. Mattia Sundas', tagline: 'Il farmacista al centro', subtitles: 'sottotitoli/sundas.vtt' },
+  { name: 'Antica Farmacia Berardelli', location: 'Cosenza (CS)', src: 'https://sv-it.b-cdn.net/Intervista%20Berardelli_verticale.mov', poster: 'anteprima/testimonianza-berardelli.webp', owner: 'D.ssa Roberta D’Angelo', tagline: 'Bellezza, funzionalità e luce', subtitles: 'sottotitoli/berardelli.vtt' },
+  { name: 'Farmacie Marzoli', location: 'Roma (RM)', src: 'https://sv-it.b-cdn.net/marzoli%20int%202.mp4', poster: 'anteprima/testimonianza-marzoli.webp', owner: 'D.ssa Francesca Marzoli', tagline: 'Il salotto della salute', subtitles: 'sottotitoli/marzoli.vtt' },
 ];
 
 function VideoCard({ video, index }: { video: VideoItem; index: number; key?: React.Key }) {
@@ -62,7 +66,7 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.65, ease, delay: index * 0.1 }}
-      className="relative overflow-hidden bg-[#ece9e3] last:col-span-2 last:mx-auto last:w-1/2 md:last:col-span-1 md:last:w-full"
+      className="relative w-[72vw] max-w-[320px] shrink-0 snap-start overflow-hidden bg-[#ece9e3] [container-type:inline-size] md:w-auto md:max-w-none"
     >
       <div className="relative aspect-[9/16] w-full">
         <video
@@ -76,7 +80,9 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           aria-label={`Video testimonianza ${video.name}`}
-        />
+        >
+          <track kind="subtitles" srcLang="it" label="Italiano" src={video.subtitles} default />
+        </video>
 
         {!playing && (
           <>
@@ -90,6 +96,8 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 md:p-5">
               {video.location && <p className="mb-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/80">{video.location}</p>}
               <h3 className="font-display text-lg uppercase leading-none text-white md:text-xl">{video.name}</h3>
+              {/* Una riga sola: il corpo si adatta alla larghezza della scheda (container query) */}
+              <p className="mt-2 overflow-hidden text-ellipsis whitespace-nowrap font-sans font-medium text-white/90" style={{ fontSize: 'clamp(11px, calc((100cqw - 40px) / 15), 14px)' }}>{video.tagline}</p>
             </div>
             <button
               type="button"
@@ -121,7 +129,7 @@ export default function TestimonialsV2() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-5">
+        <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:grid md:grid-cols-3 md:gap-4 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-5">
           {videos.map((video, index) => (
             <VideoCard key={video.name} video={video} index={index} />
           ))}
