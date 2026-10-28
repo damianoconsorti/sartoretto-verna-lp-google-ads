@@ -89,15 +89,17 @@ function VideoCard({ video, index }: { video: VideoItem; index: number; key?: Re
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent" />
             {video.owner && (
               <>
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-1/5 bg-gradient-to-b from-black/55 to-transparent" />
-                <p className="pointer-events-none absolute left-4 top-4 z-20 font-sans text-xs font-bold uppercase tracking-[0.2em] text-white md:left-5 md:top-5">{video.owner}</p>
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-black/65 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-4 top-4 z-20 md:inset-x-5 md:top-5">
+                  <p className="overflow-hidden text-ellipsis whitespace-nowrap font-sans font-bold uppercase tracking-[0.12em] text-white" style={{ fontSize: 'clamp(9px, calc((100cqw - 40px) / 19), 12px)' }}>{video.owner}</p>
+                  {/* Una riga sola: il corpo si adatta alla larghezza della scheda (container query) */}
+                  <p className="mt-1.5 overflow-hidden text-ellipsis whitespace-nowrap font-sans font-medium text-white/90" style={{ fontSize: 'clamp(11px, calc((100cqw - 40px) / 15), 14px)' }}>{video.tagline}</p>
+                </div>
               </>
             )}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 md:p-5">
               {video.location && <p className="mb-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/80">{video.location}</p>}
               <h3 className="font-display text-lg uppercase leading-none text-white md:text-xl">{video.name}</h3>
-              {/* Una riga sola: il corpo si adatta alla larghezza della scheda (container query) */}
-              <p className="mt-2 overflow-hidden text-ellipsis whitespace-nowrap font-sans font-medium text-white/90" style={{ fontSize: 'clamp(11px, calc((100cqw - 40px) / 15), 14px)' }}>{video.tagline}</p>
             </div>
             <button
               type="button"
