@@ -87,7 +87,7 @@ export default function FAQSection({ titlePeriod = true }: { titlePeriod?: boole
               Domande frequenti
             </p>
             <h2
-              className="font-display text-white uppercase leading-none mb-6"
+              className="font-display text-white uppercase leading-[1.2] mb-6"
               style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5.5rem)' }}
             >
               Le risposte alle<br />
